@@ -1,6 +1,5 @@
 
-import './App.scss'
-import { Footer } from './componets/Footer/Footer'
+import './App.scss';
 import Headers from './componets/Header/Headers'
 
 function App() {
@@ -9,7 +8,7 @@ function App() {
   return (
     <>
     <Headers/>
-    <Footer/>
+  
       
     </>
   )
