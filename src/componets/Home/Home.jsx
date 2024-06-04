@@ -1,11 +1,11 @@
 import React from 'react'
-import Posts from '../Posts/Posts'
-import CreatePost from '../CreatePost/CreatePost'
+import Posts from './Posts/Posts'
 
 const Home = () => {
   return (
     <div>
-        soy el home
+      <h1>Home</h1>
+      <Posts/>
     </div>
   )
 }
