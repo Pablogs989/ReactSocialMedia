@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8080";
 
 const getAll = async () => {
     const res = await axios.get(API_URL + "/posts");
-    return res.data;
+    return res.data.posts;
 };
 
 const getById = async (id) => {
@@ -14,7 +14,7 @@ const getById = async (id) => {
 
 const authService = {
     getAll,
-    getById
+    getById,
 };
 
 export default authService;
