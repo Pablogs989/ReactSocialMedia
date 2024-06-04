@@ -8,28 +8,26 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    password2: "",
+    birthday: "",
   });
-  const { name, email, password,password2 } = formData;
+  const { name, email, password,birthday } = formData;
 
   const dispatch = useDispatch();
 
   const onChange = (e) => {
-    setFormData({
+    console.log(typeof(e.target.value),e.target.name )
+    setFormData(
+      {
       ...formData,
+    
       [e.target.name]: e.target.value,
     });
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    if (password !== password2) {
-      return notification.error({
-        message: "Error",
-        description: "Passwords do not match",
-      });
-    } else {
+ 
       return dispatch(register(formData));
-    }
+    
   };
   return (
     <form onSubmit={onSubmit}>
@@ -47,6 +45,7 @@ const Register = () => {
         onChange={onChange}
         placeholder="Insert your email"
       />
+      <input type="date" name="birthday" value={birthday} onChange={onChange} id="birthday" />
       <input
         type="password"
         name="password"
@@ -54,13 +53,13 @@ const Register = () => {
         onChange={onChange}
         placeholder="Insert your password"
       />
-      <input
+      {/* <input
         type="password"
         name="password2"
         value={password2}
         onChange={onChange}
         placeholder="Insert your password"
-      />
+      /> */}
       <button type="submit">Register</button>
     </form>
   );
