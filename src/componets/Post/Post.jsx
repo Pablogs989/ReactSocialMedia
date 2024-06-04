@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Post = () => {
-  return (
-    <div>Post</div>
-  )
-}
+  const { posts } = useSelector((state) => state.posts);
 
-export default Post
+  const post = posts.map((post) => {
+    return (
+      <div className="post" key={post.id}>
+        <Link to={"/post/" + post._id}>
+          <p>{post.text}</p>
+        </Link>
+      </div>
+    );
+  });
+  return <div>{post}</div>;
+};
+
+export default Post;
