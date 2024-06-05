@@ -7,7 +7,7 @@ const Post = () => {
 
   const post = posts.map((post) => {
     return (
-      <div className="post" key={post.id}>
+      <div className="post" key={post._id}>
         <Link to={"/post/" + post._id}>
           <p>{post.text}</p>
         </Link>
