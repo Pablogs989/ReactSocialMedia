@@ -7,11 +7,9 @@ const Post = () => {
   const { posts } = useSelector((state) => state.posts);
 
   const post = posts.map((post) => {
-    console.log(post.userId);
     if (!post.userId) return null;
 
     if (post.image === null || post.image === "" || post.image === undefined) {
-      console.log(!post.userId);
       return (
         <div className="card" key={post._id}>
           <Link to={"/post/" + post._id}>
