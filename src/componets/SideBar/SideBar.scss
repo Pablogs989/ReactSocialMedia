@@ -1,0 +1,53 @@
+@import "../../App.scss";
+#navbody {
+    @extend %displayCenter;
+    width: 300px;
+    height: 60px;
+    background-color: rgb(249, 200, 200);
+    border-radius: 40px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.041);
+
+  }
+  
+  .ul {
+    @extend %displayCenter;
+    list-style: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+
+  }
+  
+  .ul .li {
+    display: inline-block;
+  }
+  
+  .radio {
+    display: none;
+  }
+  
+  .svg {
+    width: 30px;
+    height: 30px;
+    opacity: 80%;
+    cursor: pointer;
+    padding: 10px 13px;
+    transition: 0.2s;
+  }
+  
+  .ul .li .svg:hover {
+    transition: 0.1s;
+    color: rgb(235, 40, 176);
+    position: relative;
+    margin-top: -4px;
+    opacity: 100%;
+  }
+  ul{
+    padding: 0px;
+  }
+  
+  .radio:checked + label .li .svg {
+    color: rgb(235, 40, 176);
+    fill-rule: evenodd;
+  }
+  

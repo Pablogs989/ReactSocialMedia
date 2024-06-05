@@ -47,7 +47,7 @@ const Login = () => {
     <div className="componentDivContainer">
         <div className="formContainer">
             <form onSubmit={onSubmit}>
-                <div className="inputDiv">
+                <div className="inputnDiv">
                     <input type="email" name="email" value={email} onChange={onChange} placeholder='Insert your email'/>
                 </div>
                 <div className="inputDiv">
