@@ -50,10 +50,10 @@ const Register = () => {
     
   };
   return (
-    <div className="registerDivContainer">
-      <div className="formRegisterContainer">
+    <div className="componentDivContainer">
+      <div className="formContainer">
         <form onSubmit={onSubmit}>
-          <div className="inputRegisterDiv">
+          <div className="inputDiv">
             <input
               type="text"
               name="name"
@@ -62,7 +62,7 @@ const Register = () => {
               placeholder="Insert your name"
             />
           </div>
-          <div className="inputRegisterDiv">
+          <div className="inputDiv">
             <input
               type="email"
               name="email"  value={email}
@@ -70,11 +70,11 @@ const Register = () => {
               placeholder="Insert your email"
             />
           </div>
-          <div className="inputRegisterDiv">
+          <div className="inputDiv">
             <input type="password" name="password" value={password} onChange={onChange} placeholder="Insert your password"/>
             </div>
-          <div className="inputRegisterDiv">
-            <button type="submit">Register</button>
+          <div className="ButtonDiv">
+            <button  type="submit">Register</button>
           </div>
         </form>
       </div>
