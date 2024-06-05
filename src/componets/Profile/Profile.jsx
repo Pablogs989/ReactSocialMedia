@@ -1,6 +1,8 @@
 import { Spin } from 'antd';
 import React from 'react'
 import { useSelector } from 'react-redux'
+import UserInfo from '../UserInfo/UserInfo';
+import './Profile.scss';
 
 const Profile = () => {
   const  { user } = useSelector((state)=>state.auth)
@@ -10,9 +12,9 @@ const Profile = () => {
   }
   return (
     <div className='profileDivContainer'>
-      <h1>Profile</h1>
-      <p>{user.name}</p>
-      <p>{user.email}</p>
+      <UserInfo/>
+      
+    
     </div>
   )
 }
