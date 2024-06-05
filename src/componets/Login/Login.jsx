@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { login, reset } from '../../features/auth/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { notification } from 'antd'
+import '../Register/Register.scss'
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -43,11 +44,21 @@ const Login = () => {
         dispatch(login(formData))
     }
   return (
-    <form onSubmit={onSubmit}>
-        <input type="email" name="email" value={email} onChange={onChange} placeholder='Insert your email'/>
-        <input type="password" name="password" value={password} onChange={onChange} placeholder='Insert your password'/>
-        <button type="submit">Login</button>
-    </form>
+    <div className="componentDivContainer">
+        <div className="formContainer">
+            <form onSubmit={onSubmit}>
+                <div className="inputnDiv">
+                    <input type="email" name="email" value={email} onChange={onChange} placeholder='Insert your email'/>
+                </div>
+                <div className="inputDiv">
+                <input type="password" name="password" value={password} onChange={onChange} placeholder='Insert your password'/>
+                </div>
+                <div className="ButtonDiv">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
   )
 }
 export default Login
