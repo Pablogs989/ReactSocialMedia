@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8080";
 
 const getAll = async () => {
     const res = await axios.get(API_URL + "/posts");
-    return res.data.posts;
+    return res.data;
 };
 
 const getById = async (id) => {
