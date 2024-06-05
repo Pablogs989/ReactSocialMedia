@@ -1,46 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 import "./Post.scss";
 
 const Post = () => {
-  const { posts } = useSelector((state) => state.posts);
+  const { posts, userPosts } = useSelector((state) => state.posts);
+  const location = useLocation();
+  const [postsArray, setPostsArray] = useState([]);
 
-  const post = posts.map((post) => {
-    if (!post.userId) return null;
-
-    if (post.image === null || post.image === "" || post.image === undefined) {
-      return (
-        <div className="card" key={post._id}>
-          <Link to={"/post/" + post._id}>
-            <p className="card-body">{post.text}</p>
-            <p className="footer">
-              Written by <span className="by-name">{post.userId.name}</span> on{" "}
-              <span className="date">{post.createdAt.slice(0, 10)}</span>
-            </p>
-          </Link>
-        </div>
-      );
-    } else {
-      return (
-        <div className="card" key={post._id}>
-          <Link to={"/post/" + post._id}>
-            <div className="card-image">
-              <img className="img"
-                src={"http://localhost:8080/public/posts/" + post.image}
-              ></img>
-            </div>
-            <p className="card-body">{post.text}</p>
-            <p className="footer">
-              Written by <span className="by-name">{post.userId.name}</span> on{" "}
-              <span className="date">{post.createdAt.slice(0, 10)}</span>
-            </p>
-          </Link>
-        </div>
-      );
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/following":
+      case "/profile":
+        setPostsArray(userPosts);
+        break;
+      case "/":
+        setPostsArray(posts);
+        break;
+      default:
+        break;
     }
-  });
-  return <div>{post}</div>;
+  }, [location.pathname, posts, userPosts]);
+
+  return (
+    <div className="post-container">
+      {postsArray.map((post) => {
+        if (!post.userId) return null;
+
+        return (
+          <div className="card" key={post._id}>
+            <Link to={"/post/" + post._id}>
+              {post.image && (
+                <div className="card-image">
+                  <img
+                    className="img"
+                    src={"http://localhost:8080/public/posts/" + post.image}
+                    alt="Post"
+                  />
+                </div>
+              )}
+              <p className="card-body">{post.text}</p>
+              <p className="footer">
+                Written by <span className="by-name">{post.userId.name}</span>{" "}
+                on <span className="date">{post.createdAt.slice(0, 10)}</span>
+              </p>
+            </Link>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default Post;
