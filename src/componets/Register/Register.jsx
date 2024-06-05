@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { register, reset } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
+import "./Register.scss";
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -48,33 +50,35 @@ const Register = () => {
     
   };
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        name="name"
-        value={name}
-        onChange={onChange}
-        placeholder="Insert your name"
-      />
-      <input
-        type="email"
-        name="email"
-      
-
-        value={email}
-        onChange={onChange}
-        placeholder="Insert your email"
-      />
-      <input type="date" name="birthday" value={birthday} onChange={onChange} id="birthday" />
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={onChange}
-        placeholder="Insert your password"
-      />
-      <button type="submit">Register</button>
-    </form>
+    <div className="registerDivContainer">
+      <div className="formRegisterContainer">
+        <form onSubmit={onSubmit}>
+          <div className="inputRegisterDiv">
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+              placeholder="Insert your name"
+            />
+          </div>
+          <div className="inputRegisterDiv">
+            <input
+              type="email"
+              name="email"  value={email}
+              onChange={onChange}
+              placeholder="Insert your email"
+            />
+          </div>
+          <div className="inputRegisterDiv">
+            <input type="password" name="password" value={password} onChange={onChange} placeholder="Insert your password"/>
+            </div>
+          <div className="inputRegisterDiv">
+            <button type="submit">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 export default Register;
