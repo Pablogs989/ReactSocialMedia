@@ -12,9 +12,9 @@ const getById = async (id) => {
     return res.data;
 };
 
-const authService = {
+const portService = {
     getAll,
     getById,
 };
 
-export default authService;
+export default portService;

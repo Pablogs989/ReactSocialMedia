@@ -7,20 +7,24 @@ import { getUserInfo } from "../../features/auth/authSlice";
 import Post from "../Post/Post";
 
 
-const Profile = () => {
-
-  const { user } = useSelector((state) => state.auth);
+const Profile = ({user}) => {
+/// el usuario viene por props
+  const { user } = useSelector((state) => state.auth);  //esta linea ira donde se necesite el usuario en los padres.git
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch((getUserInfo()))
-  }, 
-  [])
+// profil general
+// crear dos componetes 
+// uno para logged user -->   useEffect(() => {
+//   dispatch((getUserInfo()))
+// }, 
+// [])
+// otro para general user  ->getuserby id crear estado usergeneral para esta fncion 
   
   if (!user) {
     return <Spin />;
   }
   return (
+
   
     <div className='profileDivContainer'>
       <div className="userInfoProfileDiv">
