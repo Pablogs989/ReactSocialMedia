@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Post from "../Post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll } from "../../features/posts/postsSlice";
+import "./Posts.scss";
 const Posts = () => {
   const { isLoading ,posts} = useSelector((state) => state.posts);
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Posts = () => {
   }
 
   return (
-    <div>
+    <div className="postsDivContainer">
       <Post posts={posts}/>
     </div>
   );

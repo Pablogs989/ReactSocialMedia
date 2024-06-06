@@ -26,7 +26,8 @@ const Post = ({ posts }) => {
         </Link>
       </div>
     );
-  });
+  }
+  );
   return <div>{post}</div>;
 };
 
