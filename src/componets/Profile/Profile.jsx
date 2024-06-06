@@ -15,6 +15,7 @@ const Profile = () => {
     dispatch((getUserInfo()))
   }, 
   [])
+
   if (!user) {
     return <Spin />;
   }
@@ -25,6 +26,7 @@ const Profile = () => {
 
       <Post posts={user.postsId}/>
       </div>
+      
     
     </div>
   )

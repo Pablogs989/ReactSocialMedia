@@ -9,6 +9,7 @@ import Register from './componets/Register/Register';
 import SideBar from './componets/SideBar/SideBar';
 import PostDetail from './componets/PostDetail/PostDetail';
 import Following from './componets/Following/Following';
+import GetUsers from './componets/GetUsers/GetUsers';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <SideBar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/users" element={<GetUsers/>}/>
         <Route path="/following" element={<Following/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
