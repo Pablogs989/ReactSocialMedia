@@ -1,15 +1,10 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React  from "react";
 import { Link } from "react-router-dom";
 import "./Post.scss";
 
-const Post = () => {
-  const { posts } = useSelector((state) => state.posts);
-
-  return (
-    <div className="post-container">
-      {posts.map((post) => {
-        if (!post.userId) return null;
+const Post = ({posts}) => {
+  const post = posts.map((post) => {
+    if (!post.userId) return null;
 
         return (
           <div className="card" key={post._id}>

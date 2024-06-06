@@ -1,0 +1,19 @@
+@import "../../App.scss";
+.userInfoDivContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+div{
+    height: 50px;
+    padding: 2%;
+}
+p{
+    padding: 2%;
+}
+}
+
+.profileImg{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
