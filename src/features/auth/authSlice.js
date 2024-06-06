@@ -53,6 +53,9 @@ export const authSlice = createSlice({
                 state.isSuccess = true;
                 state.user = action.payload;
             })
+            .addCase(getUserInfo.pending, (state) => {
+                state.isLoading = true;
+            })
             .addCase(getUsers.fulfilled, (state, action) => {
                 state.isSuccess = true;
                 state.users = action.payload;
@@ -60,6 +63,9 @@ export const authSlice = createSlice({
             .addCase(getUserById.fulfilled, (state, action) => {
                 state.isSuccess = true;
                 state.userId = action.payload;
+            })
+            .addCase(getUserById.pending, (state) => {
+                state.isLoading = true;
             });
     },
 });

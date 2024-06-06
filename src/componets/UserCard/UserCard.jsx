@@ -1,6 +1,7 @@
 import React from 'react'
 import "./UserCard.scss"
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const UserCard = () => {
 
@@ -9,6 +10,7 @@ const UserCard = () => {
   const user = users.map((user) => { 
     return (
       <div key={user._id} className="userCardContainer">
+         <Link to={"/user/"+ user._id}>
       <div className="userDivCard">
         <div className="imageUserCard"></div>
         <div className="userCardContent">
@@ -19,6 +21,7 @@ const UserCard = () => {
           <button className="followUserCard">Follow</button>
         </div>
       </div> 
+      </Link>
     </div>
 
     )

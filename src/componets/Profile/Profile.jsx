@@ -32,9 +32,9 @@ const Profile = ({user}) => {
       <div className="userInfoProfileDiv">
         <UserInfo user={user}/>
       </div>
-      <div className="postProfileDiv">
+      {/* <div className="postProfileDiv">
         <Post posts={user.postsId}/>
-      </div>
+      </div> */}
     </div>
 
   )

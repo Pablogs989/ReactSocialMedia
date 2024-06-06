@@ -4,8 +4,10 @@ import { Spin } from 'antd';
 import './UserInfo.scss'
 import Post from '../Post/Post';
 
-const UserInfo = ({user}) => {
-    // const  { user } = useSelector((state)=>state.auth)
+const UserInfo = () => {
+    //hay que pasar por props el usuario, pero falla al buscar los posts en profile
+    
+    const  { user } = useSelector((state)=>state.auth)
 
     if (!user) {
         return <Spin />;
