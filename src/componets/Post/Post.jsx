@@ -28,7 +28,7 @@ const Post = ({ posts }) => {
     );
   }
   );
-  return <div>{post}</div>;
+  return <>{post}</>;
 };
 
 export default Post;

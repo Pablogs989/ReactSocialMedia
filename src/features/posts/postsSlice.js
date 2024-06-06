@@ -8,7 +8,6 @@ const initialState = {
     post: {},
 };
 
-
 export const getAll = createAsyncThunk("posts/getAll", async () => {
     try {
         return await postsService.getAll();
@@ -32,7 +31,6 @@ export const postsSlice = createSlice({
         builder.addCase(getById.fulfilled, (state, action) => {
             state.post = action.payload;
         });
-
     },
 });
 
@@ -43,7 +41,6 @@ export const getById = createAsyncThunk("posts/getById", async (id) => {
         console.error(error);
     }
 });
-
 
 export const { reset } = postsSlice.actions;
 export default postsSlice.reducer;
