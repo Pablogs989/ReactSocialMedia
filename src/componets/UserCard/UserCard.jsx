@@ -3,45 +3,21 @@ import "./UserCard.scss"
 
 const UserCard = () => {
   return (
-    <div class="card">
-  <p class="title">Who to follow</p>
-  <div class="user__container">
-    <div class="user">
-      <div class="image"></div>
-      <div class="user__content">
-        <div class="text">
-          <span class="name">Name</span>
-          <p class="username">@namedlorem</p>
-        </div>
-        <button class="follow">Follow</button>
+    <div class="userCard">
+      <p class="titleUserCard">Who to follow</p>
+      <div class="userCardContainer">
+        <div class="userDivCard">
+          <div class="imageUserCard"></div>
+          <div class="userCardContent">
+            <div class="textUserCard">
+              <span class="nameUserCard">Name</span>
+              <p class="usernameUserCard">@namedlorem</p>
+            </div>
+            <button class="followUserCard">Follow</button>
+          </div>
+        </div> 
       </div>
-      
-    </div> 
-    <div class="user">
-      <div class="image"></div>
-      <div class="user__content">
-        <div class="text">
-          <span class="name">Name</span>
-          <p class="username">@namedlorem</p>
-        </div>
-        <button class="follow">Follow</button>
-      </div>
-      
-    </div> 
-    <div class="user">
-      <div class="image"></div>
-      <div class="user__content">
-        <div class="text">
-          <span class="name">Name</span>
-          <p class="username">@namedlorem</p>
-        </div>
-        <button class="follow">Follow</button>
-      </div>
-      
-    </div> 
-
-  </div>
-  <a class="more" href="#">See more</a>
+      <a class="more" href="#">See more</a>
     </div>
   )
 }

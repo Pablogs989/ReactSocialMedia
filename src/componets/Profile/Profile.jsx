@@ -15,20 +15,22 @@ const Profile = () => {
     dispatch((getUserInfo()))
   }, 
   [])
-
+  
   if (!user) {
     return <Spin />;
   }
   return (
+  
     <div className='profileDivContainer'>
-      <UserInfo/>
-      <div className="postProfileDiv">
-
-      <Post posts={user.postsId}/>
+      <div className="userInfoProfileDiv">
+        <UserInfo/>
       </div>
-      
-    
+      <div className="postProfileDiv">
+        <Post posts={user.postsId}/>
+      </div>
+     
     </div>
+
   )
 }
 

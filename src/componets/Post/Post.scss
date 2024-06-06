@@ -7,20 +7,18 @@
 }
 .card {
     display: flex;
-    padding: 20px;
-    width: 80vw;
     min-height: 8vh;
     border-radius: 20px;
-    margin-bottom: 2vh;
+    margin-bottom: 6vh;
     background: #e8e8e8;
     box-shadow: 5px 5px 6px #dadada,
                  -5px -5px 6px #f6f6f6;
     transition: 0.4s;
   }
   
-  .card:hover {
-    translate: 0 -10px;
-  }
+  // .card:hover {
+  //   translate: 0 -10px;
+  // }
   
   .card-image {
     min-height: 5vh;
@@ -31,7 +29,7 @@
   }
   
   .card-body {
-    margin: 13px 0 0 10px;
+    // margin: 13px 0 0 10px;
     color: rgb(31, 31, 31);
     font-size: 15px;
   }

@@ -1,0 +1,85 @@
+.userCard {
+    width: 100%;
+
+    background: #E8EAEA;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .titleUserCard, .more {
+    padding: 10px 15px;
+  }
+  
+  .userDivCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+  }
+  
+  .userCardContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .userCardContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title {
+    font-weight: 900;
+    font-size: 1.3em;
+  }
+  
+  .nameUserCard {
+    font-weight: 800;
+  }
+  
+  .usernameUserCard {
+    font-size: .9em;
+    color: #64696e;
+  }
+  
+  .imageUserCard {
+    width: 60px;
+    height: 60px;
+    background: rgb(22,19,70);
+    background: linear-gradient(295deg, rgba(22,19,70,1) 41%, rgba(89,177,237,1) 100%);
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .followUserCard {
+    border: none;
+    border-radius: 25px;
+    background-color: #0f1113;
+    color: white;
+    padding: 8px 15px;
+    font-weight: 700;
+  }
+  
+  .more {
+    display: block;
+    text-decoration: none;
+    color: rgb(29, 155, 240);
+    font-weight: 800;
+  }
+  
+  .userCard:hover {
+    background-color: #b3b6b6;
+  }
+  
+  .more:hover {
+    background-color: #b3b6b6;
+    border-radius: 0px 0px 15px 15px;
+  }
+  
+  .followUserCard:hover {
+    background-color: #2c3136;
+  }

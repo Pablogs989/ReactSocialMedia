@@ -11,8 +11,6 @@ const Home = () => {
   return (
     <div className="divNavContainer">
 
- 
-      <h1>Home</h1>
       <Posts />
       
     </div>
