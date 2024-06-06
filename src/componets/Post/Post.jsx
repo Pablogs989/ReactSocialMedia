@@ -9,15 +9,15 @@ const Post = ({ posts }) => {
     return (
       <div className="card" key={post._id}>
         <Link to={"/post/" + post._id}>
-          <div className="card-image">
             {post.image && (
+          <div className="card-image">
               <img
                 className="img"
                 src={"http://localhost:8080/public/posts/" + post.image}
                 alt="Post"
               />
-            )}
           </div>
+            )}
           <p className="card-body">{post.text}</p>
           <p className="footer">
             Written by <span className="by-name">{post.userId.name}</span> on{" "}
