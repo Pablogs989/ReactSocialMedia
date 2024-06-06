@@ -41,12 +41,24 @@ const getUserInfo = async () => {
     console.log(res.data);
     return res.data;
 };
+const getUsers = async () => {
+    const token = localStorage.getItem("token");
+
+    const res = await axios.get(API_URL + "/", {
+        headers: {
+            Authorization: token,
+        },
+    });
+    console.log(res.data);
+    return res.data;
+};
 
 const authService = {
     register,
     login,
     logout,
     getUserInfo,
+    getUsers,
 };
 
 export default authService;

@@ -58,22 +58,21 @@ const SideBar = () => {
         </div>
   
           {user ?  <>
-            <div id="profileMenu" className="iconsDiv">
-        
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          height="24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          className="svg w-6 h-6 text-gray-800 dark:text-white"
-        >
-         <path d="M4 6H20M4 12H20M4 18H20" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-        </svg>
-      </div>
-         
-          <div onClick={() => {
+            
+            <div id="profileMenu" className="iconsDiv"><Link to="/profile">
+              <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            height="24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            className="svg w-6 h-6 text-gray-800 dark:text-white"
+          >
+          <path d="M4 6H20M4 12H20M4 18H20" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+              </svg></Link>
+            </div>
+            <div onClick={() => {
             dispatch(logout());
           }}className="iconsDiv"><Link to="/profile">
 

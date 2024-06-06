@@ -5,6 +5,7 @@ import UserInfo from '../UserInfo/UserInfo';
 import './Profile.scss';
 import { getUserInfo } from '../../features/auth/authSlice';
 import Post from '../Post/Post';
+import GetUsers from '../GetUsers/GetUsers';
 
 const Profile = () => {
   const  { user } = useSelector((state)=>state.auth)
@@ -20,7 +21,11 @@ const Profile = () => {
   return (
     <div className='profileDivContainer'>
       <UserInfo/>
+      <div className="postProfileDiv">
+
       <Post posts={user.postsId}/>
+      </div>
+      <GetUsers/>
     
     </div>
   )

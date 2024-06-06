@@ -1,6 +1,10 @@
-
+@import "../../App.scss";
 
 .profileDivContainer{
-    
     padding: 5%;
+}
+.postProfileDiv{
+   display: flex;    
+   width: 70%;
+
 }
