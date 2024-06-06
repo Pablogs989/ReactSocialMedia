@@ -1,24 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserInfo } from "../../features/auth/authSlice";
 import { getAll } from "../../features/posts/postsSlice";
 
 const Following = () => {
   const { user } = useSelector((state) => state.auth);
-  const { isLoading, posts } = useSelector((state) => state.posts);
+  const { posts } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  const [followingPosts, setFollowingPosts] = useState([]);
 
   useEffect(() => {
     dispatch(getAll());
-    console.log(user);
-  
-    const followingPosts = posts.filter((post) =>
-     post.userId._id === user.following
+    setFollowingPosts(
+      posts.filter((post) => user.following.includes(post.userId?._id))
     );
   }, []);
-
-  //console.log(followingPosts);
 
   if (!user) {
     return <Spin />;
@@ -27,7 +23,7 @@ const Following = () => {
   return (
     <div className="divNavContainer">
       <h1>Following</h1>
-      <Post posts={user.postsId} />
+      <Post posts={followingPosts} />
     </div>
   );
 };

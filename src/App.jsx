@@ -9,6 +9,7 @@ import Register from './componets/Register/Register';
 import SideBar from './componets/SideBar/SideBar';
 import PostDetail from './componets/PostDetail/PostDetail';
 import Following from './componets/Following/Following';
+import CreatePost from './componets/CreatePost/CreatePost';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/post/:id" element={<PostDetail />} />
+        <Route path="/createPost" element={<CreatePost />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
