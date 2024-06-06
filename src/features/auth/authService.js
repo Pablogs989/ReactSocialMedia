@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8080/users";
 
 const register = async (userData) => {
     const res = await axios.post(API_URL + "/", userData);
-    console.log(res.data);
+
     return res.data;
 };
 
@@ -38,7 +38,7 @@ const getUserInfo = async () => {
             Authorization: token,
         },
     });
-    console.log(res.data);
+
     return res.data;
 };
 const getUsers = async () => {
@@ -49,7 +49,18 @@ const getUsers = async () => {
             Authorization: token,
         },
     });
-    console.log(res.data);
+
+    return res.data;
+};
+const getUserById = async (id) => {
+    const token = localStorage.getItem("token");
+
+    const res = await axios.get(API_URL + "/id/" + id, {
+        headers: {
+            Authorization: token,
+        },
+    });
+
     return res.data;
 };
 
@@ -59,6 +70,7 @@ const authService = {
     logout,
     getUserInfo,
     getUsers,
+    getUserById,
 };
 
 export default authService;

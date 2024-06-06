@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem("user")) || null;
 
 const initialState = {
     users: [],
+    userId: {},
     user: user,
     token: token,
     isError: false,
@@ -55,6 +56,10 @@ export const authSlice = createSlice({
             .addCase(getUsers.fulfilled, (state, action) => {
                 state.isSuccess = true;
                 state.users = action.payload;
+            })
+            .addCase(getUserById.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.userId = action.payload;
             });
     },
 });
@@ -99,6 +104,13 @@ export const getUserInfo = createAsyncThunk("auth/getUserInfo", async () => {
 export const getUsers = createAsyncThunk("auth/getUsers", async () => {
     try {
         return await authService.getUsers();
+    } catch (error) {
+        console.error(error);
+    }
+});
+export const getUserById = createAsyncThunk("auth/getUserById", async (id) => {
+    try {
+        return await authService.getUserById(id);
     } catch (error) {
         console.error(error);
     }

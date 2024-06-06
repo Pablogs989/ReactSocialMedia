@@ -4,8 +4,8 @@ import { Spin } from 'antd';
 import './UserInfo.scss'
 import Post from '../Post/Post';
 
-const UserInfo = () => {
-    const  { user } = useSelector((state)=>state.auth)
+const UserInfo = ({user}) => {
+    // const  { user } = useSelector((state)=>state.auth)
 
     if (!user) {
         return <Spin />;

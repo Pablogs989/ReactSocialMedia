@@ -4,13 +4,14 @@ import './App.scss';
 import Footer from './componets/Footer/Footer';
 import Home from './componets/Home/Home';
 import Login from './componets/Login/Login';
-import Profile from './componets/Profile/Profile';
+
 import Register from './componets/Register/Register';
 import SideBar from './componets/SideBar/SideBar';
 import PostDetail from './componets/PostDetail/PostDetail';
 import Following from './componets/Following/Following';
 import GetUsers from './componets/GetUsers/GetUsers';
-
+import LoggedUserProfile from './componets/LoggedUserProfile/LoggedUserProfile';
+import GeneralUserProfile from './componets/GeneralUserProfile/GeneralUserProfile';
 function App() {
 
 
@@ -24,7 +25,9 @@ function App() {
         <Route path="/following" element={<Following/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/user/:id" element={<GeneralUserProfile/>}/>
+
+        <Route path="/profile" element={<LoggedUserProfile/>}/>
         <Route path="/post/:id" element={<PostDetail />} />
       </Routes>
       <Footer/>
