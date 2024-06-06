@@ -6,8 +6,6 @@ const Post = ({ posts }) => {
   const post = posts.map((post) => {
     if (!post.userId) return null;
 
-    if (!post.userId) return null;
-
     return (
       <div className="card" key={post._id}>
         <Link to={"/post/" + post._id}>

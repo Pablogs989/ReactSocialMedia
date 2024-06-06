@@ -6,7 +6,6 @@ const initialState = {
     posts: [],
     isLoading: false,
     post: {},
-    userPosts: []
 };
 
 
@@ -26,7 +25,6 @@ export const postsSlice = createSlice({
         builder.addCase(getAll.fulfilled, (state, action) => {
             state.posts = action.payload;
             state.isLoading = false;
-            state.userPosts = action.payload.filter(post => post.userId?._id === JSON.parse(localStorage.getItem("user"))._id)
         });
         builder.addCase(getAll.pending, (state) => {
             state.isLoading = true;

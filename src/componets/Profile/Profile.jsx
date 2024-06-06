@@ -25,7 +25,6 @@ const Profile = () => {
 
       <Post posts={user.postsId}/>
       </div>
-      <GetUsers/>
     
     </div>
   )
