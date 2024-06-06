@@ -1,6 +1,6 @@
 .userCard {
     width: 100%;
-
+    padding: 3%;
     background: #E8EAEA;
     border-radius: 15px;
     display: flex;
@@ -8,7 +8,7 @@
     justify-content: space-between;
   }
   
-  .titleUserCard, .more {
+  .titleUserCard, .moreUserCard {
     padding: 10px 15px;
   }
   
@@ -32,7 +32,7 @@
     flex-direction: column;
   }
   
-  .title {
+  .titleUserCard {
     font-weight: 900;
     font-size: 1.3em;
   }
@@ -49,8 +49,8 @@
   .imageUserCard {
     width: 60px;
     height: 60px;
-    background: rgb(22,19,70);
-    background: linear-gradient(295deg, rgba(22,19,70,1) 41%, rgba(89,177,237,1) 100%);
+    background: rgb(228, 176, 244);
+    background: linear-gradient(295deg, rgb(140, 213, 245) 41%, rgb(236, 239, 163) 100%);
     border-radius: 50%;
     margin-right: 15px;
   }
@@ -64,7 +64,7 @@
     font-weight: 700;
   }
   
-  .more {
+  .moreUserCard {
     display: block;
     text-decoration: none;
     color: rgb(29, 155, 240);
@@ -75,7 +75,7 @@
     background-color: #b3b6b6;
   }
   
-  .more:hover {
+  .moreUserCard:hover {
     background-color: #b3b6b6;
     border-radius: 0px 0px 15px 15px;
   }

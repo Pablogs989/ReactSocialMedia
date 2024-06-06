@@ -1,23 +1,35 @@
 import React from 'react'
 import "./UserCard.scss"
+import { useSelector } from 'react-redux';
 
 const UserCard = () => {
-  return (
-    <div class="userCard">
-      <p class="titleUserCard">Who to follow</p>
-      <div class="userCardContainer">
-        <div class="userDivCard">
-          <div class="imageUserCard"></div>
-          <div class="userCardContent">
-            <div class="textUserCard">
-              <span class="nameUserCard">Name</span>
-              <p class="usernameUserCard">@namedlorem</p>
-            </div>
-            <button class="followUserCard">Follow</button>
+
+  const { users } = useSelector((state) => state.auth);
+
+  const user = users.map((user) => { 
+    return (
+      <div key={user._id} className="userCardContainer">
+      <div className="userDivCard">
+        <div className="imageUserCard"></div>
+        <div className="userCardContent">
+          <div className="textUserCard">
+            <span className="nameUserCard">{user.name}</span>
+            <p className="usernameUserCard">{user.email}</p>
           </div>
-        </div> 
-      </div>
-      <a class="more" href="#">See more</a>
+          <button className="followUserCard">Follow</button>
+        </div>
+      </div> 
+    </div>
+
+    )
+
+  });
+
+
+  return (
+    <div>
+
+      {user}
     </div>
   )
 }
