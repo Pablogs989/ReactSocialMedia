@@ -21,7 +21,7 @@ const GeneralUserProfile = () => {
       }
   return (
     <>
-        {user.name}
+
         <Profile user={user}/>
     </>
   )

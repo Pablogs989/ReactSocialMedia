@@ -5,7 +5,7 @@ import Profile from '../Profile/Profile';
 const LoggedUserProfile = () => {
 
     const { user } = useSelector((state) => state.auth);
-    console.log(user);
+
   return (
    <>
    

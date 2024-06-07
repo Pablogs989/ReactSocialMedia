@@ -75,12 +75,18 @@ export const authSlice = createSlice({
             .addCase(follow.pending, (state) => {
                 state.isLoading = true;
             })
+            .addCase(follow.rejected, (state) => {
+                state.isError = true;
+            })
             .addCase(unfollow.fulfilled, (state, action) => {
                 state.isSuccess = true;
                 state.user = action.payload.user;
             })
             .addCase(unfollow.pending, (state) => {
                 state.isLoading = true;
+            })
+            .addCase(unfollow.rejected, (state) => {
+                state.isError = true;
             });
     },
 });
