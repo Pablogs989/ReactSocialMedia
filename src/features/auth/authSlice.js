@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem("user")) || null;
 
 const initialState = {
     users: [],
+    userId: null,
     user: user,
     token: token,
     isError: false,
@@ -52,9 +53,40 @@ export const authSlice = createSlice({
                 state.isSuccess = true;
                 state.user = action.payload;
             })
+            .addCase(getUserInfo.pending, (state) => {
+                state.isLoading = true;
+            })
             .addCase(getUsers.fulfilled, (state, action) => {
                 state.isSuccess = true;
                 state.users = action.payload;
+            })
+            .addCase(getUserById.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.isLoading = false;
+                state.userId = action.payload;
+            })
+            .addCase(getUserById.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(follow.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.user = action.payload.user;
+            })
+            .addCase(follow.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(follow.rejected, (state) => {
+                state.isError = true;
+            })
+            .addCase(unfollow.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.user = action.payload.user;
+            })
+            .addCase(unfollow.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(unfollow.rejected, (state) => {
+                state.isError = true;
             });
     },
 });
@@ -99,6 +131,27 @@ export const getUserInfo = createAsyncThunk("auth/getUserInfo", async () => {
 export const getUsers = createAsyncThunk("auth/getUsers", async () => {
     try {
         return await authService.getUsers();
+    } catch (error) {
+        console.error(error);
+    }
+});
+export const getUserById = createAsyncThunk("auth/getUserById", async (id) => {
+    try {
+        return await authService.getUserById(id);
+    } catch (error) {
+        console.error(error);
+    }
+});
+export const follow = createAsyncThunk("auth/follow", async (id) => {
+    try {
+        return await authService.follow(id);
+    } catch (error) {
+        console.error(error);
+    }
+});
+export const unfollow = createAsyncThunk("auth/unfollow", async (id) => {
+    try {
+        return await authService.unfollow(id);
     } catch (error) {
         console.error(error);
     }

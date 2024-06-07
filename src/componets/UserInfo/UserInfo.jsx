@@ -2,14 +2,19 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Spin } from 'antd';
 import './UserInfo.scss'
-import Post from '../Post/Post';
 
-const UserInfo = () => {
-    const  { user } = useSelector((state)=>state.auth)
+const UserInfo = ({user}) => {
+    //hay que pasar por props el usuario, pero falla al buscar los posts en profile
+    
+    const  { isLoading } = useSelector((state)=>state.auth)
 
     if (!user) {
         return <Spin />;
       }
+      
+  if (isLoading) {
+    return <h1>Cargando posts...</h1>;
+  }
     
   return (
     <div className='userInfoDivContainer'>

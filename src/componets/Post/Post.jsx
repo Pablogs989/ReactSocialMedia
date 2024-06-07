@@ -5,7 +5,7 @@ import "./Post.scss";
 const Post = ({ posts }) => {
   const post = posts.map((post) => {
     if (!post.userId) return null;
-
+    console.log(post)
     return (
       <div className="card" key={post._id}>
         <Link to={"/post/" + post._id}>
@@ -18,11 +18,11 @@ const Post = ({ posts }) => {
               />
           </div>
             )}
-          <p className="card-body">{post.text}</p>
-          <p className="footer">
-            Written by <span className="by-name">{post.userId.name}</span> on{" "}
-            <span className="date">{post.createdAt.slice(0, 10)}</span>
-          </p>
+          <div className="card-body">{post.text} Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, dolore assumenda. Eveniet deleniti magnam nostrum porro modi, provident aut animi, facilis veniam, fuga perspiciatis asperiores sed deserunt sapiente labore commodi! </div>
+          <div className="footer">
+            <div className="by-name">Written by  {post.userId.name} </div> <span>on{" "} </span>
+            <div className="date"> {post.createdAt.slice(0, 10)}</div>
+          </div>
         </Link>
       </div>
     );
