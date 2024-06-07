@@ -1,13 +1,12 @@
 import { Spin } from "antd";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import UserInfo from "../UserInfo/UserInfo";
 import "./Profile.scss";
 import Post from "../Post/Post";
 
 
 const Profile = ({user}) => {
- 
+
   if (!user) {
     return <Spin />;
   }
