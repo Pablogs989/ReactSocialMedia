@@ -42,5 +42,13 @@ export const getById = createAsyncThunk("posts/getById", async (id) => {
     }
 });
 
+export const createPost = createAsyncThunk("posts/createPost", async (postData) => {
+    try {
+        return await postsService.createPost(postData);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 export const { reset } = postsSlice.actions;
 export default postsSlice.reducer;
