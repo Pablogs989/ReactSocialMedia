@@ -1,78 +1,61 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, Upload, notification } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import { Form, Input, Button, Upload, notification } from "antd";
+import { connect, useDispatch } from "react-redux";
 import { createPost } from "../../features/posts/postsSlice";
 
-const CreatePost = (props) => {
-  const [form] = Form.useForm();
-  const [image, setImage] = useState(null);
+const CreatePost = () => {
 
-  const handleSubmit = async () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const formData = new FormData();
-    formData.set('text', "hola");
-    if (image) {
-      formData.set('image', image);
-    }
-console.log(form.getFieldValue(text));
+    formData.set("text", event.target.text.value);
+    if (event.target.image.files[0])
+      formData.set("image", event.target.image.files[0]);
+
     try {
-      await createPost(formData);
-      notification.success({ message: 'Post successfully created' });
-      form.resetFields();
-      setImage(null);
+      dispatch(createPost(formData)).unwrap();
+      notification.success({ message: "Product successfully uploaded " });
     } catch (error) {
       console.error(error);
-      notification.error({ message: 'Failed to create post' });
+      notification.error({ message: "Failed to create post" });
     }
   };
 
-  const handleImageChange = (info) => {
-    if (info.file.status !== 'removed') {
-      setImage(info.file.originFileObj);
-    } else {
-      setImage(null);
-    }
-  };
+  // const handleImageChange = (info) => {
+  //   if (info.file.status !== "removed") {
+  //     setImage(info.file.files[0]);
+  //   } else {
+  //     setImage(null);
+  //   }
+  // };
 
-  const handleRemove = () => {
-    setImage(null);
-  };
+  // const handleRemove = () => {
+  //   setImage(null);
+  // };
 
   return (
-    <Form
-      form={form}
-      name="create_post"
-      onFinish={handleSubmit}
-      layout="vertical"
-      style={{ maxWidth: 600, margin: 'auto' }}
-    >
-      <Form.Item
-        name="text"
-        label="Text"
-        rules={[{ required: true, message: 'Please write something' }]}
+    <form className="formPost" action="" onSubmit={handleSubmit}>
+      <Input name="text" placeholder="Text" />
+
+      {/* <Upload
+        name="image"
+        listType="picture"
+        beforeUpload={() => false}
+        onChange={handleImageChange}
+        onRemove={handleRemove}
+        maxCount={1}
       >
-        <Input.TextArea rows={4} />
-      </Form.Item>
+        <Button icon={<UploadOutlined />}>Select Image</Button>
+      </Upload> */}
 
-      <Form.Item name="image" label="Image">
-        <Upload
-          name="image"
-          listType="picture"
-          beforeUpload={() => false}
-          onChange={handleImageChange}
-          onRemove={handleRemove}
-          maxCount={1}
-        >
-          <Button icon={<UploadOutlined />}>Select Image</Button>
-        </Upload>
-      </Form.Item>
+      <input type="file" name="image" id="file" class="input-file" />
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Create
-        </Button>
-      </Form.Item>
-    </Form>
+      <Button type="primary" htmlType="submit">
+        Create
+      </Button>
+    </form>
   );
 };
 

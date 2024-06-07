@@ -16,6 +16,26 @@ export const getAll = createAsyncThunk("posts/getAll", async () => {
     }
 });
 
+
+export const getById = createAsyncThunk("posts/getById", async (id) => {
+    try {
+        return await postsService.getById(id);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+export const createPost = createAsyncThunk(
+    'posts/createPost',
+    async (postData, { rejectWithValue }) => {
+        try {
+            return await postsService.createPost(postData);
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
 export const postsSlice = createSlice({
     name: "posts",
     initialState,
@@ -31,23 +51,19 @@ export const postsSlice = createSlice({
         builder.addCase(getById.fulfilled, (state, action) => {
             state.post = action.payload;
         });
+        builder
+            .addCase(createPost.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(createPost.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.posts.push(action.payload);
+            })
+            .addCase(createPost.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload;
+            });
     },
-});
-
-export const getById = createAsyncThunk("posts/getById", async (id) => {
-    try {
-        return await postsService.getById(id);
-    } catch (error) {
-        console.error(error);
-    }
-});
-
-export const createPost = createAsyncThunk("posts/createPost", async (postData) => {
-    try {
-        return await postsService.createPost(postData);
-    } catch (error) {
-        console.error(error);
-    }
 });
 
 export const { reset } = postsSlice.actions;
