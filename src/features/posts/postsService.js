@@ -11,15 +11,17 @@ const getById = async (id) => {
     const res = await axios.get(API_URL + "/posts/id/" + id);
     return res.data;
 };
-const createPost = async (formData) => {
-    const res = await axios.post(API_URL + "/posts", formData, {
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
-    });
-    
-    return res.data;
-};
+
+export const createPost = async (formData) => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { 'Content-Type': 'multipart/form-data',
+      Authorization: token,
+    }
+    };
+    const response = await axios.post(API_URL + "/posts", formData, config);
+    return response.data;
+  };
 
 const postsService = {
     getAll,
