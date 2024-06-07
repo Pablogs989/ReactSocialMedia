@@ -87,6 +87,10 @@ export const authSlice = createSlice({
             })
             .addCase(unfollow.rejected, (state) => {
                 state.isError = true;
+            })
+            .addCase(updatePic.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.user = action.payload.user;
             });
     },
 });
@@ -156,6 +160,17 @@ export const unfollow = createAsyncThunk("auth/unfollow", async (id) => {
         console.error(error);
     }
 });
+export const updatePic = createAsyncThunk(
+    "auth/updatePic",
+    async (formData, { rejectWithValue }) => {
+        try {
+            return await authService.updatePic(formData);
+        } catch (error) {
+            console.error(error);
+            rejectWithValue(error.response.data);
+        }
+    },
+);
 
 export default authSlice.reducer;
 
