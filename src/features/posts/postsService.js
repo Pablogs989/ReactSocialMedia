@@ -11,10 +11,21 @@ const getById = async (id) => {
     const res = await axios.get(API_URL + "/posts/id/" + id);
     return res.data;
 };
-
-const portService = {
-    getAll,
-    getById,
+const post = async (data) => {
+    const res = await axios.post(API_URL + "/posts", data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    });
+    
+    return res.data;
 };
 
-export default portService;
+const postsService = {
+    getAll,
+    getById,
+    post
+};
+
+export default postsService;
+

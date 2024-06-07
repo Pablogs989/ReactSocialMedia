@@ -59,6 +59,11 @@ const SideBar = () => {
 
           {user ? (
             <>
+            <div>
+              <Link to="/following">
+              x
+              </Link>
+            </div>
               <div id="profileMenu" className="iconsDiv">
                 <Link to="/profile">
                   <svg

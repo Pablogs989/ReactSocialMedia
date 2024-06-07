@@ -9,6 +9,7 @@ import Register from './componets/Register/Register';
 import SideBar from './componets/SideBar/SideBar';
 import PostDetail from './componets/PostDetail/PostDetail';
 import Following from './componets/Following/Following';
+import CreatePost from './componets/CreatePost/CreatePost';
 import GetUsers from './componets/GetUsers/GetUsers';
 import LoggedUserProfile from './componets/LoggedUserProfile/LoggedUserProfile';
 import GeneralUserProfile from './componets/GeneralUserProfile/GeneralUserProfile';
@@ -29,6 +30,7 @@ function App() {
 
         <Route path="/profile" element={<LoggedUserProfile/>}/>
         <Route path="/post/:id" element={<PostDetail />} />
+        <Route path="/createPost" element={<CreatePost />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
