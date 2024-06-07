@@ -2,7 +2,7 @@ import React from 'react'
 import "./UserCard.scss"
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { follow, unfollow } from '../../features/auth/authSlice';
+import { follow, login, unfollow } from '../../features/auth/authSlice';
 
 
 const UserCard = () => {
@@ -18,7 +18,7 @@ const UserCard = () => {
     }
   
 const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.auth);
+  const { users, user: logged } = useSelector((state) => state.auth);
 
   const user = users.map((user) => { 
     return (
