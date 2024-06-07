@@ -4,15 +4,10 @@ import { Spin } from 'antd';
 import './UserInfo.scss'
 
 const UserInfo = ({user}) => {
-    //hay que pasar por props el usuario, pero falla al buscar los posts en profile
-    
-    const  { isLoading } = useSelector((state)=>state.auth)
 
     if (!user) {
         return <Spin />;
-      }
-      
-
+}
     
   return (
     <div className='userInfoDivContainer'>
