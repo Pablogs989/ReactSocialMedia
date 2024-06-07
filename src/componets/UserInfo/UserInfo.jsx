@@ -11,9 +11,10 @@ const UserInfo = ({user}) => {
     console.log(user.profilePic);
   return (
     <>  
-    <div className='userInfoContainer' >
-        <div className='userNameDiv'>{user.name}</div>
-        <div className='userInfoDivContainer'>
+    <div className='userInfoContainer'>
+            <div className='userNameDiv'>{user.name}
+            </div>
+            <div className='userInfoDivContainer'>
         <div className="userAvatarDiv">
             <img className="profileImg" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" />
         </div>
@@ -32,7 +33,7 @@ const UserInfo = ({user}) => {
         
 
             </div>
-            </div>
+    </div>
             </>
   )
 }

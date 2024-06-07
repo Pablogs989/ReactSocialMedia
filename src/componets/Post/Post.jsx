@@ -6,7 +6,8 @@ const Post = ({ posts }) => {
   const post = posts.map((post) => {
     if (!post.userId) return null;
     return (
-      <div className="card" key={post._id}>
+      <div key={post._id} className="containerPostCart">
+      <div className="card" >
         <Link to={"/post/" + post._id}>
             {post.image && (
           <div className="card-image">
@@ -17,13 +18,14 @@ const Post = ({ posts }) => {
               />
           </div>
             )}
-          <div className="card-body">{post.text} Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, dolore assumenda. Eveniet deleniti magnam nostrum porro modi, provident aut animi, facilis veniam, fuga perspiciatis asperiores sed deserunt sapiente labore commodi! </div>
+          <div className="card-body">{post.text}  </div>
           <div className="footer">
-            <div className="by-name">Written by  {post.userId.name} </div> <span>on{" "} </span>
-            <div className="date"> {post.createdAt.slice(0, 10)}</div>
+            <div className="by-name">Written by  {post.userId.name} </div> <span>on{" "}{post.createdAt.slice(0, 10)} </span>
           </div>
         </Link>
       </div>
+      </div>
+
     );
   }
   );

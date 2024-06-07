@@ -29,17 +29,19 @@ const UserCard = () => {
     <div>
       {users.map((user) => (
         <div key={user._id} className="userCardContainer">
-          <div className="userDivCard">
-            <Link to={`/user/${user._id}`}>
-              <div className="imageUserCard"></div>
-              <div className="userCardContent">
-                <div className="textUserCard">
-                  <span className="nameUserCard">{user.name}</span>
-                  <p className="usernameUserCard">{user.email}</p>
+          
+            <Link to={`/user/${user._id}`}><div className="infoDiv">
+                <div className="imageUserCard">
+                <img id="profileImgCard"className="profileImgCard" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" />
                 </div>
-              </div>
-            </Link>
-          </div>
+                <div className="textUserCard">
+                  <div className="nameUserCard">{user.name}</div>
+                  <div className="usernameUserCard">followers: {user.followers.length}
+                  
+                  </div>
+                </div>
+            
+          </div></Link>
           <div className="buttonsDivContainer">
             {followedUsers.includes(user._id) ? (
               <button className="followUserCard" onClick={() => handleUnfollow(user)}>

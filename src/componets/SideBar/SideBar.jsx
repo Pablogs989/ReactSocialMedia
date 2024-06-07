@@ -17,8 +17,8 @@ const SideBar = () => {
     <div className="iconsBarContainer">
       <div id="iconsBarDiv">
         <div className="iconsBar">
-          <div className="iconsDiv">
-            <Link to="/">
+          <div id="home" className="iconsDiv"><Link to="/users">
+      
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -36,9 +36,9 @@ const SideBar = () => {
                   stroke="currentColor"
                 ></path>
               </svg>
-            </Link>
+              </Link>
           </div>
-          <div className="iconsDiv">
+          <div id="discover" className="iconsDiv">      <Link to="/">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -55,17 +55,13 @@ const SideBar = () => {
                 stroke="currentColor"
               ></path>
             </svg>
+            </Link>
           </div>
 
           {user ? (
             <>
             <div>
               <Link to="/following">
-              x
-              </Link>
-            </div>
-              <div id="profileMenu" className="iconsDiv">
-                <Link to="/profile">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -83,15 +79,15 @@ const SideBar = () => {
                       strokeLinejoin="round"
                     ></path>
                   </svg>
-                </Link>
-              </div>
-              <div
+              </Link>
+            </div>
+              <div id="logout"
                 onClick={() => {
                   dispatch(logout());
                 }}
                 className="iconsDiv"
               >
-                <Link to="/profile">
+                <Link to="/login">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -108,6 +104,11 @@ const SideBar = () => {
                       strokeLinecap="round"
                     ></path>
                   </svg>
+                </Link>
+              </div>
+              <div id="profileMenu" className="iconsDiv">
+                <Link to="/profile">
+                <img className="profileImg" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" />
                 </Link>
               </div>
             </>

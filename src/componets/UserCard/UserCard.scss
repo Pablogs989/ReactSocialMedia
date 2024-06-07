@@ -1,36 +1,28 @@
-.userCard {
-    width: 100%;
-    padding: 3%;
-    background: #E8EAEA;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+@import "../../App.scss";
+.userCardContainer{
+  display: flex;
+  width: 70vw;
+  justify-content: space-around;
+  margin: 12px 0px;
+  padding: 15px;
+  border-radius: 5px;
+  border-bottom: pink solid 3px;
+  background-color: rgba(255, 192, 203, 0.405);
+}
+.infoDiv{
+  max-width: 50vw;
+  display: flex;
+  align-items: center;
+}
+
   
   .titleUserCard, .moreUserCard {
     padding: 10px 15px;
   }
-  
-  .userDivCard {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-  }
-  
-  .userCardContent {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-grow: 1;
-  }
-  
-  .userCardContainer {
-    display: flex;
-    flex-direction: column;
-  }
+
+ 
+
+
   
   .titleUserCard {
     font-weight: 900;
@@ -42,13 +34,22 @@
   }
   
   .usernameUserCard {
-    font-size: .9em;
+    word-wrap: break-all;
+    overflow-wrap: break-word;
+    white-space: normal;
+    font-size: 0.7em;
     color: #64696e;
   }
-  
+  #profileImgCard{
+    margin: 7% 0%;
+    width:65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
   .imageUserCard {
-    width: 60px;
-    height: 60px;
+    width:65px;
+    height: 65px;
     background: rgb(228, 176, 244);
     background: linear-gradient(295deg, rgb(140, 213, 245) 41%, rgb(236, 239, 163) 100%);
     border-radius: 50%;
@@ -56,12 +57,16 @@
   }
   
   .followUserCard {
+    text-align: center;
+    width: 70px;
     border: none;
     border-radius: 25px;
-    background-color: #0f1113;
+    background-color: #511234;
     color: white;
     padding: 8px 15px;
     font-weight: 700;
+    font-size: 0.6em;
+
   }
   
   .moreUserCard {
@@ -71,10 +76,7 @@
     font-weight: 800;
   }
   
-  .userCard:hover {
-    background-color: #b3b6b6;
-  }
-  
+
   .moreUserCard:hover {
     background-color: #b3b6b6;
     border-radius: 0px 0px 15px 15px;
@@ -82,4 +84,7 @@
   
   .followUserCard:hover {
     background-color: #2c3136;
+  }
+  .buttonsDivContainer{
+    @extend %displayCenter;
   }
