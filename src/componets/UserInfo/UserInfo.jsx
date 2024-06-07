@@ -12,9 +12,7 @@ const UserInfo = ({user}) => {
         return <Spin />;
       }
       
-  if (isLoading) {
-    return <h1>Cargando posts...</h1>;
-  }
+
     
   return (
     <div className='userInfoDivContainer'>
