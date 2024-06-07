@@ -8,13 +8,13 @@ const CreatePost = (props) => {
   const [form] = Form.useForm();
   const [image, setImage] = useState(null);
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async () => {
     const formData = new FormData();
-    formData.append('text', values.text);
+    formData.set('text', "hola");
     if (image) {
-      formData.append('image', image);
+      formData.set('image', image);
     }
-
+console.log(form.getFieldValue(text));
     try {
       await createPost(formData);
       notification.success({ message: 'Post successfully created' });
