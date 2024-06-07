@@ -1,26 +1,33 @@
-// src/components/MyForm.jsx
-import React from 'react';
-import { Form, Input, Button, Upload } from 'antd';
+import React, { useState } from 'react';
+import { Form, Input, Button, Upload, notification } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { useState } from 'react';
-//import { post } from "../../features/posts/postsSlice";
+import { connect } from 'react-redux';
+import { createPost } from "../../features/posts/postsSlice";
 
-const CreatePost = () => {
+const CreatePost = (props) => {
   const [form] = Form.useForm();
   const [image, setImage] = useState(null);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async () => {
     const formData = new FormData();
-    formData.append('text', values.text);
+    formData.set('text', "hola");
     if (image) {
-      formData.append('image', image);
+      formData.set('image', image);
     }
-    post(formData);
-    console.log('Form data:', formData);
+console.log(form.getFieldValue(text));
+    try {
+      await createPost(formData);
+      notification.success({ message: 'Post successfully created' });
+      form.resetFields();
+      setImage(null);
+    } catch (error) {
+      console.error(error);
+      notification.error({ message: 'Failed to create post' });
+    }
   };
 
   const handleImageChange = (info) => {
-    if (info.file.status === 'done') {
+    if (info.file.status !== 'removed') {
       setImage(info.file.originFileObj);
     } else {
       setImage(null);
@@ -34,7 +41,7 @@ const CreatePost = () => {
   return (
     <Form
       form={form}
-      name="my_form"
+      name="create_post"
       onFinish={handleSubmit}
       layout="vertical"
       style={{ maxWidth: 600, margin: 'auto' }}
@@ -42,19 +49,19 @@ const CreatePost = () => {
       <Form.Item
         name="text"
         label="Text"
-        rules={[{ required: true, message: 'Write something' }]}
+        rules={[{ required: true, message: 'Please write something' }]}
       >
         <Input.TextArea rows={4} />
       </Form.Item>
 
       <Form.Item name="image" label="Image">
-      <Upload
+        <Upload
           name="image"
           listType="picture"
           beforeUpload={() => false}
           onChange={handleImageChange}
           onRemove={handleRemove}
-          maxCount={1}  
+          maxCount={1}
         >
           <Button icon={<UploadOutlined />}>Select Image</Button>
         </Upload>
@@ -69,4 +76,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default connect()(CreatePost);
