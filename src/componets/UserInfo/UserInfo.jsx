@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Spin } from 'antd';
+import React, { useRef } from 'react';
+import { Spin  } from 'antd';
 import './UserInfo.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePic}  from "../../features/auth/authSlice"
@@ -28,8 +28,8 @@ const handleFileChange = (event) => {
 
     } catch (error) {
         
-      console.error(error);
-      notification.error({ message: "Failed to create post" });
+    console.error(error);
+    notification.error({ message: "we have some troubles uploading your picture" });
     }
     
     
