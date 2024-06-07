@@ -1,17 +1,25 @@
 import React, { useRef, useState } from 'react';
 import { Spin } from 'antd';
 import './UserInfo.scss';
-import { useDispatch } from 'react-redux';
-import {getUserById, updatePic}  from "../../features/auth/authSlice"
+import { useDispatch, useSelector } from 'react-redux';
+import { updatePic}  from "../../features/auth/authSlice"
 
 const UserInfo = ({ user }) => {
+    const { user:logged } = useSelector((state) => state.auth);
+
+  
+    
     const dispatch = useDispatch();
-const inputFileRef = useRef(null);
-
-const handleImageClick = () => {
-    inputFileRef.current.click(); 
-};
-
+    const inputFileRef = useRef(null);
+    
+    const handleImageClick = () => {
+        if(logged._id === user._id){
+            inputFileRef.current.click(); 
+        }else{
+            console.log("You can't change the profile picture of another user");
+        }
+        };
+        
 const handleFileChange = (event) => {
     const formdata = new FormData();
     formdata.set('profilePic', event.target.files[0]);
