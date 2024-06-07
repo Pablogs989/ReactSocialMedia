@@ -6,7 +6,7 @@ import Post from "../Post/Post";
 
 
 const Profile = ({user}) => {
-
+console.log(user);
   if (!user) {
     return <Spin />;
   }

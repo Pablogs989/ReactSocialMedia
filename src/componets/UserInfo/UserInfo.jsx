@@ -8,12 +8,14 @@ const UserInfo = ({user}) => {
     if (!user) {
         return <Spin />;
 }
-    
+    console.log(user.profilePic);
   return (
-    <div className='userInfoDivContainer'>
+    <>  
+    <div className='userInfoContainer' >
+        <div className='userNameDiv'>{user.name}</div>
+        <div className='userInfoDivContainer'>
         <div className="userAvatarDiv">
-            <img className="profileImg" src="" alt="" />
-            <p>{user.name}</p>
+            <img className="profileImg" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" />
         </div>
         <div className="userPostsDiv">
             {user.postsId.length}
@@ -30,7 +32,8 @@ const UserInfo = ({user}) => {
         
 
             </div>
-    
+            </div>
+            </>
   )
 }
 
