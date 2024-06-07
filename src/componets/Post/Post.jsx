@@ -5,7 +5,6 @@ import "./Post.scss";
 const Post = ({ posts }) => {
   const post = posts.map((post) => {
     if (!post.userId) return null;
-    console.log(post)
     return (
       <div className="card" key={post._id}>
         <Link to={"/post/" + post._id}>
