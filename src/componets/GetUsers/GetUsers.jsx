@@ -18,14 +18,13 @@ const GetUsers = () => {
         <div className="userCard">
           <p className="titleUserCard">Who to follow</p>
           <div>
-         
           <UserCard/>
     
           </div>
           <a className="moreUserCard" href="#">See more</a>
         </div>
       
-     </div>
+    </div>
   )
 }
 

@@ -63,6 +63,36 @@ const getUserById = async (id) => {
 
     return res.data;
 };
+const follow = async (id) => {
+    const token = localStorage.getItem("token");
+
+    const res = await axios.put(
+        API_URL + "/follow/" + id,
+        {},
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+
+    return res.data;
+};
+const unfollow = async (id) => {
+    const token = localStorage.getItem("token");
+
+    const res = await axios.put(
+        API_URL + "/unfollow/" + id,
+        {},
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+
+    return res.data;
+};
 
 const authService = {
     register,
@@ -71,6 +101,8 @@ const authService = {
     getUserInfo,
     getUsers,
     getUserById,
+    follow,
+    unfollow,
 };
 
 export default authService;
