@@ -4,7 +4,7 @@ import './UserInfo.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePic}  from "../../features/auth/authSlice"
 import UserCard from '../UserCard/UserCard';
-import GetUsers from '../GetUsers/GetUsers';
+
 
 const UserInfo = ({ user }) => {
     const { user:logged } = useSelector((state) => state.auth);
@@ -56,8 +56,10 @@ const handleFileChange = (event) => {
 if (!user) {
     return <Spin />;
 }
+const followers = user.followers
+const followings = user.following
 
-console.log(user.profilePic);
+console.log(followers);
 
 return (
     <>
@@ -93,6 +95,10 @@ return (
         </div>
     </div>
         <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <UserCard users={followers} />
+        </Modal>
+        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <UserCard users={followings} />
         </Modal>
 
         
