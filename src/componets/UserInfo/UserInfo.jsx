@@ -94,10 +94,10 @@ return (
         </div>
         </div>
     </div>
-        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Your Followers" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <UserCard users={followers} />
         </Modal>
-        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="You are following" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <UserCard users={followings} />
         </Modal>
 

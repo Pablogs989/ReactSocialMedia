@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { follow, unfollow } from '../../features/auth/authSlice';
 
-const UserCard = () => {
+const UserCard = ({users}) => {
+
   const dispatch = useDispatch();
-  const { users, user: logged } = useSelector((state) => state.auth);
+  const {  user: logged } = useSelector((state) => state.auth);
   const [followedUsers, setFollowedUsers] = useState([]);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const UserCard = () => {
   };
 
   return (
-    <div>
+    <>
       {users.map((user) => (
         <div key={user._id} className="userCardContainer">
           
@@ -55,7 +56,7 @@ const UserCard = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

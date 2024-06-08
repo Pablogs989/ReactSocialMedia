@@ -1,7 +1,5 @@
 @import "../../App.scss";
 
 .getUsersDivContainer{
-    @extend %displayCenter;
-    margin: 5%;
-    margin-top:1%;
+ width: 100%;
 }

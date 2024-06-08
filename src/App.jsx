@@ -32,6 +32,7 @@ function App() {
 
         <Route path="/profile" element={<PrivateZone>
           <LoggedUserProfile/></PrivateZone>}/>
+          {/* no esta funcionando */}
 
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/createPost" element={<CreatePost />} />
