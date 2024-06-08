@@ -92,8 +92,7 @@ return (
         </div>
         </div>
     </div>
-        <Modal title="your list" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-            <GetUsers/>
+        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         </Modal>
 
         

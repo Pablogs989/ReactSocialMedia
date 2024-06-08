@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { follow, unfollow } from '../../features/auth/authSlice';
 
-const UserCard = ({users}) => {
+const UserCard = () => {
   const dispatch = useDispatch();
-  const {  user: logged } = useSelector((state) => state.auth);
+  const { users, user: logged } = useSelector((state) => state.auth);
   const [followedUsers, setFollowedUsers] = useState([]);
 
   useEffect(() => {
