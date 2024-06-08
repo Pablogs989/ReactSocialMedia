@@ -58,9 +58,22 @@
     text-align: center;
     width: 70px;
     border: none;
-    border-radius: 25px;
-    background-color: #511234;
+    border-radius: 8px;
+    background-color: #54989d;
     color: white;
+    padding: 8px 15px;
+    font-weight: 700;
+    font-size: 0.6em;
+
+  }
+    
+  .unfollowUserCard {
+    text-align: center;
+    width: 70px;
+    border: none;
+    border-radius: 8px;
+    background-color: #c0c0c0;
+    color: #140606;
     padding: 8px 15px;
     font-weight: 700;
     font-size: 0.6em;

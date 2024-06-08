@@ -43,7 +43,7 @@ const UserCard = ({users}) => {
       </Link>
       <div className="buttonsDivContainer">
         {isFollowing ? (
-          <button className="followUserCard" onClick={() => handleUnfollow(user)}>
+          <button className="unfollowUserCard" onClick={() => handleUnfollow(user)}>
             Unfollow 
           </button>
         ) : (
