@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import {  Dropdown, Space } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
@@ -12,86 +14,16 @@ const SideBar = () => {
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
-
-  return (
-    <div className="iconsBarContainer">
-      <div id="iconsBarDiv">
-        <div className="iconsBar">
-          <div className="iconsDiv">
-            <Link to="/">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                height="24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                className="svg w-6 h-6 text-gray-800 dark:text-white"
-              >
-                <path
-                  d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  stroke="currentColor"
-                ></path>
-              </svg>
-            </Link>
-          </div>
-          <div className="iconsDiv">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              height="24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              className="svg w-6 h-6 text-gray-800 dark:text-white"
-            >
-              <path
-                d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
-                strokeWidth="2"
-                strokeLinecap="round"
-                stroke="currentColor"
-              ></path>
-            </svg>
-          </div>
-
-          {user ? (
-            <>
-            <div>
-              <Link to="/following">
-              x
-              </Link>
-            </div>
-              <div id="profileMenu" className="iconsDiv">
-                <Link to="/profile">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    height="24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    className="svg w-6 h-6 text-gray-800 dark:text-white"
-                  >
-                    <path
-                      d="M4 6H20M4 12H20M4 18H20"
-                      stroke="#000000"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></path>
-                  </svg>
-                </Link>
-              </div>
-              <div
+  const items = [
+    {
+      label: (
+        <div id="logout"
                 onClick={() => {
                   dispatch(logout());
                 }}
                 className="iconsDiv"
               >
-                <Link to="/profile">
+                <Link to="/login">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -110,6 +42,94 @@ const SideBar = () => {
                   </svg>
                 </Link>
               </div>
+
+      ),
+      key: '0',
+    },
+    
+  ];
+  return (
+    <div className="iconsBarContainer">
+      <div id="iconsBarDiv">
+        <div className="iconsBar">
+          <div id="home" className="iconsDiv"><Link to="/users">
+      
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                height="24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                className="svg w-6 h-6 text-gray-800 dark:text-white"
+              >
+                <path
+                  d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  stroke="currentColor"
+                ></path>
+              </svg>
+              </Link>
+          </div>
+          <div id="discover" className="iconsDiv">      <Link to="/">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              height="24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              className="svg w-6 h-6 text-gray-800 dark:text-white"
+            >
+              <path
+                d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+                strokeWidth="2"
+                strokeLinecap="round"
+                stroke="currentColor"
+              ></path>
+            </svg>
+            </Link>
+          </div>
+
+          {user ? (
+            <>
+
+            <div>
+              <Link to="/following">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    height="24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    className="svg w-6 h-6 text-gray-800 dark:text-white"
+                  >
+                    <path
+                      d="M4 6H20M4 12H20M4 18H20"
+                      stroke="#000000"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+              </Link>
+            </div>
+              
+              <Dropdown menu={{      items}}>
+                <span onClick={(e) => e.preventDefault()}>
+                  <Space>
+                    <div id="profileMenu" className="iconsDiv">
+                      <Link to="/profile">
+                      <img className="profileImg" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" />
+                    </Link>
+                  </div>
+                  </Space>
+              </span>
+            </Dropdown>
+              
             </>
           ) : (
             <>

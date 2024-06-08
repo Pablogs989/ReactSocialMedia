@@ -19,10 +19,10 @@ const Following = () => {
   if (!user) {
     return <Spin />;
   }
-
   return (
     <div className="divNavContainer">
       <h1>Following</h1>
+      
       <Post posts={followingPosts} />
     </div>
   );

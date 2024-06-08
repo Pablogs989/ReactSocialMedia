@@ -12,7 +12,6 @@ const GeneralUserProfile = () => {
     useEffect(() => {
         dispatch(getUserById(id));
       }, []);
-      console.log(user);
       if (isLoading) {
         return <h1>Cargando user...</h1>;
       }

@@ -50,7 +50,7 @@ const CreatePost = () => {
         <Button icon={<UploadOutlined />}>Select Image</Button>
       </Upload> */}
 
-      <input type="file" name="image" id="file" class="input-file" />
+      <input type="file" name="image" id="file" className="input-file" />
 
       <Button type="primary" htmlType="submit">
         Create

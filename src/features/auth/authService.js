@@ -93,6 +93,18 @@ const unfollow = async (id) => {
 
     return res.data;
 };
+const updatePic = async (formData) => {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: token,
+        },
+    };
+    const res = await axios.put(API_URL + "/profilePic", formData, config);
+
+    return res.data;
+};
 
 const authService = {
     register,
@@ -103,6 +115,7 @@ const authService = {
     getUserById,
     follow,
     unfollow,
+    updatePic,
 };
 
 export default authService;
