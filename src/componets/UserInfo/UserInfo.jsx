@@ -1,13 +1,31 @@
-import React, { useRef } from 'react';
-import { Spin  } from 'antd';
+import React, { useRef, useState } from 'react';
+import { Spin,Modal, Button   } from 'antd';
 import './UserInfo.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePic}  from "../../features/auth/authSlice"
+import UserCard from '../UserCard/UserCard';
+import GetUsers from '../GetUsers/GetUsers';
 
 const UserInfo = ({ user }) => {
     const { user:logged } = useSelector((state) => state.auth);
 
-  
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+const showModalFollowers = () => {
+    setIsModalOpen(true);
+};
+const showModalFollowings = () => {
+    setIsModalOpen(true);
+    };
+
+const handleOk = () => {
+    setIsModalOpen(false);
+};
+
+const handleCancel = () => {
+    setIsModalOpen(false);
+};
+
     
     const dispatch = useDispatch();
     const inputFileRef = useRef(null);
@@ -64,16 +82,21 @@ return (
             {user.postsId.length}
             <p>Posts</p>
         </div>
-        <div className="userFollowersDiv">
+        <div className="userFollowersDiv"  onClick={showModalFollowers}>
             {user.followers.length}
             <p>followers</p>
         </div>
-        <div className="userFollowingDiv">
+        <div className="userFollowingDiv" onClick={showModalFollowings} >
             {user.following.length}
             <p>following</p>
         </div>
         </div>
     </div>
+        <Modal title="your list" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <GetUsers/>
+        </Modal>
+
+        
     </>
 );
 };
