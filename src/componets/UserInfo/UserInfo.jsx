@@ -9,23 +9,31 @@ import UserCard from '../UserCard/UserCard';
 const UserInfo = ({ user }) => {
     const { user:logged } = useSelector((state) => state.auth);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpenFollowers, setIsModalOpenFollowers] = useState(false);
+    const [isModalOpenFollowings, setIsModalOpenFollowings] = useState(false);
+
 
 const showModalFollowers = () => {
-    setIsModalOpen(true);
+    setIsModalOpenFollowers(true);
 };
 const showModalFollowings = () => {
-    setIsModalOpen(true);
+    setIsModalOpenFollowings(true);
     };
 
-const handleOk = () => {
-    setIsModalOpen(false);
+const handleOkFollowings = () => {
+    setIsModalOpenFollowings(false);
 };
 
-const handleCancel = () => {
-    setIsModalOpen(false);
+const handleCancelFollowings = () => {
+    setIsModalOpenFollowings(false);
+};
+const handleOkFollowers = () => {
+    setIsModalOpenFollowers(false);
 };
 
+const handleCancelFollowers = () => {
+    setIsModalOpenFollowers(false);
+};
     
     const dispatch = useDispatch();
     const inputFileRef = useRef(null);
@@ -94,10 +102,10 @@ return (
         </div>
         </div>
     </div>
-        <Modal title="Your Followers" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Your Followers" open={isModalOpenFollowers} onOk={handleOkFollowers} onCancel={handleCancelFollowers}>
             <UserCard users={followers} />
         </Modal>
-        <Modal title="You are following" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="You are following" open={isModalOpenFollowings} onOk={handleOkFollowings} onCancel={handleCancelFollowings}>
             <UserCard users={followings} />
         </Modal>
 
