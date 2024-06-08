@@ -31,6 +31,7 @@ function App() {
         <Route path="/profile" element={<LoggedUserProfile/>}/>
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/createPost" element={<CreatePost />} />
+        
       </Routes>
       <Footer/>
     </BrowserRouter>
