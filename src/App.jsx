@@ -13,6 +13,8 @@ import CreatePost from './componets/CreatePost/CreatePost';
 import GetUsers from './componets/GetUsers/GetUsers';
 import LoggedUserProfile from './componets/LoggedUserProfile/LoggedUserProfile';
 import GeneralUserProfile from './componets/GeneralUserProfile/GeneralUserProfile';
+import NotFound from './guards/NotFound';
+import PrivateZone from './guards/PrivateZone';
 function App() {
 
 
@@ -28,10 +30,12 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/user/:id" element={<GeneralUserProfile/>}/>
 
-        <Route path="/profile" element={<LoggedUserProfile/>}/>
+        <Route path="/profile" element={<PrivateZone>
+          <LoggedUserProfile/></PrivateZone>}/>
+
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/createPost" element={<CreatePost />} />
-        
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

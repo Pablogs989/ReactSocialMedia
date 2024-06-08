@@ -9,6 +9,7 @@ const Profile = ({user}) => {
   if (!user) {
     return <Spin />;
   }
+
   return (
 
     
