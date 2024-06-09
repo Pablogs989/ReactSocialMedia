@@ -15,6 +15,7 @@ import LoggedUserProfile from './componets/LoggedUserProfile/LoggedUserProfile';
 import GeneralUserProfile from './componets/GeneralUserProfile/GeneralUserProfile';
 import NotFound from './guards/NotFound';
 import PrivateZone from './guards/PrivateZone';
+import Comment from './componets/Comment/Comment';
 function App() {
 
 
@@ -23,6 +24,7 @@ function App() {
     <BrowserRouter>
       <SideBar/>
       <Routes>
+        <Route path="/coment/:id" element={<Comment/>}/>
         <Route path="/" element={<Home/>}/>
         <Route path="/users" element={<GetUsers/>}/>
         <Route path="/following" element={<Following/>}/>
