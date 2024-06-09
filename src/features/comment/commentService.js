@@ -55,12 +55,27 @@ const deleteComment = async (id) => {
     );
     return res.data.comment;
 };
+const updateComment = async (commentData) => {
+    const body = commentData.text;
+    const token = localStorage.getItem("token");
+    const res = await axios.put(
+        API_URL + "id/" + commentData.id,
+        { text: body },
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+    return res.data.comment;
+};
 
 const commentService = {
     createComment,
     likeComment,
     dislikeComment,
     deleteComment,
+    updateComment,
 };
 
 export default commentService;

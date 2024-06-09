@@ -28,6 +28,11 @@ export const commentSlice = createSlice({
                 state.comment = action.payload.postId;
                 state.message = "comment delete successfully";
                 state.isSuccess = true;
+            })
+            .addCase(updateComment.fulfilled, (state, action) => {
+                state.comment = action.payload.postId;
+                state.message = "comment delete successfully";
+                state.isSuccess = true;
             });
     },
 });
@@ -66,6 +71,16 @@ export const deleteComment = createAsyncThunk(
     async (id) => {
         try {
             return await commentService.deleteComment(id);
+        } catch (error) {
+            return error.response.data;
+        }
+    },
+);
+export const updateComment = createAsyncThunk(
+    "comment/updateComment",
+    async (comment) => {
+        try {
+            return await commentService.updateComment(comment);
         } catch (error) {
             return error.response.data;
         }
