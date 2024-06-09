@@ -1,29 +1,76 @@
 @import "../../App.scss";
 
-.componentDivContainer{
-    @extend %displayCenter;
-    padding-top: 7%;
-    padding-bottom: 10%;
+.componentDivContainer {
+  @extend %displayCenter;
+  padding-top: 20%;
+  padding-bottom: 10%;
 }
-    .formContainer{
-        width: 60%;
-        @extend %displayCenter;
-        border: 1px solid grey;
-        padding: 5%;
-        border-radius: 10px;
-    .inputDiv{
-        @extend %displayCenter;
-        padding: 15% 0%;
-    }
-    input{
-        height: 4vh;
-        width: 50vw;}
-form{
-margin: 5% 0%;}
-button {
-    color: rgb(249, 175, 175);
-    padding: 5%;
-    border-radius: 10%;	
 
-}
+.formContainer {
+  width: 90%;
+  max-width: 400px;
+  @extend %displayCenter;
+  border: 1px solid #ccc;
+  padding: 5%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .inputDiv {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 15px 0;
+    width: 100%;
+
+    input {
+      height: 45px;
+      width: 100%;
+      padding: 10px 15px;
+      padding-left: 40px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .inputIcon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      fill: #aaa;
+      pointer-events: none;
+    }
+  }
+
+  .inputDiv.forgotPassword {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #007bff;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .ButtonDiv {
+    @extend %displayCenter;
+    margin-top: 20px;
+  }
+
+  button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
 }
