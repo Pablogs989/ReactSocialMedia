@@ -23,6 +23,11 @@ export const commentSlice = createSlice({
                 state.comment = action.payload.postId;
                 state.message = "like added successfully";
                 state.isSuccess = true;
+            })
+            .addCase(deleteComment.fulfilled, (state, action) => {
+                state.comment = action.payload.postId;
+                state.message = "comment delete successfully";
+                state.isSuccess = true;
             });
     },
 });
@@ -56,6 +61,15 @@ export const dislikeComment = createAsyncThunk(
         }
     },
 );
-
+export const deleteComment = createAsyncThunk(
+    "comment/deleteComment",
+    async (id) => {
+        try {
+            return await commentService.deleteComment(id);
+        } catch (error) {
+            return error.response.data;
+        }
+    },
+);
 export default commentSlice.reducer;
 export const { reset } = commentSlice.actions;

@@ -42,11 +42,25 @@ const dislikeComment = async (id) => {
     );
     return res.data.comment;
 };
+const deleteComment = async (id) => {
+    const token = localStorage.getItem("token");
+    const res = await axios.delete(
+        API_URL + "id/" + id,
+
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+    return res.data.comment;
+};
 
 const commentService = {
     createComment,
     likeComment,
     dislikeComment,
+    deleteComment,
 };
 
 export default commentService;

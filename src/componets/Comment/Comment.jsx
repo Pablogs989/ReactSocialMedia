@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { HeartTwoTone, EditOutlined, DeleteOutlined, HeartFilled } from '@ant-design/icons';
 import { Button, Card, Input, Spin } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createComment, dislikeComment, likeComment } from '../../features/comment/commentSlice';
+import { createComment, deleteComment, dislikeComment, likeComment } from '../../features/comment/commentSlice';
 
 const Comment = ({ post }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [commentInput, setCommentInput] = useState("");
+  const { user:loggedUser } = useSelector((state) => state.auth);
 
   if (!post.commentsId) return <Spin />;
-
- 
 
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -23,9 +22,14 @@ const Comment = ({ post }) => {
     console.log(commentId);
     dispatch(likeComment(commentId));
   };
+
   const handleDislike = (commentId) => {
     console.log(commentId);
     dispatch(dislikeComment(commentId));
+  };
+  const handleDelete = (commentId) => {
+    console.log(commentId);
+    dispatch(deleteComment(commentId));
   };
 
   const handleSubmit = (e) => {
@@ -43,19 +47,29 @@ const Comment = ({ post }) => {
 
   return (
     <div>
-      {post.commentsId.map((comment) => (
-        <Card key={comment._id}>
-          <div>
-            {comment.text}
-          </div>
-          <div>
-            <HeartTwoTone onClick={()=>handleLike(comment._id)}/>
-            <HeartFilled onClick={()=>handleDislike(comment._id)}/>
-            <EditOutlined />
-            <DeleteOutlined />
-          </div>
-        </Card>
-      ))}
+      {post.commentsId.map((comment) => {
+        const isLiked = comment.likes.includes(loggedUser._id);
+        return (
+          <Card key={comment._id}>
+            <div>
+              {comment.text}
+            </div>
+            <div>
+              
+              <HeartTwoTone onClick={() => handleLike(comment._id)} />
+                
+              <HeartFilled onClick={() => handleDislike(comment._id)} />
+              {loggedUser._id === comment.userId && (
+                <>
+                  <EditOutlined />
+              <HeartFilled onClick={() => handleDelete(comment._id)} />
+              <DeleteOutlined  />
+                </>
+              )}
+            </div>
+          </Card>
+        );
+      })}
       <Card>
         <form onSubmit={handleSubmit}>
           <Input
