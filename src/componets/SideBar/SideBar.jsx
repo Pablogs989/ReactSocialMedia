@@ -116,11 +116,11 @@ const SideBar = () => {
             </>
           ) : (
             <>
-              <div id="profileDiv" className="iconsDiv">
+              {/* <div id="profileDiv" className="iconsDiv">
                 <Link to="/register">
                 <FormOutlined/>
                 </Link>
-              </div>
+              </div> */}
               <div div id="loginDiv" className="iconsDiv">
                 <Link to="/login">
                 <UserOutlined/>

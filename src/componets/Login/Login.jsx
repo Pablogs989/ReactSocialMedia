@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, reset } from '../../features/auth/authSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Input, notification } from 'antd'
 import '../Register/Register.scss'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
@@ -52,14 +52,14 @@ const Login = () => {
         <div className="formContainer">
             <form onSubmit={onSubmit}>
                 <div className="inputDiv">
-                    <Input type="email" name="email" value={email} onChange={onChange} placeholder='Insert your email'/>
-                    <UserOutlined className="inputIcon"/>
+
+                    <Input name="email" value={email} onChange={onChange} placeholder='Insert your email' prefix={<UserOutlined/>}/>
+                </div>
                     
-                </div>
                 <div className="inputDiv">
-                <Input.Password  name="password" value={password} onChange={onChange} placeholder='Insert your password' />
-                <LockOutlined className="inputIcon" />
+                <Input.Password  name="password" value={password} onChange={onChange} placeholder='Insert your password' prefix={<LockOutlined/>}/>
                 </div>
+    
                 
                 <div className="inputDiv">
                 <p><a href="" className="a2">forgot your password? </a></p>
@@ -67,7 +67,10 @@ const Login = () => {
                 <div className="ButtonDiv">
                     <button type="submit">Login</button>
                 </div>
-                <p>Don't have an account? <a href="" className="a2">Sign up!</a></p>
+                <div className="inputDiv">
+
+                <p>Don't have an account? <Link to="/register">Sign up!</Link></p>
+                </div>
 
             </form>
         </div>
