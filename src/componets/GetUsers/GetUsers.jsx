@@ -6,7 +6,9 @@ import "./GetUsers.scss"
 
 const GetUsers = () => {
     const dispatch = useDispatch()
-    const users = useSelector(state => state.auth.users) 
+    const users = useSelector(state => state.auth.users)
+    
+    
     useEffect(() => {
         dispatch(getUsers())
     }, [dispatch])

@@ -12,9 +12,9 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    birthday: "",
+
   });
-  const { name, email, password,birthday } = formData;
+  const { name, email, password } = formData;
 
   const dispatch = useDispatch();
   const { isSuccess, message, isError } = useSelector((state) => state.auth);
@@ -24,7 +24,9 @@ const Register = () => {
       notification.success({
         message: "Success",
         description: message,
-      });
+      })
+      navigate("/profile")
+      ;
     }
     if (isError) {
       notification.error({
