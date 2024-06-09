@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
-import { HeartTwoTone, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { HeartTwoTone, EditOutlined, DeleteOutlined, HeartFilled } from '@ant-design/icons';
 import { Button, Card, Input, Spin } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createComment } from '../../features/comment/commentSlice';
+import { createComment, dislikeComment, likeComment } from '../../features/comment/commentSlice';
 
 const Comment = ({ post }) => {
   const { id } = useParams();
-  if (!post.commentsId) return <Spin />;
   const dispatch = useDispatch();
-
   const [commentInput, setCommentInput] = useState("");
+
+  if (!post.commentsId) return <Spin />;
+
+ 
 
   const handleInputChange = (e) => {
     const { value } = e.target;
     setCommentInput(value);
+  };
+
+  const handleLike = (commentId) => {
+    console.log(commentId);
+    dispatch(likeComment(commentId));
+  };
+  const handleDislike = (commentId) => {
+    console.log(commentId);
+    dispatch(dislikeComment(commentId));
   };
 
   const handleSubmit = (e) => {
@@ -25,7 +36,6 @@ const Comment = ({ post }) => {
       id: id,
       text: commentInput
     };
-      console.log(commentData.text);
     dispatch(createComment(commentData));
 
     setCommentInput("");
@@ -39,7 +49,8 @@ const Comment = ({ post }) => {
             {comment.text}
           </div>
           <div>
-            <HeartTwoTone />
+            <HeartTwoTone onClick={()=>handleLike(comment._id)}/>
+            <HeartFilled onClick={()=>handleDislike(comment._id)}/>
             <EditOutlined />
             <DeleteOutlined />
           </div>

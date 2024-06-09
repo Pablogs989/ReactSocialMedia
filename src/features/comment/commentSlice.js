@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import commentService from "./commentService";
 
 const initialState = {
-    comment: null,
+    post: null,
     isError: false,
     isSuccess: false,
     message: "",
@@ -13,11 +13,17 @@ export const commentSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(createComment.fulfilled, (state, action) => {
-            state.comment = action.payload;
-            state.message = "Comment created successfully";
-            state.isSuccess = true;
-        });
+        builder
+            .addCase(createComment.fulfilled, (state, action) => {
+                state.comment = action.payload.postId;
+                state.message = "Comment created successfully";
+                state.isSuccess = true;
+            })
+            .addCase(likeComment.fulfilled, (state, action) => {
+                state.comment = action.payload.postId;
+                state.message = "like added successfully";
+                state.isSuccess = true;
+            });
     },
 });
 export const createComment = createAsyncThunk(
@@ -25,6 +31,26 @@ export const createComment = createAsyncThunk(
     async (comment) => {
         try {
             return await commentService.createComment(comment);
+        } catch (error) {
+            return error.response.data;
+        }
+    },
+);
+export const likeComment = createAsyncThunk(
+    "comment/likeComment",
+    async (id) => {
+        try {
+            return await commentService.likeComment(id);
+        } catch (error) {
+            return error.response.data;
+        }
+    },
+);
+export const dislikeComment = createAsyncThunk(
+    "comment/dislikeComment",
+    async (id) => {
+        try {
+            return await commentService.dislikeComment(id);
         } catch (error) {
             return error.response.data;
         }
