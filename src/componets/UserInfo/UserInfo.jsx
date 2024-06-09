@@ -59,8 +59,6 @@ if (!user) {
 const followers = user.followers
 const followings = user.following
 
-console.log(followers);
-
 return (
     <>
     <div className='userInfoContainer'>

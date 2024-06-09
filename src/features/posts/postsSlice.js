@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import postsService from "./postsService";
-import { act } from "react";
 
 const initialState = {
     posts: [],
+    post: null,
     isLoading: false,
-    post: {},
+    status: 'idle', 
+    error: null,
 };
 
 export const getAll = createAsyncThunk("posts/getAll", async () => {
@@ -16,14 +17,17 @@ export const getAll = createAsyncThunk("posts/getAll", async () => {
     }
 });
 
-
-export const getById = createAsyncThunk("posts/getById", async (id) => {
-    try {
-        return await postsService.getById(id);
-    } catch (error) {
-        console.error(error);
+export const getById = createAsyncThunk(
+    "posts/getById",
+    async (id, { rejectWithValue }) => {
+        try {
+            return await postsService.getById(id);
+        } catch (error) {
+            console.error(error);
+            return rejectWithValue(error.response.data);
+        }
     }
-});
+);
 
 export const createPost = createAsyncThunk(
     'posts/createPost',
@@ -36,22 +40,46 @@ export const createPost = createAsyncThunk(
     }
 );
 
-export const postsSlice = createSlice({
+export const deletePost = createAsyncThunk(
+    'posts/deletePost',
+    async (postId, { rejectWithValue }) => {
+        try {
+            await postsService.deletePost(postId);
+            return postId;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
+const postsSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getAll.fulfilled, (state, action) => {
-            state.posts = action.payload;
-            state.isLoading = false;
-        });
-        builder.addCase(getAll.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(getById.fulfilled, (state, action) => {
-            state.post = action.payload;
-        });
         builder
+            .addCase(getAll.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getAll.fulfilled, (state, action) => {
+                state.posts = action.payload;
+                state.isLoading = false;
+            })
+            .addCase(getAll.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error.message;
+            })
+            .addCase(getById.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getById.fulfilled, (state, action) => {
+                state.post = action.payload;
+                state.isLoading = false;
+            })
+            .addCase(getById.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
             .addCase(createPost.pending, (state) => {
                 state.status = 'loading';
             })
@@ -62,9 +90,19 @@ export const postsSlice = createSlice({
             .addCase(createPost.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload;
+            })
+            .addCase(deletePost.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(deletePost.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.posts = state.posts.filter(post => post._id !== action.payload);
+            })
+            .addCase(deletePost.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload;
             });
     },
 });
 
-export const { reset } = postsSlice.actions;
 export default postsSlice.reducer;
