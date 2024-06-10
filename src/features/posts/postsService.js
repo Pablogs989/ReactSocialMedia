@@ -71,7 +71,7 @@ const likeComment = async (id) => {
             },
         },
     );
-    return res.data.comment;
+    return res.data;
 };
 const dislikeComment = async (id) => {
     const token = localStorage.getItem("token");
@@ -84,7 +84,7 @@ const dislikeComment = async (id) => {
             },
         },
     );
-    return res.data.comment;
+    return res.data;
 };
 const deleteComment = async (id) => {
     const token = localStorage.getItem("token");
@@ -97,7 +97,7 @@ const deleteComment = async (id) => {
             },
         },
     );
-    return res.data.comment;
+    return res.data.postId;
 };
 const updateComment = async (commentData) => {
     const body = commentData.text;

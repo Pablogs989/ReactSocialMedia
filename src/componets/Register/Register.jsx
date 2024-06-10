@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Input, notification } from "antd";
 import "./Register.scss";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Register = () => {
@@ -15,7 +15,7 @@ const Register = () => {
 
   });
   const { name, email, password } = formData;
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isSuccess, message, isError } = useSelector((state) => state.auth);
 
@@ -25,7 +25,7 @@ const Register = () => {
         message: "Success",
         description: message,
       })
-      navigate("/profile")
+      navigate("/login")
       ;
     }
     if (isError) {

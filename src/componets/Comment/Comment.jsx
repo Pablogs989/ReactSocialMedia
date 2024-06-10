@@ -12,6 +12,7 @@ const Comment = ({ post }) => {
   const { user:loggedUser } = useSelector((state) => state.auth);
   const [isDisabled, setIsDisabled] = useState(true);
 const {isLoading} = useSelector((state) => state.posts);
+
   if(isLoading) return <Spin />;
 
 
@@ -66,7 +67,7 @@ const {isLoading} = useSelector((state) => state.posts);
             </div>
             <div>
               
-              {isLiked ? <div><HeartTwoTone onClick={() => handleLike(comment._id)} /> {comment.likes.length} </div>: <div><HeartFilled  onClick={() => handleDislike(comment._id)} />  {comment.likes.length} </div> } 
+              {!isLiked ? <div><HeartTwoTone onClick={() => handleLike(comment._id)} /> {comment.likes.length} </div>: <div><HeartFilled  onClick={() => handleDislike(comment._id)} />  {comment.likes.length} </div> } 
               {loggedUser._id === comment.userId && (
                 <>
                 
