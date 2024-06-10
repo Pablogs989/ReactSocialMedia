@@ -51,7 +51,7 @@ export const dislikePost = async (id) => {
     const config = {
         headers: {
             Authorization: token,
-        }
+        },
     };
     const res = await axios.put(API_URL + "/posts/dislike/" + id, {}, config);
     return res.data.post;
@@ -69,7 +69,6 @@ const createComment = async (commentData) => {
             },
         },
     );
-    console.log("res.data", res.data);
     return res.data.post;
 };
 const likeComment = async (id) => {
@@ -83,7 +82,8 @@ const likeComment = async (id) => {
             },
         },
     );
-    return res.data.comment;
+
+    return res.data.comment.postId;
 };
 const dislikeComment = async (id) => {
     const token = localStorage.getItem("token");
@@ -96,7 +96,7 @@ const dislikeComment = async (id) => {
             },
         },
     );
-    return res.data.comment;
+    return res.data.comment.postId;
 };
 const deleteComment = async (id) => {
     const token = localStorage.getItem("token");
@@ -109,7 +109,7 @@ const deleteComment = async (id) => {
             },
         },
     );
-    return res.data.comment;
+    return res.data.postId;
 };
 const updateComment = async (commentData) => {
     const body = commentData.text;

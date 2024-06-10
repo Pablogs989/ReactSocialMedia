@@ -60,11 +60,11 @@ export const likePost = createAsyncThunk(
         } catch (error) {
             return rejectWithValue(error.response.data);
         }
-    }
+    },
 );
 
 export const dislikePost = createAsyncThunk(
-    'posts/dislikePost',
+    "posts/dislikePost",
     async (postId, { rejectWithValue }) => {
         try {
             return await postsService.dislikePost(postId);
@@ -186,14 +186,14 @@ const postsSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(dislikePost.pending, (state) => {
-                state.status = 'loading';
+                state.status = "loading";
             })
             .addCase(dislikePost.fulfilled, (state, action) => {
                 state.post = action.payload;
-                state.status = 'succeeded';
+                state.status = "succeeded";
             })
             .addCase(dislikePost.rejected, (state, action) => {
-                state.status = 'failed';
+                state.status = "failed";
                 state.error = action.payload;
             })
             .addCase(createComment.fulfilled, (state, action) => {
@@ -207,9 +207,16 @@ const postsSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(likeComment.fulfilled, (state, action) => {
-                state.comment = action.payload.post;
+                state.post = action.payload;
                 state.message = "like added successfully";
                 state.isSuccess = true;
+                state.isLoading = false;
+            })
+            .addCase(dislikeComment.fulfilled, (state, action) => {
+                state.post = action.payload;
+                state.message = "dislike added successfully";
+                state.isSuccess = true;
+                state.isLoading = false;
             })
             .addCase(deleteComment.fulfilled, (state, action) => {
                 state.post = action.payload;
@@ -218,7 +225,7 @@ const postsSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(updateComment.fulfilled, (state, action) => {
-                state.comment = action.payload.postId;
+                state.post = action.payload;
                 state.message = "comment delete successfully";
                 state.isSuccess = true;
             });
