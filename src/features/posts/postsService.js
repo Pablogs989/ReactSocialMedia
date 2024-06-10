@@ -24,10 +24,34 @@ export const createPost = async (formData) => {
     return response.data;
 };
 
+export const deletePost = async (id) => {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: {
+            Authorization: token,
+        },
+    };
+    const response = await axios.delete(API_URL + "/posts/" + id, config);
+    return response.data;
+};
+
+export const likePost = async (id) => {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: {
+            Authorization: token,
+        },
+    };
+    const response = await axios.put(API_URL + "/posts/like/" + id, {}, config);
+    return response.data;
+};
+
 const postsService = {
     getAll,
     getById,
     createPost,
+    deletePost,
+    likePost,
 };
 
 export default postsService;
