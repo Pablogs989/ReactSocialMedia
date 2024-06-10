@@ -199,9 +199,14 @@ const postsSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(createComment.fulfilled, (state, action) => {
-                state.comment = action.payload.postId;
+                state.post = action.payload;
                 state.message = "Comment created successfully";
                 state.isSuccess = true;
+                state.isLoading = false;
+            })
+            .addCase(createComment.pending, (state) => {
+                state.message = "is Loading";
+                state.isLoading = true;
             })
             .addCase(likeComment.fulfilled, (state, action) => {
                 state.comment = action.payload.post;
@@ -209,9 +214,10 @@ const postsSlice = createSlice({
                 state.isSuccess = true;
             })
             .addCase(deleteComment.fulfilled, (state, action) => {
-                state.post = action.payload.postId;
+                state.post = action.payload;
                 state.message = "comment delete successfully";
                 state.isSuccess = true;
+                state.isLoading = false;
             })
             .addCase(updateComment.fulfilled, (state, action) => {
                 state.comment = action.payload.postId;
