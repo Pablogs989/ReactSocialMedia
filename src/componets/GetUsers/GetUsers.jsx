@@ -22,7 +22,7 @@ const GetUsers = () => {
     <div className="getUsersDivContainer">
       <Input
         type="text"
-        placeholder="Search by post text"
+        placeholder="Search by name"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
