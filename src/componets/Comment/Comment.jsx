@@ -3,24 +3,25 @@ import { HeartTwoTone, EditOutlined, DeleteOutlined, HeartFilled } from '@ant-de
 import { Button, Card, Input, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createComment, deleteComment, dislikeComment, likeComment } from '../../features/posts/postsSlice';
+import { createComment, deleteComment, dislikeComment, likeComment, updateComment } from '../../features/posts/postsSlice';
 
 const Comment = ({ post }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [commentInput, setCommentInput] = useState("");
-  const { user:loggedUser } = useSelector((state) => state.auth);
-  const [isDisabled, setIsDisabled] = useState(true);
-const {isLoading} = useSelector((state) => state.posts);
-
-  if(isLoading) return <Spin />;
-
+  const [editableComments, setEditableComments] = useState({});
+  const { user: loggedUser } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.posts);
 
   if (!post) return <Spin />;
+  if (isLoading) return <Spin />;
 
   const handleInputChange = (e) => {
-    const { value } = e.target;
-    setCommentInput(value);
+    const { name, value } = e.target;
+    setEditableComments((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleLike = (commentId) => {
@@ -32,48 +33,81 @@ const {isLoading} = useSelector((state) => state.posts);
     console.log(commentId);
     dispatch(dislikeComment(commentId));
   };
+
   const handleDelete = (commentId) => {
     console.log(commentId);
     dispatch(deleteComment(commentId));
   };
-  console.log(isDisabled);
-  const handleUpdate = (commentId) => {
-    setIsDisabled(false);
-    console.log(isDisabled);
-    console.log(commentId);
-  }
+
+  const handleEditClick = (commentId, currentText) => {
+    setEditableComments((prev) => ({
+      ...prev,
+      [commentId]: currentText,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const commentData = {
       id: id,
-      text: commentInput
+      text: commentInput,
     };
     dispatch(createComment(commentData));
-      console.log(commentData);
+    console.log(commentData);
     setCommentInput("");
+  };
+
+  const handleUpdateSubmit = (e, commentId) => {
+    e.preventDefault();
+    const commentData = {
+      id: commentId,
+      text: editableComments[commentId],
+    };
+    dispatch(updateComment(commentData));
+    setEditableComments((prev) => ({
+      ...prev,
+      [commentId]: undefined,
+    }));
   };
 
   return (
     <div>
       {post.commentsId.map((comment) => {
         const isLiked = comment.likes.includes(loggedUser._id);
+        const isDisabled = editableComments[comment._id] === undefined;
+
         return (
           <Card key={comment._id}>
             <div>
-              <Input placeholder={comment.text} disabled={isDisabled}/>
-     
+              <form onSubmit={(e) => handleUpdateSubmit(e, comment._id)}>
+                <Input
+                  name={comment._id}
+                  value={editableComments[comment._id] || comment.text}
+                  placeholder={comment.text}
+                  disabled={isDisabled}
+                  onChange={handleInputChange}
+                />
+                {!isDisabled && (
+                  <Button type="primary" htmlType="submit">
+                    Actualizar
+                  </Button>
+                )}
+              </form>
             </div>
             <div>
-              
-              {!isLiked ? <div><HeartTwoTone onClick={() => handleLike(comment._id)} /> {comment.likes.length} </div>: <div><HeartFilled  onClick={() => handleDislike(comment._id)} />  {comment.likes.length} </div> } 
+              {!isLiked ? (
+                <div>
+                  <HeartTwoTone onClick={() => handleLike(comment._id)} /> {comment.likes.length}
+                </div>
+              ) : (
+                <div>
+                  <HeartFilled onClick={() => handleDislike(comment._id)} /> {comment.likes.length}
+                </div>
+              )}
               {loggedUser._id === comment.userId && (
                 <>
-                
-                  <EditOutlined onClick={() => handleUpdate(comment._id)} />
-
-                  <DeleteOutlined  onClick={() => handleDelete(comment._id)}/>
+                  <EditOutlined onClick={() => handleEditClick(comment._id, comment.text)} />
+                  <DeleteOutlined onClick={() => handleDelete(comment._id)} />
                 </>
               )}
             </div>
@@ -84,7 +118,7 @@ const {isLoading} = useSelector((state) => state.posts);
         <form onSubmit={handleSubmit}>
           <Input
             value={commentInput}
-            onChange={handleInputChange}
+            onChange={(e) => setCommentInput(e.target.value)}
             placeholder="Escribe algo..."
           />
           <Button type="primary" htmlType="submit">

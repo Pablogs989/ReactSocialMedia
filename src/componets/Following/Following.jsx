@@ -11,19 +11,27 @@ const Following = () => {
 
   useEffect(() => {
     dispatch(getAll());
-    setFollowingPosts(
-      posts.filter((post) => user.following.includes(post.userId?._id))
-    );
-  }, []);
+  }, [dispatch]);
+  const followings = user.following;
+  const followedUserIds = followings.map(followed => followed._id);
 
+  const postsIds = posts.filter(post => followedUserIds.includes(post.userId?._id))
+  ;
+  console.log("postsIds", postsIds);
+  console.log("following", followings);
+  console.log("posts", posts)
+  ;
+  
+  
   if (!user) {
     return <Spin />;
   }
+
   return (
     <div className="divNavContainer">
       <h1>Following</h1>
       
-      <Post posts={followingPosts} />
+      <Post posts={postsIds} />
     </div>
   );
 };

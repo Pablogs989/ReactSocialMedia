@@ -43,7 +43,6 @@ const PostDetail = () => {
   if (error) return <div>Error: {error}</div>;
 
   const isLiked = post.likes.includes(user._id);
-  console.log(post);
 
   return (
     <div>
@@ -84,7 +83,6 @@ const PostDetail = () => {
       
         </div>
       )}
-          {console.log(post)}
           <Comment post={post}/>
     </div>
   );
