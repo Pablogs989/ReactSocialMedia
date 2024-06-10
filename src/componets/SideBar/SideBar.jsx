@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {  Dropdown, Space } from 'antd';
-import { DownOutlined, FormOutlined, HomeOutlined, PlusOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
+import { CoffeeOutlined, DownOutlined, FontSizeOutlined, FormOutlined, HomeOutlined, PlusOutlined, SearchOutlined, ThunderboltOutlined, UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
@@ -24,22 +24,7 @@ const SideBar = () => {
                 className="iconsDiv"
               >
                 <Link to="/login">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    height="24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    className="svg w-6 h-6 text-gray-800 dark:text-white"
-                  >
-                    <path
-                      d="M16 6.07026C18.3912 7.45349 20 10.0389 20 13C20 17.4183 16.4183 21 12 21C7.58172 21 4 17.4183 4 13C4 10.0389 5.60879 7.45349 8 6.07026M12 3V13"
-                      stroke="#000000"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    ></path>
-                  </svg>
+                <ThunderboltOutlined />
                 </Link>
               </div>
 
@@ -53,41 +38,24 @@ const SideBar = () => {
       <div id="iconsBarDiv">
         <div className="iconsBar">
           <div id="home" className="iconsDiv"><Link to="/users">
-                <HomeOutlined/>
-              </Link>
+          <HomeOutlined style={{ fontSize: '20px',color:"grey"}} />
+          </Link>
           </div>
           <div id="discover" className="iconsDiv">      <Link to="/">
-            <SearchOutlined/>
+            <SearchOutlined style={{ fontSize: '20px', color:"grey"}}/>
             </Link>
           </div>
 
           {user ? (
             <>
-
 <div><Link to="/createPost">
-              <PlusOutlined/>
+              <PlusOutlined style={{ fontSize: '20px',color:"grey"}} />
               </Link>
             </div>
             
             <div>
               <Link to="/following">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    height="24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    className="svg w-6 h-6 text-gray-800 dark:text-white"
-                  >
-                    <path
-                      d="M4 6H20M4 12H20M4 18H20"
-                      stroke="#000000"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></path>
-                  </svg>
+              <CoffeeOutlined style={{ fontSize: '22px', color:"grey"}}/>
               </Link>
             </div>
               
