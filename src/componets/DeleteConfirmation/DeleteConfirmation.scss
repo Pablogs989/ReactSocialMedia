@@ -44,17 +44,11 @@
     font-weight: 600;
   }
   .primary {
-    background-color: rgb(255, 114, 109);
-    color: white;
-  }
-  .primary:hover {
     background-color: rgb(255, 73, 66);
+    color: white;
   }
   .secondary {
     background-color: #ddd;
-  }
-  .secondary:hover {
-    background-color: rgb(197, 197, 197);
   }
   .exit-button {
     display: flex;

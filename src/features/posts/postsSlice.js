@@ -52,6 +52,18 @@ export const deletePost = createAsyncThunk(
     }
 );
 
+export const likePost = createAsyncThunk(
+    'posts/likePost',
+    async (postId, { rejectWithValue }) => {
+        try {
+            await postsService.likePost(postId);
+            return postId;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
 const postsSlice = createSlice({
     name: "posts",
     initialState,
@@ -99,6 +111,16 @@ const postsSlice = createSlice({
                 state.posts = state.posts.filter(post => post._id !== action.payload);
             })
             .addCase(deletePost.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload;
+            })
+            .addCase(likePost.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(likePost.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+            })
+            .addCase(likePost.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload;
             });

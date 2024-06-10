@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getById, deletePost } from "../../features/posts/postsSlice";
+import { getById, deletePost, likePost } from "../../features/posts/postsSlice";
 import { useNavigate } from 'react-router-dom';
 import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
 
@@ -43,6 +43,7 @@ const PostDetail = () => {
         </div>
       )}
       <p>Created on: {post.createdAt.slice(0, 10)}</p>
+      <button onClick={() => dispatch(likePost(post._id))}>Like</button>
       {post.userId === user._id && (
         <div>
           <button onClick={() => setShowConfirmation(true)}>Eliminar</button>
