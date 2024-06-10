@@ -15,6 +15,8 @@ import {
   DeleteOutlined,
   HeartFilled,
 } from "@ant-design/icons";
+import Comment from "../Comment/Comment";
+
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -79,8 +81,11 @@ const PostDetail = () => {
               onDelete={handleDelete}
             />
           )}
+      
         </div>
       )}
+          {console.log(post)}
+          <Comment post={post}/>
     </div>
   );
 };

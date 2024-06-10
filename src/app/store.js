@@ -5,6 +5,6 @@ import posts from "../features/posts/postsSlice";
 export const store = configureStore({
     reducer: {
         auth,
-        posts
+        posts,
     },
 });

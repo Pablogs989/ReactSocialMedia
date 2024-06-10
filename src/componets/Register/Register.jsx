@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { register, reset } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { notification } from "antd";
+import { Input, notification } from "antd";
 import "./Register.scss";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 
 const Register = () => {
@@ -10,9 +12,9 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    birthday: "",
+
   });
-  const { name, email, password,birthday } = formData;
+  const { name, email, password } = formData;
 
   const dispatch = useDispatch();
   const { isSuccess, message, isError } = useSelector((state) => state.auth);
@@ -22,7 +24,9 @@ const Register = () => {
       notification.success({
         message: "Success",
         description: message,
-      });
+      })
+      navigate("/profile")
+      ;
     }
     if (isError) {
       notification.error({
@@ -54,7 +58,7 @@ const Register = () => {
       <div className="formContainer">
         <form onSubmit={onSubmit}>
           <div className="inputDiv">
-            <input
+            <Input
               type="text"
               name="name"
               value={name}
@@ -62,20 +66,20 @@ const Register = () => {
               placeholder="Insert your name"
             />
           </div>
+          
           <div className="inputDiv">
-            <input
-              type="email"
-              name="email"  value={email}
-              onChange={onChange}
-              placeholder="Insert your email"
-            />
-          </div>
+              <Input name="email" value={email} onChange={onChange} placeholder='Insert your email' prefix={<UserOutlined/>}/>
+              </div>
           <div className="inputDiv">
-            <input type="password" name="password" value={password} onChange={onChange} placeholder="Insert your password"/>
-            </div>
+                <Input.Password  name="password" value={password} onChange={onChange} placeholder='Insert your password' prefix={<LockOutlined/>}/>
+                </div>
           <div className="ButtonDiv">
             <button  type="submit">Register</button>
           </div>
+          <div className="inputDiv">
+
+        <p> you have an account? <Link to="/login">Login!</Link></p>
+        </div>
         </form>
       </div>
     </div>

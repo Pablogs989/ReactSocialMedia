@@ -10,7 +10,10 @@ import Following from './componets/Following/Following';
 import CreatePost from './componets/CreatePost/CreatePost';
 import GetUsers from './componets/GetUsers/GetUsers';
 import LoggedUserProfile from './componets/LoggedUserProfile/LoggedUserProfile';
-import GeneralUserProfile from './componets/GeneralUserProfile/GeneralUserProfile'
+import GeneralUserProfile from './componets/GeneralUserProfile/GeneralUserProfile';
+import NotFound from './guards/NotFound';
+import PrivateZone from './guards/PrivateZone';
+import Comment from './componets/Comment/Comment';
 import PostDetail from './componets/PostDetail/PostDetail';
 function App() {
 
@@ -20,6 +23,7 @@ function App() {
     <BrowserRouter>
       <SideBar/>
       <Routes>
+        <Route path="/comment/:id" element={<Comment/>}/>
         <Route path="/" element={<Home/>}/>
         <Route path="/users" element={<GetUsers/>}/>
         <Route path="/following" element={<Following/>}/>
@@ -29,6 +33,7 @@ function App() {
         <Route path="/profile" element={<LoggedUserProfile/>}/>
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/createPost" element={<CreatePost />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

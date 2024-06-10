@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, reset } from '../../features/auth/authSlice'
-import { useNavigate } from 'react-router-dom'
-import { notification } from 'antd'
+import { Link, useNavigate } from 'react-router-dom'
+import { Input, notification } from 'antd'
 import '../Register/Register.scss'
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -44,21 +45,37 @@ const Login = () => {
         dispatch(login(formData))
     }
   return (
+<>
+
+    
     <div className="componentDivContainer">
         <div className="formContainer">
             <form onSubmit={onSubmit}>
-                <div className="inputnDiv">
-                    <input type="email" name="email" value={email} onChange={onChange} placeholder='Insert your email'/>
-                </div>
                 <div className="inputDiv">
-                <input type="password" name="password" value={password} onChange={onChange} placeholder='Insert your password'/>
+
+                    <Input name="email" value={email} onChange={onChange} placeholder='Insert your email' prefix={<UserOutlined/>}/>
+                </div>
+                    
+                <div className="inputDiv">
+                <Input.Password  name="password" value={password} onChange={onChange} placeholder='Insert your password' prefix={<LockOutlined/>}/>
+                </div>
+    
+                
+                <div className="inputDiv">
+                <p><a href="" className="a2">forgot your password? </a></p>
                 </div>
                 <div className="ButtonDiv">
                     <button type="submit">Login</button>
                 </div>
+                <div className="inputDiv">
+
+                <p>Don't have an account? <Link to="/register">Sign up!</Link></p>
+                </div>
+
             </form>
         </div>
     </div>
+</>
   )
 }
 export default Login
