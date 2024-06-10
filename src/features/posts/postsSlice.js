@@ -56,8 +56,18 @@ export const likePost = createAsyncThunk(
     "posts/likePost",
     async (postId, { rejectWithValue }) => {
         try {
-            await postsService.likePost(postId);
-            return postId;
+            return await postsService.likePost(postId);
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const dislikePost = createAsyncThunk(
+    'posts/dislikePost',
+    async (postId, { rejectWithValue }) => {
+        try {
+            return await postsService.dislikePost(postId);
         } catch (error) {
             return rejectWithValue(error.response.data);
         }
@@ -168,10 +178,24 @@ const postsSlice = createSlice({
                 state.status = "loading";
             })
             .addCase(likePost.fulfilled, (state, action) => {
-                state.status = "succeeded";
+                console.log(action.payload);
+                state.post = action.payload
+                state.status = 'succeeded';
             })
             .addCase(likePost.rejected, (state, action) => {
                 state.status = "failed";
+                state.error = action.payload;
+            })
+            .addCase(dislikePost.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(dislikePost.fulfilled, (state, action) => {
+                console.log(action.payload);
+                state.post = action.payload;
+                state.status = 'succeeded';
+            })
+            .addCase(dislikePost.rejected, (state, action) => {
+                state.status = 'failed';
                 state.error = action.payload;
             })
             .addCase(createComment.fulfilled, (state, action) => {

@@ -42,9 +42,21 @@ export const likePost = async (id) => {
             Authorization: token,
         },
     };
-    const response = await axios.put(API_URL + "/posts/like/" + id, {}, config);
-    return response.data;
+    const res = await axios.put(API_URL + "/posts/like/" + id, {}, config);
+    return res.data.post;
 };
+
+export const dislikePost = async (id) => {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: {
+            Authorization: token,
+        }
+    };
+    const res = await axios.put(API_URL + "/posts/dislike/" + id, {}, config);
+    return res.data.post;
+};
+
 const createComment = async (commentData) => {
     const body = commentData.text;
     const token = localStorage.getItem("token");
@@ -120,6 +132,7 @@ const postsService = {
     createPost,
     deletePost,
     likePost,
+    dislikePost,
     createComment,
     likeComment,
     dislikeComment,

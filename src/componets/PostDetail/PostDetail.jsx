@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getById, deletePost, likePost } from "../../features/posts/postsSlice";
-import { useNavigate } from 'react-router-dom';
-import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
+import {
+  getById,
+  deletePost,
+  likePost,
+  dislikePost,
+} from "../../features/posts/postsSlice";
+import { useNavigate } from "react-router-dom";
+import DeleteConfirmation from "../DeleteConfirmation/DeleteConfirmation";
+import {
+  HeartTwoTone,
+  EditOutlined,
+  DeleteOutlined,
+  HeartFilled,
+} from "@ant-design/icons";
 import Comment from "../Comment/Comment";
+
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -19,7 +31,7 @@ const PostDetail = () => {
   const handleDelete = () => {
     dispatch(deletePost(post._id));
     setShowConfirmation(false);
-    navigate('/profile');
+    navigate("/profile");
   };
 
   useEffect(() => {
@@ -29,6 +41,10 @@ const PostDetail = () => {
   if (!post) return <div>Loading...</div>;
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+
+  const isLiked = post.likes.includes(user._id);
+  console.log(post);
+
   return (
     <div>
       <h1>{post.title}</h1>
@@ -44,7 +60,19 @@ const PostDetail = () => {
       )}
       <p>Created on: {post.createdAt.slice(0, 10)}</p>
       <button onClick={() => dispatch(likePost(post._id))}>Like</button>
-      {post.userId=== user._id && (
+      <button onClick={() => dispatch(dislikePost(post._id))}>Dislike</button>
+      {isLiked ? (
+        <div>
+          <HeartTwoTone onClick={() => dispatch(likePost(post._id))} />{" "}
+          {post.likes.length}{" "}
+        </div>
+      ) : (
+        <div>
+          <HeartFilled onClick={() => dispatch(dislikePost(post._id))} />{" "}
+        </div>
+      )}
+
+      {post.userId === user._id && (
         <div>
           <button onClick={() => setShowConfirmation(true)}>Eliminar</button>
           {showConfirmation && (
