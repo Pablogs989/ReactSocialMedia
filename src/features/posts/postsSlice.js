@@ -178,7 +178,6 @@ const postsSlice = createSlice({
                 state.status = "loading";
             })
             .addCase(likePost.fulfilled, (state, action) => {
-                console.log(action.payload);
                 state.post = action.payload
                 state.status = 'succeeded';
             })
@@ -190,7 +189,6 @@ const postsSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(dislikePost.fulfilled, (state, action) => {
-                console.log(action.payload);
                 state.post = action.payload;
                 state.status = 'succeeded';
             })
