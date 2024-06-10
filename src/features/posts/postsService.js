@@ -45,6 +45,73 @@ export const likePost = async (id) => {
     const response = await axios.put(API_URL + "/posts/like/" + id, {}, config);
     return response.data;
 };
+const createComment = async (commentData) => {
+    const body = commentData.text;
+    const token = localStorage.getItem("token");
+    const res = await axios.post(
+        API_URL + "comments/id/" + commentData.id,
+        { text: body },
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+    return res.data.comment;
+};
+const likeComment = async (id) => {
+    const token = localStorage.getItem("token");
+    const res = await axios.put(
+        API_URL + "comments/like/" + id,
+        {},
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+    return res.data.comment;
+};
+const dislikeComment = async (id) => {
+    const token = localStorage.getItem("token");
+    const res = await axios.put(
+        API_URL + "comments/dislike/" + id,
+        {},
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+    return res.data.comment;
+};
+const deleteComment = async (id) => {
+    const token = localStorage.getItem("token");
+    const res = await axios.delete(
+        API_URL + "comments/id/" + id,
+
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+    return res.data.comment;
+};
+const updateComment = async (commentData) => {
+    const body = commentData.text;
+    const token = localStorage.getItem("token");
+    const res = await axios.put(
+        API_URL + "comments/id/" + commentData.id,
+        { text: body },
+        {
+            headers: {
+                Authorization: token,
+            },
+        },
+    );
+    return res.data.comment;
+};
 
 const postsService = {
     getAll,
@@ -52,6 +119,11 @@ const postsService = {
     createPost,
     deletePost,
     likePost,
+    createComment,
+    likeComment,
+    dislikeComment,
+    deleteComment,
+    updateComment,
 };
 
 export default postsService;

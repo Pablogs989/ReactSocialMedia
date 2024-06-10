@@ -28,7 +28,7 @@ const PostDetail = () => {
   if (!post) return <div>Loading...</div>;
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
+console.log(post.userId._id, user._id);
   return (
     <div>
       <h1>{post.title}</h1>
@@ -44,7 +44,7 @@ const PostDetail = () => {
       )}
       <p>Created on: {post.createdAt.slice(0, 10)}</p>
       <button onClick={() => dispatch(likePost(post._id))}>Like</button>
-      {post.userId === user._id && (
+      {post.userId=== user._id && (
         <div>
           <button onClick={() => setShowConfirmation(true)}>Eliminar</button>
           {showConfirmation && (
