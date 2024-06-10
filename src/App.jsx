@@ -23,7 +23,7 @@ function App() {
     <BrowserRouter>
       <SideBar/>
       <Routes>
-        <Route path="/coment/:id" element={<Comment/>}/>
+        <Route path="/comment/:id" element={<Comment/>}/>
         <Route path="/" element={<Home/>}/>
         <Route path="/users" element={<GetUsers/>}/>
         <Route path="/following" element={<Following/>}/>

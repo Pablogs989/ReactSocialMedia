@@ -3,8 +3,7 @@ import { HeartTwoTone, EditOutlined, DeleteOutlined, HeartFilled } from '@ant-de
 import { Button, Card, Input, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createComment, deleteComment, dislikeComment, likeComment } from '../../features/comment/commentSlice';
-import { set } from 'mongoose';
+import { createComment, deleteComment, dislikeComment, likeComment } from '../../features/posts/postsSlice';
 
 const Comment = ({ post }) => {
   const { id } = useParams();
@@ -13,7 +12,9 @@ const Comment = ({ post }) => {
   const { user:loggedUser } = useSelector((state) => state.auth);
   const [isDisabled, setIsDisabled] = useState(true);
 
-  if (!post.commentsId) return <Spin />;
+
+
+  if (!post) return <Spin />;
 
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -42,14 +43,13 @@ const Comment = ({ post }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Valor enviado:', commentInput);
 
     const commentData = {
       id: id,
       text: commentInput
     };
     dispatch(createComment(commentData));
-
+      console.log(commentData);
     setCommentInput("");
   };
 

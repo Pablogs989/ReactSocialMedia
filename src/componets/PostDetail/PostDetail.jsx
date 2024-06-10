@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getById, deletePost, likePost } from "../../features/posts/postsSlice";
 import { useNavigate } from 'react-router-dom';
 import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
+import Comment from "../Comment/Comment";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -28,7 +29,6 @@ const PostDetail = () => {
   if (!post) return <div>Loading...</div>;
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-console.log(post.userId._id, user._id);
   return (
     <div>
       <h1>{post.title}</h1>
@@ -53,8 +53,11 @@ console.log(post.userId._id, user._id);
               onDelete={handleDelete}
             />
           )}
+      
         </div>
       )}
+          {console.log(post)}
+          <Comment post={post}/>
     </div>
   );
 };

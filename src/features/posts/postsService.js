@@ -46,10 +46,11 @@ export const likePost = async (id) => {
     return response.data;
 };
 const createComment = async (commentData) => {
+    console.log(commentData);
     const body = commentData.text;
     const token = localStorage.getItem("token");
     const res = await axios.post(
-        API_URL + "comments/id/" + commentData.id,
+        API_URL + "/comments/id/" + commentData.id,
         { text: body },
         {
             headers: {
@@ -57,7 +58,7 @@ const createComment = async (commentData) => {
             },
         },
     );
-    return res.data.comment;
+    return res.data.post;
 };
 const likeComment = async (id) => {
     const token = localStorage.getItem("token");

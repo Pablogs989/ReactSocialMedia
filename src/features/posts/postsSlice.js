@@ -64,50 +64,48 @@ export const likePost = createAsyncThunk(
     },
 );
 export const createComment = createAsyncThunk(
-    "comment/createComment",
+    "posts/createComment",
     async (comment) => {
+        console.log(comment);
         try {
-            return await commentService.createComment(comment);
+            return await postsService.createComment(comment);
         } catch (error) {
             return error.response.data;
         }
     },
 );
-export const likeComment = createAsyncThunk(
-    "comment/likeComment",
-    async (id) => {
-        try {
-            return await commentService.likeComment(id);
-        } catch (error) {
-            return error.response.data;
-        }
-    },
-);
+export const likeComment = createAsyncThunk("posts/likeComment", async (id) => {
+    try {
+        return await postsService.likeComment(id);
+    } catch (error) {
+        return error.response.data;
+    }
+});
 export const dislikeComment = createAsyncThunk(
-    "comment/dislikeComment",
+    "posts/dislikeComment",
     async (id) => {
         try {
-            return await commentService.dislikeComment(id);
+            return await postsService.dislikeComment(id);
         } catch (error) {
             return error.response.data;
         }
     },
 );
 export const deleteComment = createAsyncThunk(
-    "comment/deleteComment",
+    "posts/deleteComment",
     async (id) => {
         try {
-            return await commentService.deleteComment(id);
+            return await postsService.deleteComment(id);
         } catch (error) {
             return error.response.data;
         }
     },
 );
 export const updateComment = createAsyncThunk(
-    "comment/updateComment",
+    "posts/updateComment",
     async (comment) => {
         try {
-            return await commentService.updateComment(comment);
+            return await postsService.updateComment(comment);
         } catch (error) {
             return error.response.data;
         }
