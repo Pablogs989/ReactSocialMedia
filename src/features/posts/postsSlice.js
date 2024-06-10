@@ -175,9 +175,14 @@ const postsSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(createComment.fulfilled, (state, action) => {
-                state.comment = action.payload.postId;
+                state.post = action.payload;
                 state.message = "Comment created successfully";
                 state.isSuccess = true;
+                state.isLoading = false;
+            })
+            .addCase(createComment.pending, (state) => {
+                state.message = "is Loading";
+                state.isLoading = true;
             })
             .addCase(likeComment.fulfilled, (state, action) => {
                 state.comment = action.payload.post;

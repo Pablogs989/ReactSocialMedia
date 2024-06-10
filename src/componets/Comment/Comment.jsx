@@ -11,7 +11,8 @@ const Comment = ({ post }) => {
   const [commentInput, setCommentInput] = useState("");
   const { user:loggedUser } = useSelector((state) => state.auth);
   const [isDisabled, setIsDisabled] = useState(true);
-
+const {isLoading} = useSelector((state) => state.posts);
+  if(isLoading) return <Spin />;
 
 
   if (!post) return <Spin />;

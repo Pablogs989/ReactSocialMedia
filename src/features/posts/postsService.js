@@ -46,7 +46,6 @@ export const likePost = async (id) => {
     return response.data;
 };
 const createComment = async (commentData) => {
-    console.log(commentData);
     const body = commentData.text;
     const token = localStorage.getItem("token");
     const res = await axios.post(
@@ -58,12 +57,13 @@ const createComment = async (commentData) => {
             },
         },
     );
+    console.log("res.data", res.data);
     return res.data.post;
 };
 const likeComment = async (id) => {
     const token = localStorage.getItem("token");
     const res = await axios.put(
-        API_URL + "comments/like/" + id,
+        API_URL + "/comments/like/" + id,
         {},
         {
             headers: {
@@ -76,7 +76,7 @@ const likeComment = async (id) => {
 const dislikeComment = async (id) => {
     const token = localStorage.getItem("token");
     const res = await axios.put(
-        API_URL + "comments/dislike/" + id,
+        API_URL + "/comments/dislike/" + id,
         {},
         {
             headers: {
@@ -89,7 +89,7 @@ const dislikeComment = async (id) => {
 const deleteComment = async (id) => {
     const token = localStorage.getItem("token");
     const res = await axios.delete(
-        API_URL + "comments/id/" + id,
+        API_URL + "/comments/id/" + id,
 
         {
             headers: {
@@ -103,7 +103,7 @@ const updateComment = async (commentData) => {
     const body = commentData.text;
     const token = localStorage.getItem("token");
     const res = await axios.put(
-        API_URL + "comments/id/" + commentData.id,
+        API_URL + "/comments/id/" + commentData.id,
         { text: body },
         {
             headers: {
@@ -111,7 +111,7 @@ const updateComment = async (commentData) => {
             },
         },
     );
-    return res.data.comment;
+    return res.data.postId;
 };
 
 const postsService = {
