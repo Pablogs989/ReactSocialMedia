@@ -28,19 +28,9 @@ img{width: 30px;
     height:30px;
   border-radius: 50px;
 margin-top: 5px;}
+
   
-  .radio {
-    display: none;
-  }
-  
-  .svg {
-    width: 20px;
-    height: 20px;
-    opacity: 80%;
-    cursor: pointer;
-    padding: 10px 13px;
-    transition: 0.2s;
-  }
+
   
   .iconsBar .iconsDiv .svg:hover {
     transition: 0.1s;
@@ -50,8 +40,5 @@ margin-top: 5px;}
     opacity: 100%;
   }
 
-  .radio:checked + label .li .svg {
-    color: rgb(235, 40, 176);
-    fillRule: evenodd;
-  }
+
   

@@ -16,11 +16,7 @@ const Following = () => {
   const followedUserIds = followings.map(followed => followed._id);
 
   const postsIds = posts.filter(post => followedUserIds.includes(post.userId?._id))
-  ;
-  console.log("postsIds", postsIds);
-  console.log("following", followings);
-  console.log("posts", posts)
-  ;
+  
   
   
   if (!user) {
