@@ -15,19 +15,19 @@ const getById = async (id) => {
 export const createPost = async (formData) => {
     const token = localStorage.getItem("token");
     const config = {
-      headers: { 'Content-Type': 'multipart/form-data',
-      Authorization: token,
-    }
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: token,
+        },
     };
     const response = await axios.post(API_URL + "/posts", formData, config);
     return response.data;
-  };
+};
 
 const postsService = {
     getAll,
     getById,
-    createPost
+    createPost,
 };
 
 export default postsService;
-
