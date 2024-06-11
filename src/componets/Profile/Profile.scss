@@ -6,6 +6,14 @@
     justify-content: center;
     flex-direction: column;
     margin: 10%;
+       
+    @media screen and (min-width: 600px){
+      display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  margin-top: auto;
+  }
 }
 
 .radio-inputs {
@@ -48,3 +56,6 @@
   }
 
   
+
+
+

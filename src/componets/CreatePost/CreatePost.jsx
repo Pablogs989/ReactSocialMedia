@@ -1,27 +1,31 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Upload, notification } from "antd";
+import { Form, Input, Button, Upload, notification, Card } from "antd";
 import { connect, useDispatch } from "react-redux";
 import { createPost } from "../../features/posts/postsSlice";
-import './CreatePost.scss';
+import "./CreatePost.scss";
+import { useNavigate } from "react-router-dom";
+
 
 const CreatePost = () => {
-  const [imagePreview, setImagePreview] = useState(null); 
-  const dispatch = useDispatch();
 
-  const handleImageChange = (event) => {
+  const [previewSrc, setPreviewSrc] = useState(null);
+
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result);
+        setPreviewSrc(reader.result);
       };
       reader.readAsDataURL(file);
     } else {
-      setImagePreview(null); 
+      setPreviewSrc(null);
     }
   };
 
-  const handleSubmit = async (event) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.set("text", event.target.text.value);
@@ -30,30 +34,62 @@ const CreatePost = () => {
     }
 
     try {
-      await dispatch(createPost(formData)).unwrap();
+      dispatch(createPost(formData)).unwrap();
       notification.success({ message: "Product successfully uploaded " });
       setImagePreview(null);
     } catch (error) {
       console.error(error);
       notification.error({ message: "Failed to create post" });
     }
+    navigate("/")
   };
 
   return (
-    <form className="formPost" onSubmit={handleSubmit}>
-      <Input name="text" placeholder="Text" className="ant-input" />
-      <input type="file" name="image" id="file" className="input-file" onChange={handleImageChange} />
-      
-      {imagePreview && (
-        <div>
-          <img src={imagePreview} alt="Image Preview" className="image-preview" />
-        </div>
-      )}
+    <div className="createPostContainer">
+      <div className="cardCreatePostContainer">
+  
 
-      <Button type="primary" htmlType="submit" className="ant-btn-primary">
-        Create
-      </Button>
-    </form>
+        <form className="formPost" action="" onSubmit={handleSubmit}>
+          <div className=" cardCreatePost">
+
+          {previewSrc && (
+        <div className="CreatePostDiv"><img 
+          src={previewSrc} 
+          alt="Vista previa" 
+          className="preview" 
+        /></div>
+      )}
+            <div className="CreatePostDiv">
+
+                <Input name="text" placeholder="Text" />
+
+          {/* <Upload
+            name="image"
+            listType="picture"
+            beforeUpload={() => false}
+            onChange={handleImageChange}
+            onRemove={handleRemove}
+            maxCount={1}
+            >
+            <Button icon={<UploadOutlined />}>Select Image</Button>
+            </Upload> */}
+
+            </div>
+            <div className="CreatePostDiv">
+            <label htmlFor="file" className="custom-file-label">Seleccionar archivo</label>
+              <input  onChange={handleFileChange}  type="file" name="image" id="file" className="input-file" accept="image/*" />
+            </div>
+            <div className="CreatePostDiv">
+              <Button type="primary" htmlType="submit">
+                Create
+              </Button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
   );
 };
 

@@ -82,7 +82,7 @@ const PostDetail = () => {
           )}
         </div>
       )}
-      <Comment post={post} />
+          {/* <Comment post={post}/> */}
     </div>
   );
 };
