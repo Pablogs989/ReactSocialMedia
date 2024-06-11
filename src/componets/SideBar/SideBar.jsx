@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {  Dropdown, Modal, Space } from 'antd';
+import {  Dropdown, Modal, Space, notification } from 'antd';
 import { CoffeeOutlined, DownOutlined, FontSizeOutlined, FormOutlined, HomeOutlined, PlusOutlined, SearchOutlined, ThunderboltOutlined, UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../features/auth/authSlice";
+import { logout, reset} from "../../features/auth/authSlice";
 import "./SideBar.scss";
 import CreatePost from "../CreatePost/CreatePost";
 
@@ -12,6 +12,23 @@ const SideBar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [isModalOpenCreatePosts, setIsModalOpenCreatePosts] = useState(false);
+  const {message,isSuccessLogout,isErrorLogout} = useSelector((state)=>state.auth)
+  useEffect(()=>{
+    if(isSuccessLogout){
+        notification.success({
+            message:"Success",
+            description:message
+        })
+        navigate("/profile")
+    }
+    if(isErrorLogout){
+        notification.error({
+            message:"Error",
+            description:message
+        })
+    }
+    dispatch(reset())
+},[isSuccessLogout,message,isErrorLogout])
 
   const showModalCreatePosts= () => {
     setIsModalOpenCreatePosts(true);
@@ -19,22 +36,29 @@ const SideBar = () => {
   const handleCancelCreatePosts = () => {
     setIsModalOpenCreatePosts(false);
 };
-
+const handleLogout = async () => {
+  try {
+    await dispatch(logout()).unwrap();
+    navigate('/login');
+  } catch (error) {
+    console.error('Failed to logout:', error);
+  }
+}; 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
+
   const items = [
     {
       label: (
         <div id="logout"
-                onClick={() => {
-                  dispatch(logout());
-                }}
+                onClick={() => {handleLogout()                }}
                 className="iconsDiv"
               >
-                <Link to="/login">
+                
                 <ThunderboltOutlined />
-                </Link>
+          
+                {/* <Link to="/login"><UserOutlined/></Link> */}
               </div>
 
       ),
@@ -58,9 +82,7 @@ const SideBar = () => {
           {user ? (
             <>
           <div>
-            {/* <Link to="/createPost"> */}
               <PlusOutlined onClick={showModalCreatePosts} style={{ fontSize: '20px',color:"grey"}} />
-              {/* </Link> */}
             </div>
             <Modal
             open={isModalOpenCreatePosts} 
@@ -79,10 +101,9 @@ const SideBar = () => {
                 <span onClick={(e) => e.preventDefault()}>
                   <Space>
                     <div id="profileMenu" className="iconsDiv">
-                      <Link to="/profile">
+                    
                       <img className="profileImg" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" />
-                    </Link>
-                  </div>
+                    </div>
                   </Space>
               </span>
             </Dropdown>

@@ -11,6 +11,8 @@ const initialState = {
     token: token,
     isError: false,
     isSuccess: false,
+    isSuccessLogout: false,
+    isErrorLogout: false,
     message: "",
 };
 
@@ -22,6 +24,8 @@ export const authSlice = createSlice({
             state.isError = false;
             state.isSuccess = false;
             state.message = "";
+            state.isSuccessLogout = false;
+            state.isErrorLogout = false;
         },
     },
     extraReducers: (builder) => {
@@ -39,6 +43,12 @@ export const authSlice = createSlice({
             .addCase(logout.fulfilled, (state) => {
                 state.user = null;
                 state.token = "";
+                state.isSuccessLogout = true;
+            })
+            .addCase(logout.rejected, (state) => {
+                state.isError = true;
+                state.message = action.payload.message;
+                state.isErrorLogout = true;
             })
             .addCase(register.fulfilled, (state, action) => {
                 state.isSuccess = true;
