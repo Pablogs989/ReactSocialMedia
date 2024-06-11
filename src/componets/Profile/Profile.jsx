@@ -2,14 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Spin } from "antd";
 import UserInfo from "../UserInfo/UserInfo";
 import Post from "../Post/Post";
-<<<<<<< HEAD
 import UserLikes from "../UserLikes/UserLikes";
 import "./Profile.scss";
 import { getAll } from "../../features/posts/postsSlice";
 import { useDispatch, useSelector } from "react-redux";
-=======
-import { useParams } from "react-router-dom";
->>>>>>> superdani
 
 const Profile = ({ user }) => {
   const [selectedOption, setSelectedOption] = useState("posts");
@@ -20,11 +16,6 @@ const Profile = ({ user }) => {
     dispatch(getAll());
   }, [dispatch]);
 
-<<<<<<< HEAD
-=======
-const Profile = ({user}) => {
-  const {id} = useParams()
->>>>>>> superdani
   if (!user) {
     return <Spin />;
   }
