@@ -1,0 +1,84 @@
+.postDetailContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .postDetailHeader {
+    text-align: center;
+    margin-bottom: 20px;
+    h1 {
+      font-size: 2em;
+      color: #333;
+    }
+  }
+  
+  .postDetailText {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .card-image {
+    text-align: center;
+    margin-bottom: 20px;
+    .img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+  }
+  
+  .postDetailDate {
+    font-size: 0.9em;
+    color: #999;
+    margin-bottom: 20px;
+  }
+  
+  .postActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .actionButton {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      .icon {
+        margin-right: 8px;
+      }
+    }
+    .likeCount {
+      font-size: 1em;
+      color: #333;
+    }
+  }
+  
+  .deleteButtonContainer {
+    text-align: right;
+    button {
+      background: #ff4d4f;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      &:hover {
+        background: #ff7875;
+      }
+    }
+  }
+  
+  .commentSection {
+    margin-top: 20px;
+  }
+  
+  .loading,
+  .error {
+    text-align: center;
+    font-size: 1.2em;
+    color: #999;
+  }
+  
