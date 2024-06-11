@@ -10,13 +10,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import DeleteConfirmation from "../DeleteConfirmation/DeleteConfirmation";
 import {
-  HeartTwoTone,
-  EditOutlined,
-  DeleteOutlined,
   HeartFilled,
   HeartOutlined,
 } from "@ant-design/icons";
 import Comment from "../Comment/Comment";
+import "./PostDetail.scss";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -39,14 +37,18 @@ const PostDetail = () => {
     dispatch(getById(id));
   }, [dispatch, id]);
 
-  if (!post) return <div>Loading...</div>;
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (!post) return <div className="loading">Loading...</div>;
+  if (isLoading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">Error: {error}</div>;
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.text}</p>
+    <div className="postDetailContainer">
+      <div className="postDetailHeader">
+        <h1>{post.title}</h1>
+      </div>
+      <div className="postDetailText">
+        <p>{post.text}</p>
+      </div>
       {post.image && (
         <div className="card-image">
           <img
@@ -56,23 +58,26 @@ const PostDetail = () => {
           />
         </div>
       )}
-      <p>Created on: {post.createdAt.slice(0, 10)}</p>
-
-      {user && (
-        isLiked ? (
-          <div>
-            <HeartFilled onClick={() => dispatch(dislikePost(post._id))} />
-            {post.likes.length}
-          </div>
-        ) : (
-          <div>
-            <HeartOutlined onClick={() => dispatch(likePost(post._id))} />
-          </div>
-        )
-      )}
-
+      <div className="postDetailDate">
+        <p>Created on: {post.createdAt.slice(0, 10)}</p>
+      </div>
+      <div className="postActions">
+        {user && (
+          isLiked ? (
+            <div className="actionButton">
+              <HeartFilled onClick={() => dispatch(dislikePost(post._id))} />
+              <span className="likeCount">{post.likes.length}</span>
+            </div>
+          ) : (
+            <div className="actionButton">
+              <HeartOutlined onClick={() => dispatch(likePost(post._id))} />
+              <span className="likeCount">{post.likes.length}</span>
+            </div>
+          )
+        )}
+      </div>
       {user && post.userId === user._id && (
-        <div>
+        <div className="deleteButtonContainer">
           <button onClick={() => setShowConfirmation(true)}>Eliminar</button>
           {showConfirmation && (
             <DeleteConfirmation
@@ -82,7 +87,9 @@ const PostDetail = () => {
           )}
         </div>
       )}
-      <Comment post={post} />
+      <div className="commentSection">
+        <Comment post={post} />
+      </div>
     </div>
   );
 };
