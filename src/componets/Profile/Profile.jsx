@@ -38,7 +38,7 @@ const Profile = ({ user }) => {
       <div className="userInfoProfileDiv">
         <UserInfo user={user} />
       </div>
-      <div className="radio-inputs">
+      <div className="radioInputsProfile">
         <label className="radio">
           <input
             type="radio"
