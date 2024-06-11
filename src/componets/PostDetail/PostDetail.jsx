@@ -27,6 +27,7 @@ const PostDetail = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const isLiked = user ? post.likes.includes(user._id) : false;
 
   const handleDelete = () => {
     dispatch(deletePost(post._id));
@@ -42,8 +43,6 @@ const PostDetail = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const isLiked = post.likes.includes(user._id);
-
   return (
     <div>
       <h1>{post.title}</h1>
@@ -58,20 +57,21 @@ const PostDetail = () => {
         </div>
       )}
       <p>Created on: {post.createdAt.slice(0, 10)}</p>
-      {/* <button onClick={() => dispatch(likePost(post._id))}>Like</button>
-      <button onClick={() => dispatch(dislikePost(post._id))}>Dislike</button> */}
-      {isLiked ? (
-        <div>
-          <HeartFilled onClick={() => dispatch(dislikePost(post._id))} />
-          {post.likes.length}
-        </div>
-      ) : (
-        <div>
-          <HeartOutlined onClick={() => dispatch(likePost(post._id))} />{" "}
-        </div>
+
+      {user && (
+        isLiked ? (
+          <div>
+            <HeartFilled onClick={() => dispatch(dislikePost(post._id))} />
+            {post.likes.length}
+          </div>
+        ) : (
+          <div>
+            <HeartOutlined onClick={() => dispatch(likePost(post._id))} />
+          </div>
+        )
       )}
 
-      {post.userId === user._id && (
+      {user && post.userId === user._id && (
         <div>
           <button onClick={() => setShowConfirmation(true)}>Eliminar</button>
           {showConfirmation && (
@@ -82,7 +82,7 @@ const PostDetail = () => {
           )}
         </div>
       )}
-          {/* <Comment post={post}/> */}
+      <Comment post={post} />
     </div>
   );
 };
