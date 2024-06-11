@@ -14,9 +14,9 @@ import {
   EditOutlined,
   DeleteOutlined,
   HeartFilled,
+  HeartOutlined,
 } from "@ant-design/icons";
 import Comment from "../Comment/Comment";
-
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -58,16 +58,16 @@ const PostDetail = () => {
         </div>
       )}
       <p>Created on: {post.createdAt.slice(0, 10)}</p>
-      <button onClick={() => dispatch(likePost(post._id))}>Like</button>
-      <button onClick={() => dispatch(dislikePost(post._id))}>Dislike</button>
+      {/* <button onClick={() => dispatch(likePost(post._id))}>Like</button>
+      <button onClick={() => dispatch(dislikePost(post._id))}>Dislike</button> */}
       {isLiked ? (
         <div>
-          <HeartTwoTone onClick={() => dispatch(likePost(post._id))} />{" "}
-          {post.likes.length}{" "}
+          <HeartFilled onClick={() => dispatch(dislikePost(post._id))} />
+          {post.likes.length}
         </div>
       ) : (
         <div>
-          <HeartFilled onClick={() => dispatch(dislikePost(post._id))} />{" "}
+          <HeartOutlined onClick={() => dispatch(likePost(post._id))} />{" "}
         </div>
       )}
 
@@ -80,10 +80,9 @@ const PostDetail = () => {
               onDelete={handleDelete}
             />
           )}
-      
         </div>
       )}
-          <Comment post={post}/>
+      <Comment post={post} />
     </div>
   );
 };

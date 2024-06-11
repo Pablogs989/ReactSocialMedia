@@ -76,7 +76,6 @@ export const dislikePost = createAsyncThunk(
 export const createComment = createAsyncThunk(
     "posts/createComment",
     async (comment) => {
-        console.log(comment);
         try {
             return await postsService.createComment(comment);
         } catch (error) {

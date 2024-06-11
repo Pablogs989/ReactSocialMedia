@@ -25,17 +25,14 @@ const Comment = ({ post }) => {
   };
 
   const handleLike = (commentId) => {
-    console.log(commentId);
     dispatch(likeComment(commentId));
   };
 
   const handleDislike = (commentId) => {
-    console.log(commentId);
     dispatch(dislikeComment(commentId));
   };
 
   const handleDelete = (commentId) => {
-    console.log(commentId);
     dispatch(deleteComment(commentId));
   };
 
@@ -53,7 +50,6 @@ const Comment = ({ post }) => {
       text: commentInput,
     };
     dispatch(createComment(commentData));
-    console.log(commentData);
     setCommentInput("");
   };
 

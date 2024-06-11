@@ -2,57 +2,55 @@ import React, { useState } from "react";
 import { Form, Input, Button, Upload, notification } from "antd";
 import { connect, useDispatch } from "react-redux";
 import { createPost } from "../../features/posts/postsSlice";
+import './CreatePost.scss';
 
 const CreatePost = () => {
-
+  const [imagePreview, setImagePreview] = useState(null); 
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null); 
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.set("text", event.target.text.value);
-    if (event.target.image.files[0])
+    if (event.target.image.files[0]) {
       formData.set("image", event.target.image.files[0]);
+    }
 
     try {
-      dispatch(createPost(formData)).unwrap();
+      await dispatch(createPost(formData)).unwrap();
       notification.success({ message: "Product successfully uploaded " });
+      setImagePreview(null);
     } catch (error) {
       console.error(error);
       notification.error({ message: "Failed to create post" });
     }
   };
 
-  // const handleImageChange = (info) => {
-  //   if (info.file.status !== "removed") {
-  //     setImage(info.file.files[0]);
-  //   } else {
-  //     setImage(null);
-  //   }
-  // };
-
-  // const handleRemove = () => {
-  //   setImage(null);
-  // };
-
   return (
-    <form className="formPost" action="" onSubmit={handleSubmit}>
-      <Input name="text" placeholder="Text" />
+    <form className="formPost" onSubmit={handleSubmit}>
+      <Input name="text" placeholder="Text" className="ant-input" />
+      <input type="file" name="image" id="file" className="input-file" onChange={handleImageChange} />
+      
+      {imagePreview && (
+        <div>
+          <img src={imagePreview} alt="Image Preview" className="image-preview" />
+        </div>
+      )}
 
-      {/* <Upload
-        name="image"
-        listType="picture"
-        beforeUpload={() => false}
-        onChange={handleImageChange}
-        onRemove={handleRemove}
-        maxCount={1}
-      >
-        <Button icon={<UploadOutlined />}>Select Image</Button>
-      </Upload> */}
-
-      <input type="file" name="image" id="file" className="input-file" />
-
-      <Button type="primary" htmlType="submit">
+      <Button type="primary" htmlType="submit" className="ant-btn-primary">
         Create
       </Button>
     </form>

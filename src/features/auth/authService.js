@@ -4,8 +4,7 @@ const API_URL = "http://localhost:8080/users";
 
 const register = async (userData) => {
     const res = await axios.post(API_URL + "/", userData);
-    console.log("userData", userData);
-    console.log("res", res.data);
+;
     return res.data;
 };
 
