@@ -5,9 +5,7 @@ import { createPost } from "../../features/posts/postsSlice";
 import "./CreatePost.scss";
 import { useNavigate } from "react-router-dom";
 
-
 const CreatePost = () => {
-
   const [previewSrc, setPreviewSrc] = useState(null);
 
   const handleFileChange = (event) => {
@@ -41,55 +39,40 @@ const CreatePost = () => {
       console.error(error);
       notification.error({ message: "Failed to create post" });
     }
-    navigate("/")
+    navigate("/");
   };
 
   return (
-    <div className="createPostContainer">
       <div className="cardCreatePostContainer">
-  
-
         <form className="formPost" action="" onSubmit={handleSubmit}>
-          <div className=" cardCreatePost">
-
-          {previewSrc && (
-        <div className="CreatePostDiv"><img 
-          src={previewSrc} 
-          alt="Vista previa" 
-          className="preview" 
-        /></div>
-      )}
+            {previewSrc && (
+              <div className="CreatePostDiv">
+                <img src={previewSrc} alt="Vista previa" className="preview" />
+              </div>
+            )}
             <div className="CreatePostDiv">
-
-                <Input name="text" placeholder="Text" />
-
-          {/* <Upload
-            name="image"
-            listType="picture"
-            beforeUpload={() => false}
-            onChange={handleImageChange}
-            onRemove={handleRemove}
-            maxCount={1}
-            >
-            <Button icon={<UploadOutlined />}>Select Image</Button>
-            </Upload> */}
-
+              <Input name="text" placeholder="Text" />
             </div>
             <div className="CreatePostDiv">
-            <label htmlFor="file" className="custom-file-label">Seleccionar archivo</label>
-              <input  onChange={handleFileChange}  type="file" name="image" id="file" className="input-file" accept="image/*" />
+              <label htmlFor="file" className="custom-file-label">
+                Seleccionar archivo
+              </label>
+              <input
+                onChange={handleFileChange}
+                type="file"
+                name="image"
+                id="file"
+                className="input-file"
+                accept="image/*"
+              />
             </div>
             <div className="CreatePostDiv">
               <Button type="primary" htmlType="submit">
                 Create
               </Button>
             </div>
-          </div>
         </form>
-
       </div>
-    </div>
-
   );
 };
 
