@@ -5,6 +5,7 @@ import { Col, Row, Spin, Statistic } from "antd";
 import Comment from "../Comment/Comment";
 
 const Post = ({ posts }) => {
+  if(!posts) return <Spin/>
   
   const post = posts.map((post) => {
     if (!post.userId) return null;
@@ -26,7 +27,7 @@ const Post = ({ posts }) => {
             <div className="by-name">Written by  {post.userId.name} </div> <span>on{" "}{post.createdAt.slice(0, 10)} </span>
           </div>
         </Link>
-        {/* <Comment post={post} /> */}
+    
       </div>
      
 

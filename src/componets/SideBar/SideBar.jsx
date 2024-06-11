@@ -1,15 +1,24 @@
-import React, { useEffect } from "react";
-import {  Dropdown, Space } from 'antd';
+import React, { useEffect, useState } from "react";
+import {  Dropdown, Modal, Space } from 'antd';
 import { CoffeeOutlined, DownOutlined, FontSizeOutlined, FormOutlined, HomeOutlined, PlusOutlined, SearchOutlined, ThunderboltOutlined, UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 import "./SideBar.scss";
+import CreatePost from "../CreatePost/CreatePost";
 
 const SideBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const [isModalOpenCreatePosts, setIsModalOpenCreatePosts] = useState(false);
+
+  const showModalCreatePosts= () => {
+    setIsModalOpenCreatePosts(true);
+  };
+  const handleCancelCreatePosts = () => {
+    setIsModalOpenCreatePosts(false);
+};
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -48,11 +57,18 @@ const SideBar = () => {
 
           {user ? (
             <>
-<div><Link to="/createPost">
-              <PlusOutlined style={{ fontSize: '20px',color:"grey"}} />
-              </Link>
+          <div>
+            {/* <Link to="/createPost"> */}
+              <PlusOutlined onClick={showModalCreatePosts} style={{ fontSize: '20px',color:"grey"}} />
+              {/* </Link> */}
             </div>
-            
+            <Modal
+            open={isModalOpenCreatePosts} 
+            footer={null} 
+            onCancel={handleCancelCreatePosts}>
+
+            <CreatePost/>
+            </Modal>
             <div>
               <Link to="/following">
               <CoffeeOutlined style={{ fontSize: '22px', color:"grey"}}/>
