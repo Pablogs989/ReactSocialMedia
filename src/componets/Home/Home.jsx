@@ -7,13 +7,15 @@ import GetUsers from "../GetUsers/GetUsers";
 const Home = () => {
 
   return (
-    <div className="divNavContainer">
-      <div className="divNavPosts">
+    <div className="divHomeContainer">
+       <div className="divHomePosts">
       <Posts />
       </div>
-      <div className="divNavUsers">
+         <div className="divHomeUsers">
       <GetUsers/>
       </div>
+     
+   
     </div>
   );
 };

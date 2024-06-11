@@ -9,11 +9,9 @@
     padding: 5%;
 
 }
-@media screen and (min-width: 600px){
-    .postsDivContainer{
-        display: flex;
-        flex-direction: row-reverse;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-}   
+
+.inputSearchPostsDiv{
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+}

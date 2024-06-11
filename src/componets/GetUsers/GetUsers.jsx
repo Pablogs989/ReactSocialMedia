@@ -20,20 +20,18 @@ const GetUsers = () => {
 
   return (
     <div className="getUsersDivContainer">
-      <Input
-        type="text"
-        placeholder="Search by name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <div className="userCard">
-        <div>
+        <div className="searchUserContainer">
+
+        <Input
+          type="text"
+          placeholder="Search by name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        </div> 
+        <div className="userCard">
           <UserCard users={filteredUsers} />
         </div>
-        <a className="moreUserCard" href="#">
-          See more
-        </a>
-      </div>
     </div>
   );
 };

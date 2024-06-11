@@ -1,5 +1,29 @@
 @import "../../App.scss";
 
-.getUsersDivContainer{
- width: 100%;
+
+.userCard{
+@media screen and (max-width: 800px) {
+display: flex;
+flex-direction: row-reverse;
+width: 100%;
+overflow-x: scroll;
+
+  
 }
+  }
+  .getUsersDivContainer{
+    padding: 10%;
+    @media screen and (max-width: 800px){
+      padding: 2%;
+      
+    }
+  }
+
+  .searchUserContainer{
+    margin-bottom: 58%;
+    @media screen and (max-width: 800px){
+      margin-bottom: 3%;
+      
+    }
+  }
+  

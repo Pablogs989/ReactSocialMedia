@@ -70,18 +70,18 @@ const handleLogout = async () => {
     <div className="iconsBarContainer">
       <div id="iconsBarDiv">
         <div className="iconsBar">
-          <div id="home" className="iconsDiv"><Link to="/users">
+          <div id="home" className="iconsDiv"><Link to="/">
           <HomeOutlined style={{ fontSize: '20px',color:"grey"}} />
           </Link>
           </div>
-          <div id="discover" className="iconsDiv">      <Link to="/">
+          {/* <div id="discover" className="iconsDiv">      <Link to="/">
             <SearchOutlined style={{ fontSize: '20px', color:"grey"}}/>
             </Link>
-          </div>
+          </div> */}
 
-          {user ? (
+          {user && (
             <>
-          <div>
+            <div>
               <PlusOutlined onClick={showModalCreatePosts} style={{ fontSize: '20px',color:"grey"}} />
             </div>
             <Modal
@@ -101,24 +101,21 @@ const handleLogout = async () => {
                 <span onClick={(e) => e.preventDefault()}>
                   <Space>
                     <div id="profileMenu" className="iconsDiv">
-                    
+                      <Link to="/profile">
                       <img className="profileImg" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" />
+                      </Link>
                     </div>
                   </Space>
               </span>
             </Dropdown>
               
             </>
-          ) : (
-            <>
-
-              <div div id="loginDiv" className="iconsDiv">
-                <Link to="/login">
-                <UserOutlined/>
-                </Link>
-              </div>
-            </>
           )}
+             <div div id="loginDiv" className="iconsDiv">
+            <Link to="/login">
+            <UserOutlined/> 
+            </Link>
+          </div>
         </div>
       </div>
     </div>

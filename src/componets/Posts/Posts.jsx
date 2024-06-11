@@ -23,13 +23,15 @@ const Posts = () => {
   );
 
   return (
-    <div>
+    <div className="postComponentContainer">
+      <div className="inputSearchPostsDiv">
       <Input
         type="text"
         placeholder="Search by post text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      </div>
       <div className="postsDivContainer">
           <Post posts={filteredPosts} />
       </div>
