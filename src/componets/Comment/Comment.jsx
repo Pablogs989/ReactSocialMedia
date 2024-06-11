@@ -4,6 +4,7 @@ import { Button, Card, Input, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { createComment, deleteComment, dislikeComment, likeComment, updateComment } from '../../features/posts/postsSlice';
+import './Comment.scss';
 
 const Comment = ({ post }) => {
   const { id } = useParams();
@@ -77,60 +78,68 @@ const Comment = ({ post }) => {
         const isDisabled = editableComments[comment._id] === undefined;
 
         return (
-          <Card key={comment._id}>
-            <div>
-              <form onSubmit={(e) => handleUpdateSubmit(e, comment._id)}>
-                <Input
-                  name={comment._id}
-                  value={editableComments[comment._id] || comment.text}
-                  placeholder={comment.text}
-                  disabled={isDisabled}
-                  onChange={handleInputChange}
-                />
-                {!isDisabled && (
-                  <Button type="primary" htmlType="submit">
-                    Actualizar
-                  </Button>
-                )}
-              </form>
+          <div key={comment._id} className='commentContainer'>
+            <div className='commentCard'>
+                <form onSubmit={(e) => handleUpdateSubmit(e, comment._id)}>
+                  <div className='commentInputDiv'>
+
+                  <input className='commentInput' 
+                    name={comment._id}
+                    value={editableComments[comment._id] || comment.text}
+                    placeholder={comment.text}
+                    disabled={isDisabled}
+                    onChange={handleInputChange}
+                    />
+                    </div>
+                </form>
             </div>
-            <div>
-              {loggedUser && (
-                <>
-                  {!isLiked ? (
-                    <div>
-                      <HeartTwoTone onClick={() => handleLike(comment._id)} /> {comment.likes?.length}
-                    </div>
-                  ) : (
-                    <div>
-                      <HeartFilled onClick={() => handleDislike(comment._id)} /> {comment.likes.length}
-                    </div>
-                  )}
-                  {loggedUser._id === comment.userId && (
-                    <>
-                      <EditOutlined onClick={() => handleEditClick(comment._id, comment.text)} />
-                      <DeleteOutlined onClick={() => handleDelete(comment._id)} />
-                    </>
-                  )}
-                </>
+            <div className='buttonContainer'>
+              {!isDisabled && (
+                <Button type="primary" htmlType="submit" className='sendButtonComment' onClick={(e) => handleUpdateSubmit(e, comment._id)}>
+                  Actualizar
+                </Button>
               )}
+              <div className='likesDivContainer'>
+                {loggedUser && (
+                  <>
+                    {!isLiked ? (
+                      <div className='likesIconDiv'>
+                        <HeartTwoTone className="likesIconComment" onClick={() => handleLike(comment._id)} /> {comment.likes?.length}
+                      </div>
+                    ) : (
+                      <div className='likesIconDiv'>
+                        <HeartFilled className="likesIconComment" onClick={() => handleDislike(comment._id)} /> {comment.likes.length}
+                      </div>
+                    )}
+                    {loggedUser._id === comment.userId && (
+                      <div className='editCommentsIcons'>
+                        <EditOutlined className='editCommentIcons' onClick={() => handleEditClick(comment._id, comment.text)} />
+                        <DeleteOutlined className='editCommentIcons' onClick={() => handleDelete(comment._id)} />
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
-          </Card>
+          </div>
         );
-      })} 
+      })}
       {loggedUser && (
-        <Card>
-          <form onSubmit={handleSubmit}>
-            <Input
-              value={commentInput}
-              onChange={(e) => setCommentInput(e.target.value)}
-              placeholder="Escribe algo..."
-            />
-            <Button type="primary" htmlType="submit">
-              Enviar
-            </Button>
-          </form>
-        </Card>
+        <div className='commentContainer'>
+          <Card>
+            <form onSubmit={handleSubmit}>
+              <input
+                value={commentInput}
+                onChange={(e) => setCommentInput(e.target.value)}
+                placeholder="Escribe algo..."
+                className='commentInput'
+              />
+            </form>
+          </Card>
+          <Button type="primary" htmlType="submit" className='sendButtonComment' onClick={handleSubmit}>
+            Enviar
+          </Button>
+        </div>
       )}
     </div>
   );

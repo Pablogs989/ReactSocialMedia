@@ -25,7 +25,7 @@ const PostDetail = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const isLiked = user ? post.likes.includes(user._id) : false;
+  const isLiked = user ? post?.likes.includes(user._id) : false;
 
   const handleDelete = () => {
     dispatch(deletePost(post._id));
@@ -42,7 +42,7 @@ const PostDetail = () => {
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
-    <div className="postDetailContainer">
+    <div className="containerPostDetailContainer">    <div className="postDetailContainer">
       <div className="postDetailHeader">
         <h1>{post.title}</h1>
       </div>
@@ -91,6 +91,8 @@ const PostDetail = () => {
         <Comment post={post} />
       </div>
     </div>
+    </div>
+
   );
 };
 
