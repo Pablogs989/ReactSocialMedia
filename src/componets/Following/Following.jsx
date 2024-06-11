@@ -7,7 +7,6 @@ const Following = () => {
   const { user } = useSelector((state) => state.auth);
   const { posts } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-  const [followingPosts, setFollowingPosts] = useState([]);
 
   useEffect(() => {
     dispatch(getAll());

@@ -49,7 +49,7 @@ const Comment = ({ post }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const commentData = {
-      id: id,
+      id: post._id,
       text: commentInput,
     };
     dispatch(createComment(commentData));
@@ -73,7 +73,7 @@ const Comment = ({ post }) => {
   return (
     <div>
       {post.commentsId.map((comment) => {
-        const isLiked = comment.likes.includes(loggedUser._id);
+        const isLiked = loggedUser && comment.likes?.includes(loggedUser._id);
         const isDisabled = editableComments[comment._id] === undefined;
 
         return (
@@ -95,37 +95,43 @@ const Comment = ({ post }) => {
               </form>
             </div>
             <div>
-              {!isLiked ? (
-                <div>
-                  <HeartTwoTone onClick={() => handleLike(comment._id)} /> {comment.likes.length}
-                </div>
-              ) : (
-                <div>
-                  <HeartFilled onClick={() => handleDislike(comment._id)} /> {comment.likes.length}
-                </div>
-              )}
-              {loggedUser._id === comment.userId && (
+              {loggedUser && (
                 <>
-                  <EditOutlined onClick={() => handleEditClick(comment._id, comment.text)} />
-                  <DeleteOutlined onClick={() => handleDelete(comment._id)} />
+                  {!isLiked ? (
+                    <div>
+                      <HeartTwoTone onClick={() => handleLike(comment._id)} /> {comment.likes?.length}
+                    </div>
+                  ) : (
+                    <div>
+                      <HeartFilled onClick={() => handleDislike(comment._id)} /> {comment.likes.length}
+                    </div>
+                  )}
+                  {loggedUser._id === comment.userId && (
+                    <>
+                      <EditOutlined onClick={() => handleEditClick(comment._id, comment.text)} />
+                      <DeleteOutlined onClick={() => handleDelete(comment._id)} />
+                    </>
+                  )}
                 </>
               )}
             </div>
           </Card>
         );
       })}
-      <Card>
-        <form onSubmit={handleSubmit}>
-          <Input
-            value={commentInput}
-            onChange={(e) => setCommentInput(e.target.value)}
-            placeholder="Escribe algo..."
-          />
-          <Button type="primary" htmlType="submit">
-            Enviar
-          </Button>
-        </form>
-      </Card>
+      {loggedUser && (
+        <Card>
+          <form onSubmit={handleSubmit}>
+            <Input
+              value={commentInput}
+              onChange={(e) => setCommentInput(e.target.value)}
+              placeholder="Escribe algo..."
+            />
+            <Button type="primary" htmlType="submit">
+              Enviar
+            </Button>
+          </form>
+        </Card>
+      )}
     </div>
   );
 };

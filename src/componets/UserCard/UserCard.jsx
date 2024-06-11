@@ -26,8 +26,8 @@ const UserCard = ({ users }) => {
   return (
     <div>
       {users.map((user) => {
-        const isFollowing = logged.following.find(
-          (followedUser) => followedUser._id == user._id
+        const isFollowing = logged?.following?.some(
+          (followedUser) => followedUser._id === user._id
         );
         return (
           <div key={user._id} className="userCardContainer">
@@ -46,23 +46,25 @@ const UserCard = ({ users }) => {
                 </div>
               </div>
             </Link>
-            <div className="buttonsDivContainer">
-              {isFollowing ? (
-                <button
-                  className="followUserCard"
-                  onClick={() => handleUnfollow(user)}
-                >
-                  Unfollow
-                </button>
-              ) : (
-                <button
-                  className="followUserCard"
-                  onClick={() => handleFollow(user)}
-                >
-                  Follow
-                </button>
-              )}
-            </div>
+            {logged && (
+              <div className="buttonsDivContainer">
+                {isFollowing ? (
+                  <button
+                    className="followUserCard"
+                    onClick={() => handleUnfollow(user)}
+                  >
+                    Unfollow
+                  </button>
+                ) : (
+                  <button
+                    className="followUserCard"
+                    onClick={() => handleFollow(user)}
+                  >
+                    Follow
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         );
       })}

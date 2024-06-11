@@ -1,46 +1,74 @@
 @import "../../App.scss";
-.containerPostCart{
-  display:flex;
+
+.containerPostCart {
+  display: flex;
   flex-direction: column-reverse;
   align-items: center;
-
-}
-.card {
-   padding: 2% 0%;
-    @extend %displayCenter;
-    width: 100vw;
-    min-height: 20vh;
-    border-radius: 3px;
-    margin-bottom: 3vh;
-    background: #ffdfdf96;
-    box-shadow: 5px 5px 6px #dadada,
-                 -5px -5px 6px #f6f6f6;
-    transition: 0.4s;
-  }
-
-  
-
-  .card-body {
-    min-width: 90vw;
-    padding: 3% 0%;
-    color: rgb(31, 31, 31);
-    font-size: 15px;
-  }
-  
-  .footer {
+  justify-content: center;
+  @media screen and (max-width: 800px) {
     width: 100%;
-    float: right;
-    font-size: 13px;
-    color: #636363;
+    justify-self: center;
+ 
   }
-  
-  .by-name {
-    font-weight: 700;
-  }
-
-  .img {
-    width:90VW ;
-    height: 100%;
+}
+.imgPostCard{
+  width: 270px;
+  height:150px;
+  object-fit: cover;
+  border-radius: 15px;
+  @media screen and (min-width: 600px) {  width: 270px;
+    height:300px;
+    width: 300px;
     object-fit: cover;
     border-radius: 15px;
+
   }
+
+}
+.postCard {
+  padding: 2% 0%;
+  @extend %displayCenter;
+  width: 400px;
+  height:250px;
+  justify-self: center;
+  border-radius: 3px;
+  margin-bottom: 3vh;
+  box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;
+  transition: 0.4s;
+
+
+
+  @media screen and (min-width: 600px) {
+    display: flex;
+    min-width: 450px;
+    min-height: 450px;
+    justify-content: center;
+    flex-basis: calc(25% - 2%); 
+    margin: 20px; 
+  }
+}
+
+.postCardBody {
+  padding: 7% 0%;
+  color: rgb(31, 31, 31);
+  font-size: 15px;
+  max-height: 240px;
+  
+}
+
+.footerCard {
+  width: 100%;
+  float: right;
+  font-size: 13px;
+  color: #636363;
+}
+
+.by-name {
+  font-weight: 700;
+  ;
+}
+
+.img {
+  object-fit: cover;
+  border-radius: 15px;
+}

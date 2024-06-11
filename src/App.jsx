@@ -15,6 +15,7 @@ import NotFound from './guards/NotFound';
 import PrivateZone from './guards/PrivateZone';
 import Comment from './componets/Comment/Comment';
 import PostDetail from './componets/PostDetail/PostDetail';
+import Liked from './componets/Liked/Liked';
 function App() {
 
 
@@ -23,7 +24,7 @@ function App() {
     <BrowserRouter>
       <SideBar/>
       <Routes>
-        <Route path="/comment/:id" element={<Comment/>}/>
+        <Route path="/liked" element={<Liked/>}/>
         <Route path="/" element={<Home/>}/>
         <Route path="/users" element={<GetUsers/>}/>
         <Route path="/following" element={<Following/>}/>
