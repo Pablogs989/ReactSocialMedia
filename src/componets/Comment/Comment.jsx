@@ -126,16 +126,16 @@ const Comment = ({ post }) => {
       })}
       {loggedUser && (
         <div className='commentContainer'>
-          <Card>
+          <>
             <form onSubmit={handleSubmit}>
               <input
                 value={commentInput}
                 onChange={(e) => setCommentInput(e.target.value)}
                 placeholder="Escribe algo..."
-                className='commentInput'
+                className='commentInputNewComment'
               />
             </form>
-          </Card>
+          </>
           <Button type="primary" htmlType="submit" className='sendButtonComment' onClick={handleSubmit}>
             Enviar
           </Button>
