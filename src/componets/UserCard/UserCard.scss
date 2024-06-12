@@ -1,4 +1,6 @@
 @import "../../App.scss";
+@import "../../Colors.scss";
+
 
 .userCardContainer {
   display: flex;
@@ -97,7 +99,7 @@
 }
 
 .followUserCard {
-  background-color: #54989d;
+  background-color: $colorPrimario;
 }
 
 .followUserCard:hover {

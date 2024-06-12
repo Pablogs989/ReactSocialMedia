@@ -1,3 +1,4 @@
+@import "../../Colors.scss";
 .containerPostDetailContainer{
   width: 80%;
   display: flex;
@@ -158,4 +159,6 @@
       
     };
   }
-  
+  .ant-btn{
+    background-color: $colorPrimario;
+  }
