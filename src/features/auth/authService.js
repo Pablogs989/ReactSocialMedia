@@ -105,6 +105,22 @@ const updatePic = async (formData) => {
 
     return res.data;
 };
+const updateUser = async (formData) => {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: token, 
+        },
+    };
+
+    try {
+        const res = await axios.put(`${API_URL}/update`, formData, config);
+        return res.data;
+    } catch (error) {
+        console.error("Error actualizando usuario:", error.response ? error.response.data : error.message);
+    }
+};
 
 const authService = {
     register,
@@ -116,6 +132,7 @@ const authService = {
     follow,
     unfollow,
     updatePic,
+    updateUser,
 };
 
 export default authService;

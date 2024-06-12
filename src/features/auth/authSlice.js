@@ -101,7 +101,11 @@ export const authSlice = createSlice({
             .addCase(updatePic.fulfilled, (state, action) => {
                 state.isSuccess = true;
                 state.user = action.payload.user;
-            });
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.user = action.payload.user;
+            })
     },
 });
 
@@ -178,6 +182,18 @@ export const updatePic = createAsyncThunk(
         } catch (error) {
             console.error(error);
             rejectWithValue(error.response.data);
+        }
+    },
+);
+export const updateUser = createAsyncThunk(
+    "auth/updateuser",
+    async (formData, thunkAPI) => {
+        try {
+            return await authService.updateUser(formData);
+        } catch (error) {
+            console.error(error);
+            const msgError = error.response.data.message;
+            return thunkAPI.rejectWithValue(msgError);
         }
     },
 );
