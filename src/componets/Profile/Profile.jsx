@@ -66,7 +66,7 @@ const Profile = ({ user }) => {
         </div>
       )}
       {selectedOption === "likes" && (
-        <div className="likedPostsProfileDiv">
+        <div className="postProfileDiv">
           <UserLikes likedPosts={likedPosts} />
         </div>
       )}

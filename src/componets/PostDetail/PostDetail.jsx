@@ -25,7 +25,7 @@ const PostDetail = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const isLiked = user ? post.likes.includes(user._id) : false;
+  const isLiked = user && post ? post.likes.includes(user._id) : false;
 
   const handleDelete = () => {
     dispatch(deletePost(post._id));
