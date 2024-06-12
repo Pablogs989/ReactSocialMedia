@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll } from "../../features/posts/postsSlice";
+import "./Following.scss";
+
 
 const Following = () => {
   const { user } = useSelector((state) => state.auth);
@@ -24,8 +26,10 @@ const Following = () => {
 
   return (
     <div className="divNavContainer">
+      <div class="header">
+
       <h1>Following</h1>
-      
+      </div>
       <Post posts={postsIds} />
     </div>
   );

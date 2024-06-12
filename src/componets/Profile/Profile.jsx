@@ -32,6 +32,7 @@ const Profile = ({ user }) => {
       }
     });
   });
+  console.log(likedPosts);
 
   return (
     <div className="profileDivContainer">
@@ -66,7 +67,7 @@ const Profile = ({ user }) => {
         </div>
       )}
       {selectedOption === "likes" && (
-        <div className="likedPostsProfileDiv">
+        <div className="postProfileDiv">
           <UserLikes likedPosts={likedPosts} />
         </div>
       )}

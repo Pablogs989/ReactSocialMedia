@@ -52,13 +52,12 @@ const handleLogout = async () => {
     {
       label: (
         <div id="logout"
-                onClick={() => {handleLogout()                }}
+                onClick={() => {handleLogout() }}
                 className="iconsDiv"
               >
                 
                 <ThunderboltOutlined />
           
-                {/* <Link to="/login"><UserOutlined/></Link> */}
               </div>
 
       ),
@@ -74,10 +73,7 @@ const handleLogout = async () => {
           <HomeOutlined style={{ fontSize: '20px',color:"grey"}} />
           </Link>
           </div>
-          {/* <div id="discover" className="iconsDiv">      <Link to="/">
-            <SearchOutlined style={{ fontSize: '20px', color:"grey"}}/>
-            </Link>
-          </div> */}
+
 
           {user && (
             <>
