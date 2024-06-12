@@ -32,10 +32,10 @@ Para garantizar la seguridad de nuestra plataforma, hemos implementado guards qu
 ### Página de Not Found || ### Upload Profile Picture
 
 <div style="display: flex; gap: 20px;">
-  <div style="max-width: 300px;">
+  <div style="max-width: 100px;">
     <img src="src/assets/screen/SocialCircuit.gif" alt="Upload Profile Picture" style="max-width: 100%;" />
   </div>
-  <div style="max-width: 230px;">
+  <div style="max-width: 150px;">
     <img src="src/assets/screen/404NotFound.png" alt="Ejemplo NotFound" style="max-width: 100%;" />
   </div>
 </div>
@@ -47,10 +47,10 @@ Para garantizar la seguridad de nuestra plataforma, hemos implementado guards qu
 ### Post Detail Mobile | Post Detail PC
 
 <div style="display: flex; gap: 20px;">
-  <div style="max-width: 250px;">
+  <div style="max-width: 150px;">
     <img src="src/assets/screen/PostDetailMobile.png" alt="Ejemplo Post Detail Mobile" style="max-width: 100%;" />
   </div>
-  <div style="max-width: 450px;">
+  <div style="max-width: 300px;">
     <img src="src/assets/screen/detailPostsPc.png" alt="Ejemplo Post Detail" style="max-width: 100%;" />
   </div>
 </div>
@@ -58,10 +58,10 @@ Para garantizar la seguridad de nuestra plataforma, hemos implementado guards qu
 ### Profile view Mobile | Profile view PC
 
 <div style="display: flex; gap: 20px;">
-  <div style="max-width: 250px;">
+  <div style="max-width: 150px;">
     <img src="src/assets/screen/profileMobileView.png" alt="Ejemplo Profile view Mobile" style="max-width: 100%;" />
   </div>
-  <div style="max-width: 450px;">
+  <div style="max-width: 300px;">
     <img src="src/assets/screen/profilePcView.png" alt="Ejemplo Profile view PC" style="max-width: 100%;" />
   </div>
 </div>
@@ -69,10 +69,10 @@ Para garantizar la seguridad de nuestra plataforma, hemos implementado guards qu
 ### Home view Mobile | Home view PC
 
 <div style="display: flex; gap: 20px;">
-  <div style="max-width: 250px;">
+  <div style="max-width: 150px;">
     <img src="src/assets/screen/HomeMobile.png" alt="Ejemplo Home view Mobile" style="max-width: 100%;" />
   </div>
-  <div style="max-width: 450px;">
+  <div style="max-width: 300px;">
     <img src="src/assets/screen/homePc.png" alt="Ejemplo Home view PC" style="max-width: 100%;" />
   </div>
 </div>
