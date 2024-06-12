@@ -1,60 +1,84 @@
 @import "../../App.scss";
 
+
 .postProfileDiv {
-  display: flex;
+  display: flex;    
   justify-content: center;
-  flex-direction: column;
-  margin: 7%;
-  width: 85vw;
-  @media screen and (min-width: 600px) {
+  flex-direction: column-reverse;
+  margin: 10%;
+  
+  @media screen and (min-width: 600px) and (max-width: 1100px) {
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    width: 80%;
+  }
+  
+  @media screen and (min-width: 1101px) {
     display: flex;
     justify-content: center;
     flex-direction: row-reverse;
     flex-wrap: wrap;
+    margin-left: 20%;
     margin-top: auto;
+    width: 80%;
   }
 }
 
 .radioInputsProfile {
-  display: flex;
-  justify-content: center;
-  border-radius: 0.5rem;
-  background-color: #eee;
-  box-sizing: border-box;
-  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
-  padding: 0.25rem;
-  font-size: 14x;
-}
+    display: flex;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: #EEE;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    font-size: 14x;
+    @media screen and (min-width: 600px){
 
-.radioInputsProfile .radio {
-  flex: 1 1 auto;
-  text-align: center;
-}
-
-.radioInputsProfile .radio input {
-  display: none;
-}
-
-.radioInputsProfile .radio .name {
-  display: flex;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.5rem;
-  border: none;
-  padding: 0.5rem 0;
-  color: rgba(51, 65, 85, 1);
-  transition: all 0.15s ease-in-out;
-}
-
-.radioInputsProfile .radio input:checked + .name {
-  background-color: #fff;
-  font-weight: 600;
-}
-
-.likedPostsProfileDiv {
-  margin-left: 10%;
-  @media screen and (max-width: 600px) {
-    margin-left: 0;
+      margin-left: 20%;
+      margin-top: auto;
+      width: 80%
+      
   }
 }
+  
+  
+  
+  .radioInputsProfile .radio {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  
+  .radioInputsProfile .radio input {
+    display: none;
+  }
+  
+  .radioInputsProfile .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+  }
+  
+  .radioInputsProfile .radio input:checked + .name {
+    background-color: #fff;
+    font-weight: 600;
+  }
+
+  .likedPostsProfileDiv{
+    margin-left: 10%;
+    @media screen and (max-width: 600px){
+      margin-left: 0;
+      
+    }
+  }
+
+
+

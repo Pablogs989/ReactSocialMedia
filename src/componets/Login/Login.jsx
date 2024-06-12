@@ -2,80 +2,114 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, reset } from '../../features/auth/authSlice'
 import { Link, useNavigate } from 'react-router-dom'
-import { Input, notification } from 'antd'
+import { Form, Input, notification, Button } from 'antd'
 import '../Register/Register.scss'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 
 const Login = () => {
     const [formData, setFormData] = useState({
-        email:'',
-        password:''
+        email: '',
+        password: ''
     })
-    const {email,password} = formData
-    const {message,isSuccess,isError} = useSelector((state)=>state.auth)
+    const { email, password } = formData
+    const { message, isSuccess, isError } = useSelector((state) => state.auth)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        if(isSuccess){
+    useEffect(() => {
+        if (isSuccess) {
             notification.success({
-                message:"Success",
-                description:message
+                message: "Success",
+                description: message
             })
             navigate("/profile")
         }
-        if(isError){
+        if (isError) {
             notification.error({
-                message:"Error",
-                description:message
+                message: "Error",
+                description: message
             })
         }
         dispatch(reset())
-    },[isSuccess,message,isError])
+    }, [isSuccess, message, isError, dispatch, navigate])
 
-    const onChange = (e)=>{
+    const onChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]:e.target.value,
+            [e.target.name]: e.target.value,
         })
     }
-    const onSubmit = (e) => {
-        e.preventDefault()
+
+    const onSubmit = () => {
         dispatch(login(formData))
     }
-return (
-<>
 
-    
-    <div className="componentDivContainer">
-        <div className="formContainer">
-            <form onSubmit={onSubmit}>
-                <div className="inputDiv">
+    return (
+        <div className="componentDivContainer">
+            <div className="formContainer">
+                <Form onFinish={onSubmit}>
+                    <div className="inputDiv">
+                        <Form.Item
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'You must provide your email',
+                                },
+                                {
+                                    type: 'email',
+                                    message: 'The input is not a valid email',
+                                },
+                            ]}
+                            initialValue={email}
+                        >
+                            <Input
+                                name="email"
+                                value={email}
+                                onChange={onChange}
+                                placeholder='Insert your email'
+                                prefix={<UserOutlined />}
+                            />
+                        </Form.Item>
+                    </div>
 
-                    <Input name="email" value={email} onChange={onChange} placeholder='Insert your email' prefix={<UserOutlined/>}/>
-                </div>
-                    
-                <div className="inputDiv">
-                <Input.Password  name="password" value={password} onChange={onChange} placeholder='Insert your password' prefix={<LockOutlined/>}/>
-                </div>
-    
-                
-                <div className="inputDiv">
-                <p><a href="" className="a2">forgot your password? </a></p>
-                </div>
-                <div className="ButtonDiv">
-                    <button type="submit">Login</button>
-                </div>
-                <div className="inputDiv">
+                    <div className="inputDiv">
+                        <Form.Item
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'You must provide your password',
+                                },
+                            ]}
+                            initialValue={password}
+                        >
+                            <Input.Password
+                                name="password"
+                                value={password}
+                                onChange={onChange}
+                                placeholder='Insert your password'
+                                prefix={<LockOutlined />}
+                            />
+                        </Form.Item>
+                    </div>
 
-                <p>Don't have an account? <Link to="/register">Sign up!</Link></p>
-                </div>
+                    <div className="inputDiv">
+                        <p><a href="" className="a2">Forgot your password?</a></p>
+                    </div>
 
-            </form>
+                    <div className="ButtonDiv">
+                        <Button type="primary" htmlType="submit">Login</Button>
+                    </div>
+
+                    <div className="inputDiv">
+                        <p>Don't have an account? <Link to="/register">Sign up!</Link></p>
+                    </div>
+                </Form>
+            </div>
         </div>
-    </div>
-</>
-  )
+    )
 }
+
 export default Login

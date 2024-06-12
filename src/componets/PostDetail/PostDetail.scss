@@ -1,23 +1,34 @@
 .containerPostDetailContainer{
+  width: 80%;
+  margin-left: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 5%;
   @media screen and (max-width: 800px) {
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
-    margin-right: 2%;
   }
 
 }
+.postDetailDivContainer{
+  width: 70vw;
+}
 .postDetailContainer {
-    max-width: 800px;
+
+    max-width:80%;
     margin: 8vh auto;
     padding: 20px;
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    @media screen and (min-width: 800px) {
+      display: flex;
+      justify-content: space-between;
+      align-items:flex-end;
+
+  
+    }
   }
   
   .postDetailHeader {
@@ -33,6 +44,9 @@
     font-size: 1.2em;
     color: #666;
     margin-bottom: 20px;
+    padding: 2%;
+    max-width: 100%;
+  
   }
   
   .card-image {
@@ -42,12 +56,20 @@
       max-width: 100%;
       border-radius: 8px;
     }
+    @media screen and (min-width: 800px) {
+      margin-bottom: 0px;
+
+    }
   }
   
   .postDetailDate {
     font-size: 0.9em;
     color: #999;
     margin-bottom: 20px;
+    @media screen and (min-width: 800px) {
+      margin-top: 20px;
+
+    }
   }
   
   .postActions {
@@ -83,9 +105,29 @@
       }
     }
   }
-  
+  .cardPostDetailBody{
+    @media screen and (min-width: 800px) {
+      background-color: white;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+    }
+ 
+  }
   .commentSection {
     margin-top: 20px;
+    @media screen and (min-width: 800px){
+      width: 50%;;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      border-radius: 10px;
+      height: 58vh;
+      padding:2% 5%;
+      
+    }
   }
   
   .loading,
@@ -93,5 +135,15 @@
     text-align: center;
     font-size: 1.2em;
     color: #999;
+  }
+  .postDetailBody{
+    @media screen and (min-width: 800px) {
+  border-radius: 10px;
+
+  height: 60vh;
+  padding:2% 5%;
+
+      
+    };
   }
   

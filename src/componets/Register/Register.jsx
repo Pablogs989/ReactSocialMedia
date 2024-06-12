@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { register, reset } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Input, notification } from "antd";
+import { Form, Input, notification, Button } from "antd";
 import "./Register.scss";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-
   });
   const { name, email, password } = formData;
   const navigate = useNavigate();
@@ -24,9 +22,8 @@ const Register = () => {
       notification.success({
         message: "Success",
         description: message,
-      })
-      navigate("/login")
-      ;
+      });
+      navigate("/login");
     }
     if (isError) {
       notification.error({
@@ -34,55 +31,102 @@ const Register = () => {
         description: message,
       });
     }
-    dispatch(reset())
-  }, [isSuccess, message, isError]);
-  
+    dispatch(reset());
+  }, [isSuccess, message, isError, navigate, dispatch]);
 
   const onChange = (e) => {
-    setFormData(
-      {
+    setFormData({
       ...formData,
-    
       [e.target.name]: e.target.value,
     });
   };
-  const onSubmit = (e) => {
-    e.preventDefault();
 
- 
-      return dispatch(register(formData));
-    
+  const onSubmit = () => {
+    dispatch(register(formData));
   };
+
   return (
     <div className="componentDivContainer">
       <div className="formContainer">
-        <form onSubmit={onSubmit}>
+        <Form onFinish={onSubmit}>
           <div className="inputDiv">
-            <Input
-              type="text"
+            <Form.Item
               name="name"
-              value={name}
-              onChange={onChange}
-              placeholder="Insert your name"
-            />
+              rules={[
+                {
+                  required: true,
+                  message: "You must provide your name",
+                },
+              ]}
+              initialValue={name}
+            >
+              <Input
+                type="text"
+                name="name"
+                value={name}
+                onChange={onChange}
+                placeholder="Insert your name"
+              />
+            </Form.Item>
           </div>
-          
-          <div className="inputDiv">
-              <Input name="email" value={email} onChange={onChange} placeholder='Insert your email' prefix={<UserOutlined/>}/>
-              </div>
-          <div className="inputDiv">
-                <Input.Password  name="password" value={password} onChange={onChange} placeholder='Insert your password' prefix={<LockOutlined/>}/>
-                </div>
-          <div className="ButtonDiv">
-            <button  type="submit">Register</button>
-          </div>
-          <div className="inputDiv">
 
-        <p> you have an account? <Link to="/login">Login!</Link></p>
-        </div>
-        </form>
+          <div className="inputDiv">
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: "You must provide your email",
+                },
+                {
+                  type: 'email',
+                  message: "The input is not a valid email",
+                },
+              ]}
+              initialValue={email}
+            >
+              <Input
+                name="email"
+                value={email}
+                onChange={onChange}
+                placeholder="Insert your email"
+                prefix={<UserOutlined />}
+              />
+            </Form.Item>
+          </div>
+
+          <div className="inputDiv">
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "You must provide your password",
+                },
+              ]}
+              initialValue={password}
+            >
+              <Input.Password
+                name="password"
+                value={password}
+                onChange={onChange}
+                placeholder="Insert your password"
+                prefix={<LockOutlined />}
+              />
+            </Form.Item>
+          </div>
+
+          <div className="ButtonDiv">
+            <Button type="primary" htmlType="submit">Register</Button>
+          </div>
+
+          <div className="inputDiv">
+            <p>Do you have an account? <Link to="/login">Login!</Link></p>
+          </div>
+        </Form>
       </div>
     </div>
   );
 };
+
 export default Register;

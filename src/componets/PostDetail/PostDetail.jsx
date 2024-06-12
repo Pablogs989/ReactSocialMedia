@@ -44,24 +44,31 @@ const PostDetail = () => {
 
   return (
     <div className="containerPostDetailContainer">   
+
     
     <div className="postDetailContainer">
-      <div className="postDetailHeader">
+      <div className="postDetailDivContainer">
+        <div className="postDetailBody">
+          <div className="cardPostDetailBody">
+          <div className="postDetailHeader">
         <h1>{post.title}</h1>
-      </div>
-      <div className="postDetailText">
-        <p>{post.text}</p>
-      </div>
-      {post.image && (
-        <div className="card-image">
-          <img
-            className="img"
-            src={"http://localhost:8080/public/posts/" + post.image}
-            alt="Post"
-          />
-        </div>
-      )}
-      <div className="postDetailDate">
+          </div>
+          {post.image && (
+                <div className="card-image">
+                  <img
+                    className="img"
+                    src={"http://localhost:8080/public/posts/" + post.image}
+                    alt="Post"
+                  />
+                </div>
+                )}
+              <div className="postDetailText">
+                <p>{post.text}</p>
+              </div>
+             
+            </div>
+
+                <div className="postDetailDate">
         <p>Created on: {post.createdAt.slice(0, 10)}</p>
       </div>
       <div className="postActions">
@@ -90,6 +97,9 @@ const PostDetail = () => {
           )}
         </div>
       )}
+      </div>
+          </div>
+      
       <div className="commentSection">
         <Comment post={post} />
       </div>
