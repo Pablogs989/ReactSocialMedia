@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, Modal, Space, notification } from 'antd';
-import { CoffeeOutlined, DownOutlined, FontSizeOutlined, FormOutlined, HomeOutlined, PlusOutlined, SearchOutlined, ThunderboltOutlined, UserOutlined } from '@ant-design/icons';
+import { CoffeeOutlined,  HomeOutlined, PlusOutlined,  ThunderboltOutlined, UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logout, reset } from "../../features/auth/authSlice";
+import { logout } from "../../features/auth/authSlice";
 import "./SideBar.scss";
 import CreatePost from "../CreatePost/CreatePost";
 
@@ -12,24 +12,9 @@ const SideBar = () => {
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
     const [isModalOpenCreatePosts, setIsModalOpenCreatePosts] = useState(false);
-    const { message, isSuccessLogout, isErrorLogout } = useSelector((state) => state.auth);
 
-    useEffect(() => {
-        if (isSuccessLogout) {
-            notification.success({
-                message: "Success",
-                description: message
-            });
-            navigate("/profile");
-        }
-        if (isErrorLogout) {
-            notification.error({
-                message: "Error",
-                description: message
-            });
-        }
-        dispatch(reset());
-    }, [isSuccessLogout, message, isErrorLogout]);
+
+    
 
     const showModalCreatePosts = () => {
         setIsModalOpenCreatePosts(true);
@@ -72,17 +57,24 @@ const SideBar = () => {
         <div className="iconsBarContainer">
             <div id="iconsBarDiv">
                 <div className="iconsBar">
-                        <Link to="/">
-                    <div id="home" className="iconsDiv">
-                            <HomeOutlined  />
-                            <div className="sideBarTextSection">
-                                Home
-                            </div>
-                    </div>
-                        </Link>
+                       
 
                     {user && (
                         <>
+                        <Dropdown menu={{ items }}>
+                                <span onClick={(e) => e.preventDefault()}>
+                                    <Space>
+                                        <div id="profileMenu" className="iconsDiv">
+                                            <Link to="/profile">
+                                                <img className="profileImg" src={"http://localhost:8080/public/users/" + user.profilePic} alt="profilePic" />
+                                                <div className="sideBarTextSection">
+                                                    {user.name}
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </Space>
+                                </span>
+                            </Dropdown>
                             <div className="iconsDiv" onClick={showModalCreatePosts}>
                                 <PlusOutlined />
                                 <div className="sideBarTextSection">Post!</div>
@@ -98,32 +90,28 @@ const SideBar = () => {
                                     </div>
                             </div>
                                 </Link>
+                                
 
-                            <Dropdown menu={{ items }}>
-                                <span onClick={(e) => e.preventDefault()}>
-                                    <Space>
-                                        <div id="profileMenu" className="iconsDiv">
-                                            <Link to="/profile">
-                                                <img className="profileImg" src={"http://localhost:8080/public/users/" + user.profilePic} alt="profilePic" />
-                                                <div className="sideBarTextSection">
-                                                    {user.name}
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    </Space>
-                                </span>
-                            </Dropdown>
+                            
                         </>
                     )}
+                     <Link to="/">
+                    <div id="home" className="iconsDiv">
+                            <HomeOutlined  />
+                            <div className="sideBarTextSection">
+                                Home
+                            </div>
+                    </div>
+                        </Link>
 
                     {!user && (
-                            <Link to="/login">
-                        <div id="loginDiv" className="iconsDiv">
+                       
+                        <div id="loginDiv" className="iconsDiv" onClick={()=> navigate("/login")}>
                         <UserOutlined />
                             <div className="sideBarTextSection">Log in!</div>
                             
                         </div>
-                            </Link>
+                 
                     )}
                 </div>
             </div>

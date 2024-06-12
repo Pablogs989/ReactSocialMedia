@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 
 const PrivateZone = ({ children }) => {
-  const user = localStorage.getItem("user");
+  const user = JSON.parse(localStorage.getItem("user"));
   return user ? children : <Navigate to="/" />;
 };
 
