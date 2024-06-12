@@ -107,11 +107,11 @@ const handleLogout = async () => {
               
             </>
           )}
-             <div div id="loginDiv" className="iconsDiv">
+          {!user&& <div div id="loginDiv" className="iconsDiv">
             <Link to="/login">
             <UserOutlined/>
             </Link>
-          </div>
+          </div>}
         </div>
       </div>
     </div>
