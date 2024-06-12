@@ -1,6 +1,6 @@
 @import "../../App.scss";
 .divHomeContainer {
-  width: 100%;
+  // width: 100%;
   display: grid;
   grid-template-columns: 75% 15%;
   margin-left: 8%;
@@ -12,9 +12,7 @@
   }
 }
 
-// .divHomePosts {
-//   width: 100%;
-// }
+
 .postsDivContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
