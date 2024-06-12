@@ -2,15 +2,20 @@
 
 .userCardContainer {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+ flex-direction: row;
   align-items: center;
   padding: 10px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 10px;
 
-
+  @media screen and (max-width: 11400px) and (min-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    }
   @media screen and (max-width: 800px) {
  width: 350px;   
  display: flex;
@@ -22,7 +27,15 @@
 }
 
 .infoDiv {
-
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (max-width: 11400px) and (min-width: 800px) {
+    display: flex;
+    text-align: center;
+    
+    }
 @media screen and (max-width: 800px) {
   display: flex;
   align-items: center;

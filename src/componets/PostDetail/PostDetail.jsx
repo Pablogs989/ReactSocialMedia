@@ -15,6 +15,7 @@ import {
 } from "@ant-design/icons";
 import Comment from "../Comment/Comment";
 import "./PostDetail.scss";
+import { Modal } from "antd";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -42,6 +43,8 @@ const PostDetail = () => {
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
+    <div className="containerPostDetailContainer">   
+    
     <div className="postDetailContainer">
       <div className="postDetailHeader">
         <h1>{post.title}</h1>
@@ -91,6 +94,9 @@ const PostDetail = () => {
         <Comment post={post} />
       </div>
     </div>
+    </div>
+    
+
   );
 };
 

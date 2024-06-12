@@ -1,6 +1,19 @@
+.containerPostDetailContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    margin-right: 2%;
+  }
+
+}
 .postDetailContainer {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 8vh auto;
     padding: 20px;
     background: #f9f9f9;
     border-radius: 8px;
