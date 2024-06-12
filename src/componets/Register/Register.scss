@@ -1,9 +1,14 @@
 @import "../../App.scss";
+@import "../../Colors.scss";
+
 
 .componentDivContainer {
   @extend %displayCenter;
-  padding-top: 20%;
-  padding-bottom: 10%;
+  padding-top: 20vh;
+  padding-bottom: 10vh;
+  @media screen and (min-width: 600px){
+margin-left: 20%;    
+  }
 }
 
 .formContainer {
@@ -16,58 +21,47 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   .inputDiv {
-    display: flex;
-    align-items: center;
-    position: relative;
-    margin: 15px 0;
-    width: 100%;
-
-    input {
-      width: 100%;
-      padding-left: 40px;
-      border-radius: 5px;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
-
-    .inputIcon {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      fill: #aaa;
-      pointer-events: none;
-    }
+    margin-bottom: 20px;
   }
 
-  .inputDiv.forgotPassword {
-    text-align: right;
-    font-size: 0.9rem;
-    color: #007bff;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
+  input,
+  .ant-input-password {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
   }
 
   .ButtonDiv {
-    @extend %displayCenter;
     margin-top: 20px;
   }
 
   button {
     width: 100%;
-    padding: 15px;
     border: none;
-    border-radius: 5px;
-    background-color: #007bff;
+    border-radius: 8px;
+    background-color: $colorPrimario;
     color: white;
     font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s;
     &:hover {
-      background-color: #0056b3;
+      background-color: $colorSecundario;
+    }
+  }
+
+  p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  a {
+    color: $colorPrimario;
+    &:hover {
+      color: $colorSecundario;
     }
   }
 }

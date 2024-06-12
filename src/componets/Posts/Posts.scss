@@ -1,12 +1,13 @@
 @import "../../App.scss";
 
 .postsDivContainer{
-
     display: flex;
     justify-content: center;    
     flex-direction: column;
-    margin: 2%;
-    padding: 5%;
+    @media screen and (min-width: 600px){
+      width: 80%;
+
+    }
 
 
 }
@@ -14,5 +15,17 @@
 .inputSearchPostsDiv{
     display: flex;
     justify-content: center;
-    margin: 2%;
+    ;
+    @media screen and (min-width: 600px){
+        margin-top: 2%;
+          
+      }
+}
+.postComponentContainer{
+  margin-left: 32%;
+  @media screen and (max-width: 600px){
+    margin-left: 0;
+    
+  }
+
 }

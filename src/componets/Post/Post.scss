@@ -2,60 +2,69 @@
 
 .containerPostCart {
  
+
   @media screen and (max-width: 800px) {
     width: 100%;
-    justify-self: center;
+    justify-self: cover;
  
   }
 }
-.imgPostCard{
-  width: 333px;
-  height:170px;
-  object-fit: cover;
-  border-radius: 1px;
+.imgPostCard {
+  width: 70vw;
+  height: 200px;
+object-fit: cover;
 
-  @media screen and (min-width: 600px) {  width: 270px;
-    height:300px;
-    width: 300px;
+
+@media screen and (min-width: 749px) and (max-width: 999px) {
+    width: 100%;
+    
+    height: 300px;
     object-fit: cover;
-    border-radius: 15px;
-  }
-  flex-direction: column;
+  
+}
 
+@media screen and (min-width: 1000px) {
+
+    width: 25vw;
+    height: 38vh;
+    object-fit: cover;
+  
+}
 }
 .postCard {
-  padding: 2% 0%;
   @extend %displayCenter;
-  height:270px;
-  justify-self: center;
+  height: 320px;
   border-radius: 3px;
   margin-bottom: 3vh;
   box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;
   transition: 0.4s;
 
-  @media screen and (max-width: 850px)and (min-width: 600)
-  {width: 80vw;  background-color: pink};
+  @media screen and (min-width: 749px) and (max-width: 1099px) {
+    width: 600px;
+  }
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 800px) {
     width: 30vw;
     min-height: 450px;
     justify-content: center;
-    flex-basis: calc(25% - 2%); 
-    margin: 20px; 
+    flex-basis: calc(25% - 2%);
+    margin: 20px;
+    justify-self: center; 
   }
 }
 
 .postCardBody {
-  text-decoration: none;
-  padding: 7% 0%;
   color: rgb(31, 31, 31);
   font-size: 15px;
   max-height: 240px;
-  margin: 2vw;
-}
-
-.text {
-  text-decoration: none;
+  @media screen and (max-width: 749px){
+    padding: 2% 0%; 
+   
+    
+  }
+  
+  
+  
 }
 
 .footerCard {
@@ -63,17 +72,14 @@
   float: right;
   font-size: 13px;
   color: #636363;
-  text-align: right;
-
 }
 
 .by-name {
-  font-weight: bold;
-  color: #555;
-  text-decoration: none;
+  font-weight: 700;
+  ;
 }
 
 .img {
   object-fit: cover;
-  width: 100%;
+  border-radius: 15px;
 }

@@ -16,6 +16,7 @@ import {
 import Comment from "../Comment/Comment";
 import "./PostDetail.scss";
 import { Modal } from "antd";
+import SharePost from "../SharePost/SharePost";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -44,27 +45,36 @@ const PostDetail = () => {
 
   return (
     <div className="containerPostDetailContainer">   
+
     
     <div className="postDetailContainer">
-      <div className="postDetailHeader">
+      <div className="postDetailDivContainer">
+        <div className="postDetailBody">
+          <div className="cardPostDetailBody">
+          <div className="postDetailHeader">
         <h1>{post.title}</h1>
-      </div>
-      <div className="postDetailText">
-        <p>{post.text}</p>
-      </div>
-      {post.image && (
-        <div className="card-image">
-          <img
-            className="img"
-            src={"http://localhost:8080/public/posts/" + post.image}
-            alt="Post"
-          />
-        </div>
-      )}
-      <div className="postDetailDate">
+          </div>
+          {post.image && (
+                <div className="card-image">
+                  <img
+                    className="img"
+                    src={"http://localhost:8080/public/posts/" + post.image}
+                    alt="Post"
+                  />
+                </div>
+                )}
+              <div className="postDetailText">
+                <p>{post.text}</p>
+              </div>
+             
+            </div>
+
+                <div className="postDetailDate">
         <p>Created on: {post.createdAt.slice(0, 10)}</p>
       </div>
       <div className="postActions">
+        <div>
+        
         {user && (
           isLiked ? (
             <div className="actionButton">
@@ -78,6 +88,8 @@ const PostDetail = () => {
             </div>
           )
         )}
+      
+  
       </div>
       {user && post.userId === user._id && (
         <div className="deleteButtonContainer">
@@ -90,6 +102,13 @@ const PostDetail = () => {
           )}
         </div>
       )}
+            <div><SharePost/></div>
+        </div>
+      </div>
+      
+
+          </div>
+      
       <div className="commentSection">
         <Comment post={post} />
       </div>

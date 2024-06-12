@@ -13,7 +13,7 @@ import LoggedUserProfile from './componets/LoggedUserProfile/LoggedUserProfile';
 import GeneralUserProfile from './componets/GeneralUserProfile/GeneralUserProfile';
 import NotFound from './guards/NotFound';
 import PrivateZone from './guards/PrivateZone';
-import Comment from './componets/Comment/Comment';
+
 import PostDetail from './componets/PostDetail/PostDetail';
 import Post from './componets/Post/Post';
 import Posts from './componets/Posts/Posts';
@@ -26,17 +26,14 @@ function App() {
       <SideBar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/users" element={<GetUsers/>}/>
         <Route path="/following" element={<Following/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/user/:id" element={<GeneralUserProfile/>}/>
-        <Route path="/profile" element={<LoggedUserProfile/>}/>
         <Route path="/post/:id" element={<PostDetail />} />
-        <Route path="/createPost" element={<CreatePost />} />
         <Route path="/posts" element={<Posts />} />
-
         <Route path="*" element={<NotFound />} />
+        <Route path="/profile" element={<PrivateZone><LoggedUserProfile/></PrivateZone>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

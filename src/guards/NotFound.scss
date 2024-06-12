@@ -1,0 +1,18 @@
+@import "../App.scss";
+
+.notFoundContainer{
+
+    margin-top: 20%;
+    @extend %displayCenter;
+    flex-direction: column;
+    @media screen and (min-width: 800px){
+        margin-top: 8%;
+        
+    }
+
+}
+.notFoundImg{
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
