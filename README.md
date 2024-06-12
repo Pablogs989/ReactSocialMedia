@@ -47,34 +47,34 @@ Para garantizar la seguridad de nuestra plataforma, hemos implementado guards qu
 ### Post Detail Mobile | Post Detail PC
 
 <div style="display: flex; gap: 20px;">
-  <div style="width: 150px;">
-    <img src="src/assets/screen/PostDetailMobile.png" alt="Ejemplo Post Detail Mobile" style="max-width: 100%;" />
-  </div>
-  <div style="width: 300px;">
-    <img src="src/assets/screen/detailPostsPc.png" alt="Ejemplo Post Detail" style="max-width: 100%;" />
-  </div>
+  <span>
+    <img src="src/assets/screen/PostDetailMobile.png" width="150px" alt="Ejemplo Post Detail Mobile" style="max-width: 100%;" />
+  </span>
+  <span>
+    <img src="src/assets/screen/detailPostsPc.png" width="300px" alt="Ejemplo Post Detail" style="max-width: 100%;" />
+  </span>
 </div>
 
 ### Profile view Mobile | Profile view PC
 
 <div style="display: flex; gap: 20px;">
-  <div style="width: 150px;">
-    <img src="src/assets/screen/profileMobileView.png" alt="Ejemplo Profile view Mobile" style="max-width: 100%;" />
-  </div>
-  <div style="width: 300px;">
-    <img src="src/assets/screen/profilePcView.png" alt="Ejemplo Profile view PC" style="max-width: 100%;" />
-  </div>
+  <span>
+    <img src="src/assets/screen/profileMobileView.png"  width="150px" alt="Ejemplo Profile view Mobile" style="max-width: 100%;" />
+  </span>
+  <span>
+    <img src="src/assets/screen/profilePcView.png" width="300px" alt="Ejemplo Profile view PC" style="max-width: 100%;" />
+  </span>
 </div>
 
 ### Home view Mobile | Home view PC
 
 <div style="display: flex; gap: 20px;">
-  <div style="width: 150px;">
-    <img src="src/assets/screen/HomeMobile.png" alt="Ejemplo Home view Mobile" style="max-width: 100%;" />
-  </div>
-  <div style="width: 300px;">
-    <img src="src/assets/screen/homePc.png" alt="Ejemplo Home view PC" style="max-width: 100%;" />
-  </div>
+  <span>
+    <img src="src/assets/screen/HomeMobile.png"  width="150px"  alt="Ejemplo Home view Mobile" style="max-width: 100%;" />
+  </span>
+  <span>
+    <img src="src/assets/screen/homePc.png" width="300px"  alt="Ejemplo Home view PC" style="max-width: 100%;" />
+  </span>
 </div>
 
 ## Componentes
