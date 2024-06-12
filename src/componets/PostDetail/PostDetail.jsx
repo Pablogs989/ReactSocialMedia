@@ -16,6 +16,7 @@ import {
 import Comment from "../Comment/Comment";
 import "./PostDetail.scss";
 import { Modal } from "antd";
+import SharePost from "../SharePost/SharePost";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -72,6 +73,8 @@ const PostDetail = () => {
         <p>Created on: {post.createdAt.slice(0, 10)}</p>
       </div>
       <div className="postActions">
+        <div>
+        
         {user && (
           isLiked ? (
             <div className="actionButton">
@@ -85,6 +88,8 @@ const PostDetail = () => {
             </div>
           )
         )}
+      
+  
       </div>
       {user && post.userId === user._id && (
         <div className="deleteButtonContainer">
@@ -97,7 +102,11 @@ const PostDetail = () => {
           )}
         </div>
       )}
+            <div><SharePost/></div>
+        </div>
       </div>
+      
+
           </div>
       
       <div className="commentSection">

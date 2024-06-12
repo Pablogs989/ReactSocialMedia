@@ -16,8 +16,8 @@ object-fit: cover;
 
 
 @media screen and (min-width: 749px) and (max-width: 999px) {
-  border: 2px yellow solid;
     width: 100%;
+    
     height: 300px;
     object-fit: cover;
   
@@ -33,20 +33,23 @@ object-fit: cover;
 }
 .postCard {
   @extend %displayCenter;
-  height:320px;
-  justify-self: center;
+  height: 320px;
   border-radius: 3px;
   margin-bottom: 3vh;
   box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;
   transition: 0.4s;
 
+  @media screen and (min-width: 749px) and (max-width: 1099px) {
+    width: 600px;
+  }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 800px) {
     width: 30vw;
     min-height: 450px;
     justify-content: center;
-    flex-basis: calc(25% - 2%); 
-    margin: 20px; 
+    flex-basis: calc(25% - 2%);
+    margin: 20px;
+    justify-self: center; 
   }
 }
 

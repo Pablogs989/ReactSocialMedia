@@ -30,6 +30,7 @@ const Post = ({ posts }) => {
             </div>
           </Link>
         </div>
+
       </div>
     );
   });
