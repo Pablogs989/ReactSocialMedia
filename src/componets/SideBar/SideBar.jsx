@@ -70,7 +70,7 @@ const handleLogout = async () => {
       <div id="iconsBarDiv">
         <div className="iconsBar">
           <div id="home" className="iconsDiv"><Link to="/">
-          <HomeOutlined style={{ fontSize: '20px',color:"grey"}} />
+          <HomeOutlined style={{ fontSize: '20px',color:"grey"}} /><span className="sideBarTextSection">Profile</span>
           </Link>
           </div>
 
@@ -78,7 +78,7 @@ const handleLogout = async () => {
           {user && (
             <>
             <div>
-              <PlusOutlined onClick={showModalCreatePosts} style={{ fontSize: '20px',color:"grey"}} />
+              <PlusOutlined onClick={showModalCreatePosts} style={{ fontSize: '20px',color:"grey"}} /><span className="sideBarTextSection">Post!</span>
             </div>
             <Modal
             open={isModalOpenCreatePosts} 
@@ -89,7 +89,7 @@ const handleLogout = async () => {
             </Modal>
             <div>
               <Link to="/following">
-              <CoffeeOutlined style={{ fontSize: '22px', color:"grey"}}/>
+              <CoffeeOutlined style={{ fontSize: '22px', color:"grey"}}/><span className="sideBarTextSection">followed</span>
               </Link>
             </div>
               
@@ -98,7 +98,7 @@ const handleLogout = async () => {
                   <Space>
                     <div id="profileMenu" className="iconsDiv">
                       <Link to="/profile">
-                      <img className="profileImg" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" />
+                      <img className="profileImg" src={"http://localhost:8080/public/users/"+ user.profilePic} alt="profilePic" /><span className="sideBarTextSection">{user.name}</span>
                       </Link>
                     </div>
                   </Space>
@@ -107,7 +107,7 @@ const handleLogout = async () => {
               
             </>
           )}
-          {!user&& <div div id="loginDiv" className="iconsDiv">
+          {!user&& <div div id="loginDiv" className="iconsDiv"><span className="sideBarTextSection">Log in!</span>
             <Link to="/login">
             <UserOutlined/>
             </Link>

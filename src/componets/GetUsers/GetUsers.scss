@@ -12,15 +12,18 @@ overflow-x: scroll;
 }
   }
   .getUsersDivContainer{
-    padding: 10%;
-    @media screen and (max-width: 800px){
-      padding: 2%;
+    padding: 2%;
+
+    margin-top: 6%;
+    @media screen and (min-width: 600px){
+    margin-left: 20%;
+
       
     }
   }
 
   .searchUserContainer{
-    margin-bottom: 58%;
+    margin-bottom: 27%;
     @media screen and (max-width: 800px){
       margin-bottom: 3%;
       

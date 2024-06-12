@@ -1,4 +1,11 @@
 @import "../../App.scss";
+a{
+  text-decoration: none;
+  color: black;
+}
+a:hover{
+  color:fuchsia
+}
 .iconsBarContainer{
   @extend %displayCenter;
   
@@ -14,6 +21,9 @@
     position: fixed;
     bottom: 0;
     z-index: 1;
+    @media screen and (min-width: 600px){
+    
+    }
   
   }
   
@@ -31,39 +41,35 @@
   border-radius: 50px;
 margin-top: 5px;}
 
-  
-
-  
-  .iconsBar .iconsDiv .svg:hover {
-    transition: 0.1s;
-    color: rgb(235, 40, 176);
-    position: relative;
-    margin-top: -4px;
-    opacity: 100%;
-    
-  }
-
-
   @media screen and (min-width: 600px){
     #iconsBarDiv{
       display: block;
-      width: 6%;
-      max-width: 70px;
-      min-width: 50px;
+      width: 20%;
       height: 100%;
       position: fixed;
       left: 0;
-      // margin-right: 50px
+      background-color: rgba(255, 192, 203, 0.579);
+
     }
     .iconsBar{
       flex-direction: column-reverse;
       justify-content: space-around;
       height: 100%;
+      margin: 10px;
     }
     .profileImg{
       width: 50px;
       height:50px;
-    border-radius: 50px;
-  margin-top: 5px;}
+      border-radius: 50px;
+      margin-top: 5px;
+    }
   
+  }
+  .sideBarTextSection{
+    display: none;
+    @media screen and (min-width: 600px){
+    display: contents;
+      padding: 10px;
+      
+    }
   }
