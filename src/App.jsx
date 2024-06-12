@@ -16,6 +16,8 @@ import PrivateZone from './guards/PrivateZone';
 import Comment from './componets/Comment/Comment';
 import PostDetail from './componets/PostDetail/PostDetail';
 import Liked from './componets/Liked/Liked';
+import Post from './componets/Post/Post';
+import Posts from './componets/Posts/Posts';
 function App() {
 
 
@@ -34,6 +36,8 @@ function App() {
         <Route path="/profile" element={<LoggedUserProfile/>}/>
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/createPost" element={<CreatePost />} />
+        <Route path="/posts" element={<Posts />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer/>
