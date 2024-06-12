@@ -31,7 +31,7 @@ const UserCard = ({ users }) => {
         );
         return (
           <div key={user._id} className="userCardContainer">
-            <Link to={`/user/${user._id}`}>
+            <Link to={`/user/${user._id}`} className="name">
               <div className="infoDiv">
                 <div className="imageUserCard">
                   <img
