@@ -31,14 +31,9 @@ Para garantizar la seguridad de nuestra plataforma, hemos implementado guards qu
 
 ### Página de Not Found || ### Upload Profile Picture
 
-<div style="display: flex; gap: 20px;">
-  <div style="width: 100px;">
-    <img src="src/assets/screen/SocialCircuit.gif" alt="Upload Profile Picture" style="max-width: 100%;" />
-  </div>
-  <div style="width: 150px;">
-    <img src="src/assets/screen/404NotFound.png" alt="Ejemplo NotFound" style="max-width: 100%;" />
-  </div>
-</div>
+    <img src="src/assets/screen/SocialCircuit.gif" width="150px" alt="Upload Profile Picture" style="max-width: 100%;" />
+
+    <img src="src/assets/screen/404NotFound.png" width="150px" alt="Ejemplo NotFound" style="max-width: 100%;" />
 
 ### Create Post with Preview
 
@@ -46,36 +41,30 @@ Para garantizar la seguridad de nuestra plataforma, hemos implementado guards qu
 
 ### Post Detail Mobile | Post Detail PC
 
-<div style="display: flex; gap: 20px;">
   <span>
     <img src="src/assets/screen/PostDetailMobile.png" width="150px" alt="Ejemplo Post Detail Mobile" style="max-width: 100%;" />
   </span>
   <span>
     <img src="src/assets/screen/detailPostsPc.png" width="300px" alt="Ejemplo Post Detail" style="max-width: 100%;" />
   </span>
-</div>
 
 ### Profile view Mobile | Profile view PC
 
-<div style="display: flex; gap: 20px;">
   <span>
     <img src="src/assets/screen/profileMobileView.png"  width="150px" alt="Ejemplo Profile view Mobile" style="max-width: 100%;" />
   </span>
   <span>
     <img src="src/assets/screen/profilePcView.png" width="300px" alt="Ejemplo Profile view PC" style="max-width: 100%;" />
   </span>
-</div>
 
 ### Home view Mobile | Home view PC
 
-<div style="display: flex; gap: 20px;">
   <span>
     <img src="src/assets/screen/HomeMobile.png"  width="150px"  alt="Ejemplo Home view Mobile" style="max-width: 100%;" />
   </span>
   <span>
     <img src="src/assets/screen/homePc.png" width="300px"  alt="Ejemplo Home view PC" style="max-width: 100%;" />
   </span>
-</div>
 
 ## Componentes
 
