@@ -34,7 +34,7 @@ const CreatePost = () => {
     try {
       dispatch(createPost(formData)).unwrap();
       notification.success({ message: "Product successfully uploaded " });
-      setImagePreview(null);
+      setPreviewSrc(null);
     } catch (error) {
       console.error(error);
       notification.error({ message: "Failed to create post" });
