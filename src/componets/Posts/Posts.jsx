@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll } from "../../features/posts/postsSlice";
-import "./Posts.scss";
 import { Input } from "antd";
+import "./Posts.scss";
 
 const Posts = () => {
   const { isLoading, posts } = useSelector((state) => state.posts);
@@ -15,25 +15,34 @@ const Posts = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <h1>Cargando posts...</h1>;
+    return <h1>Loading posts...</h1>;
   }
 
-  const filteredPosts = posts.filter((post) =>
-    post.text.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  let filteredPosts = [];
+  if (posts) {
+    filteredPosts = posts.filter((post) =>
+      post.text.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
 
   return (
     <div className="postComponentContainer">
       <div className="inputSearchPostsDiv">
-      <Input
-        type="text"
-        placeholder="Search by post text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+        <Input
+          type="text"
+          placeholder="Search by post text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </div>
       <div className="postsDivContainer">
+        {posts === undefined ? (
+          <p>Posts not loading</p>
+        ) : filteredPosts.length > 0 ? (
           <Post posts={filteredPosts} />
+        ) : (
+          <p>Posts not foun</p>
+        )}
       </div>
     </div>
   );

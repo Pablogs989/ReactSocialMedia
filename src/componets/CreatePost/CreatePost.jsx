@@ -55,7 +55,7 @@ const CreatePost = () => {
             </div>
             <div className="CreatePostDiv">
               <label htmlFor="file" className="custom-file-label">
-                Seleccionar archivo
+                Select picture
               </label>
               <input
                 onChange={handleFileChange}

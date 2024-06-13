@@ -32,7 +32,6 @@ const Profile = ({ user }) => {
       }
     });
   });
-  console.log(likedPosts);
 
   return (
     <div className="profileDivContainer">
