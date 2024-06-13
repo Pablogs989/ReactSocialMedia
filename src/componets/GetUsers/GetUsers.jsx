@@ -14,9 +14,11 @@ const GetUsers = () => {
     dispatch(getUsers());
   }, [dispatch]);
 
-  const filteredUsers = users ? users.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  ) : [];
+  const filteredUsers = users
+    ? users.filter((user) =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
 
   return (
     <div className="getUsersDivContainer">

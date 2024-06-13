@@ -2,17 +2,21 @@ import React from "react";
 import "./SharePost.scss";
 
 const SharePost = () => {
-    const url = window.location.href
+  const url = window.location.href;
 
-    const handleClickFacebook = () => {
-        window.location.href="https://www.facebook.com/sharer/sharer.php?u=" + {url}
-      };
-      const handleClickTwitter = () => {
-        window.location.href="https://twitter.com/intent/tweet?text=Te%20recomiendo%20este%20post&url=" + url + "&hashtags=SocialCircuit"
-      };
-      const handleClickInstagram = () => {
-        window.location.href="https://www.instagram.com/?hl=en" + {url}
-      };
+  const handleClickFacebook = () => {
+    window.location.href =
+      "https://www.facebook.com/sharer/sharer.php?u=" + { url };
+  };
+  const handleClickTwitter = () => {
+    window.location.href =
+      "https://twitter.com/intent/tweet?text=Te%20recomiendo%20este%20post&url=" +
+      url +
+      "&hashtags=SocialCircuit";
+  };
+  const handleClickInstagram = () => {
+    window.location.href = "https://www.instagram.com/?hl=en" + { url };
+  };
 
   return (
     <ul class="wrapper">

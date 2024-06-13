@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8080/users";
 
 const register = async (userData) => {
     const res = await axios.post(API_URL + "/", userData);
-;
+    ;
     return res.data;
 };
 
@@ -109,12 +109,12 @@ const updateUser = async (formData) => {
     const token = localStorage.getItem("token");
     const config = {
         headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: token, 
+            Authorization: token,
         },
     };
 
     try {
+        console.log(formData);
         const res = await axios.put(`${API_URL}/update`, formData, config);
         return res.data;
     } catch (error) {

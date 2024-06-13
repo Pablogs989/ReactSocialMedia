@@ -1,0 +1,70 @@
+
+$form-background-color: #f5f5f5;
+$input-background-color: #ffffff;
+$input-border-color: #d9d9d9;
+$input-hover-border-color: #40a9ff;
+$button-background-color: #1890ff;
+$button-hover-background-color: #40a9ff;
+$button-text-color: #ffffff;
+$button-border-radius: 4px;
+$input-border-radius: 4px;
+
+.editProfileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $form-background-color;
+
+  form {
+    background-color: $input-background-color;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+
+    .inputDiv {
+      margin-bottom: 1.5rem;
+
+      input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid $input-border-color;
+        border-radius: $input-border-radius;
+        transition: border-color 0.3s;
+
+        &:hover {
+          border-color: $input-hover-border-color;
+        }
+
+        &:focus {
+          outline: none;
+          border-color: $input-hover-border-color;
+          box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+      }
+    }
+
+    .ButtonDiv {
+      display: flex;
+      justify-content: center;
+
+      button {
+        background-color: $button-background-color;
+        color: $button-text-color;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: $button-border-radius;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: $button-hover-background-color;
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+      }
+    }
+  }
+}

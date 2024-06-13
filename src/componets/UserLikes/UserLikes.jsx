@@ -9,8 +9,7 @@ const LikedPosts = ({ likedPosts }) => {
 
   return (
     <div className="likedPostsContainer">
-        <Post posts={likedPosts} />
-      
+      <Post posts={likedPosts} />
     </div>
   );
 };

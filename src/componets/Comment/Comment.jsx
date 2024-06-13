@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
-import { HeartTwoTone, EditOutlined, DeleteOutlined, HeartFilled } from '@ant-design/icons';
-import { Button, Card, Input, Spin } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { createComment, deleteComment, dislikeComment, likeComment, updateComment } from '../../features/posts/postsSlice';
-import './Comment.scss';
+import React, { useState } from "react";
+import {
+  HeartTwoTone,
+  EditOutlined,
+  DeleteOutlined,
+  HeartFilled,
+} from "@ant-design/icons";
+import { Button, Card, Input, Spin } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import {
+  createComment,
+  deleteComment,
+  dislikeComment,
+  likeComment,
+  updateComment,
+} from "../../features/posts/postsSlice";
+import "./Comment.scss";
 
 const Comment = ({ post }) => {
   const { id } = useParams();
@@ -78,43 +89,64 @@ const Comment = ({ post }) => {
         const isDisabled = editableComments[comment._id] === undefined;
 
         return (
-          <div key={comment._id} className='commentContainer'>
-            <div className='commentCard'>
-                <form onSubmit={(e) => handleUpdateSubmit(e, comment._id)}>
-                  <div className='commentInputDiv'>
-
-                  <input className='commentInput' 
+          <div key={comment._id} className="commentContainer">
+            <div className="commentCard">
+              <form onSubmit={(e) => handleUpdateSubmit(e, comment._id)}>
+                <div className="commentInputDiv">
+                  <input
+                    className="commentInput"
                     name={comment._id}
                     value={editableComments[comment._id] || comment.text}
                     placeholder={comment.text}
                     disabled={isDisabled}
                     onChange={handleInputChange}
-                    />
-                    </div>
-                </form>
+                  />
+                </div>
+              </form>
             </div>
-            <div className='buttonContainer'>
+            <div className="buttonContainer">
               {!isDisabled && (
-                <Button type="primary" htmlType="submit" className='sendButtonComment' onClick={(e) => handleUpdateSubmit(e, comment._id)}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="sendButtonComment"
+                  onClick={(e) => handleUpdateSubmit(e, comment._id)}
+                >
                   Actualizar
                 </Button>
               )}
-              <div className='likesDivContainer'>
+              <div className="likesDivContainer">
                 {loggedUser && (
                   <>
                     {!isLiked ? (
-                      <div className='likesIconDiv'>
-                        <HeartTwoTone className="likesIconComment" onClick={() => handleLike(comment._id)} /> {comment.likes?.length}
+                      <div className="likesIconDiv">
+                        <HeartTwoTone
+                          className="likesIconComment"
+                          onClick={() => handleLike(comment._id)}
+                        />{" "}
+                        {comment.likes?.length}
                       </div>
                     ) : (
-                      <div className='likesIconDiv'>
-                        <HeartFilled className="likesIconComment" onClick={() => handleDislike(comment._id)} /> {comment.likes.length}
+                      <div className="likesIconDiv">
+                        <HeartFilled
+                          className="likesIconComment"
+                          onClick={() => handleDislike(comment._id)}
+                        />{" "}
+                        {comment.likes.length}
                       </div>
                     )}
                     {loggedUser._id === comment.userId && (
-                      <div className='editCommentsIcons'>
-                        <EditOutlined className='editCommentIcons' onClick={() => handleEditClick(comment._id, comment.text)} />
-                        <DeleteOutlined className='editCommentIcons' onClick={() => handleDelete(comment._id)} />
+                      <div className="editCommentsIcons">
+                        <EditOutlined
+                          className="editCommentIcons"
+                          onClick={() =>
+                            handleEditClick(comment._id, comment.text)
+                          }
+                        />
+                        <DeleteOutlined
+                          className="editCommentIcons"
+                          onClick={() => handleDelete(comment._id)}
+                        />
                       </div>
                     )}
                   </>
@@ -125,18 +157,23 @@ const Comment = ({ post }) => {
         );
       })}
       {loggedUser && (
-        <div className='commentContainer'>
+        <div className="commentContainer">
           <>
             <form onSubmit={handleSubmit}>
               <input
                 value={commentInput}
                 onChange={(e) => setCommentInput(e.target.value)}
                 placeholder="Escribe algo..."
-                className='commentInputNewComment'
+                className="commentInputNewComment"
               />
             </form>
           </>
-          <Button type="primary" htmlType="submit" className='sendButtonComment' onClick={handleSubmit}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="sendButtonComment"
+            onClick={handleSubmit}
+          >
             Enviar
           </Button>
         </div>

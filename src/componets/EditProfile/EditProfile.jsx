@@ -3,6 +3,7 @@ import { Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { updateUser } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
+import "./EditProfile.scss"; // Importa el archivo SCSS aquí
 
 const EditProfile = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ const EditProfile = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setFormData({
-          email: user.email,
+        email: user.email,
         name: user.name,
       });
     }
@@ -31,13 +32,17 @@ const EditProfile = () => {
   };
 
   const onSubmit = (e) => {
+    const user = JSON.parse(localStorage.getItem("user"));
     e.preventDefault();
     console.log(formData);
+    if (formData.email === user.email) {
+      delete formData.email;
+    }
     dispatch(updateUser(formData));
   };
 
   return (
-    <div>
+    <div className="editProfileContainer">
       <form onSubmit={onSubmit}>
         <div className="inputDiv">
           <Input
@@ -66,4 +71,3 @@ const EditProfile = () => {
 };
 
 export default EditProfile;
-

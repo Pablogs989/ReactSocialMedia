@@ -19,7 +19,7 @@ const Posts = () => {
   }
 
   let filteredPosts = [];
-  if (posts) {
+  if (posts.length > 0) {
     filteredPosts = posts.filter((post) =>
       post.text.toLowerCase().includes(searchTerm.toLowerCase())
     );

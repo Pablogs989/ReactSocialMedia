@@ -43,36 +43,36 @@ const CreatePost = () => {
   };
 
   return (
-      <div className="cardCreatePostContainer">
-        <form className="formPost" action="" onSubmit={handleSubmit}>
-            {previewSrc && (
-              <div className="CreatePostDiv">
-                <img src={previewSrc} alt="Vista previa" className="preview" />
-              </div>
-            )}
-            <div className="CreatePostDiv">
-              <Input name="text" placeholder="Text" />
-            </div>
-            <div className="CreatePostDiv">
-              <label htmlFor="file" className="custom-file-label">
-                Select picture
-              </label>
-              <input
-                onChange={handleFileChange}
-                type="file"
-                name="image"
-                id="file"
-                className="input-file"
-                accept="image/*"
-              />
-            </div>
-            <div className="CreatePostDiv">
-              <Button type="primary" htmlType="submit">
-                Create
-              </Button>
-            </div>
-        </form>
-      </div>
+    <div className="cardCreatePostContainer">
+      <form className="formPost" action="" onSubmit={handleSubmit}>
+        {previewSrc && (
+          <div className="CreatePostDiv">
+            <img src={previewSrc} alt="Vista previa" className="preview" />
+          </div>
+        )}
+        <div className="CreatePostDiv">
+          <Input name="text" placeholder="Text" />
+        </div>
+        <div className="CreatePostDiv">
+          <label htmlFor="file" className="custom-file-label">
+            Select picture
+          </label>
+          <input
+            onChange={handleFileChange}
+            type="file"
+            name="image"
+            id="file"
+            className="input-file"
+            accept="image/*"
+          />
+        </div>
+        <div className="CreatePostDiv">
+          <Button type="primary" htmlType="submit">
+            Create
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 
