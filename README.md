@@ -1,5 +1,8 @@
 # Nuestra Red Social
 
+## Aplicación desplegada
+https://main.deamniasvfe0o.amplifyapp.com/
+
 ## Descripción
 
 Nuestra Red Social es una plataforma donde los usuarios pueden conectarse, compartir contenido y estar actualizado de las publicaciones realizadas por amigos y familiares.
